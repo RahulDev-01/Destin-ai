@@ -14,5 +14,5 @@ function App() {
   </>
  )
 }
-
+// https://github.com/oykuky/Full-Stack-AI-Trip-Planner?tab=readme-ov-file#key-environment-variables
 export default App
