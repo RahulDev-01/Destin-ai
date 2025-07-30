@@ -1,39 +1,35 @@
 // Importing necessary modules and components
-import { Input } from "@/components/ui/input"; // Custom Input component
-import React, { useEffect, useState } from "react"; // React and hooks
-import { AI_PROMPT, SelectBudgetOptions, SelectTravelList } from "@/constants/options"; // Constants for prompts and options
-import { Button } from "@/components/ui/button"; // Custom Button component
-import { toast, Toaster } from "sonner"; // For toast notifications
-import { GoogleGenAI } from "@google/genai"; // Gemini AI SDK
+import { Input } from "@/components/ui/input";
+import React, { useEffect, useState } from "react";
+import { AI_PROMPT, SelectBudgetOptions, SelectTravelList } from "@/constants/options";
+import { Button } from "@/components/ui/button";
+import { toast, Toaster } from "sonner";
+import { GoogleGenAI } from "@google/genai";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
-} from "@/components/ui/dialog"; // Dialog for Google Sign-In
-import { FcGoogle } from "react-icons/fc"; // Google icon
-import { useGoogleLogin } from "@react-oauth/google"; // Google OAuth login
-import axios from "axios"; // HTTP client for Axios
-import { doc, setDoc } from "firebase/firestore"; // Firestore methods
-import { db } from "@/service/firebaseConfig"; // Firebase config
-import { AiOutlineLoading3Quarters } from "react-icons/ai"; // Loading spinner icon
+} from "@/components/ui/dialog";
+import { FcGoogle } from "react-icons/fc";
+import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "@/service/firebaseConfig";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 function CreateTrip() {
-  // State to manage the Sign-In dialog visibility
   const [opendialoge, setOpenDialoge] = useState(false);
-
-  // State for user's travel preference input
   const [formData, setFormData] = useState({
-    location: "",           // Destination
-    noOfDays: "",           // Number of days
-    budget: "",             // Budget choice
-    Peoples: "",            // Number of people
+    location: "",
+    noOfDays: "",
+    budget: "",
+    Peoples: "",
   });
-
-  // State to track if the app is loading (eg. generating trip)
   const [Loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  // Handles updates to the form data as the user answers questions
   const handleInputChange = (name, value) => {
     setFormData({
       ...formData,
@@ -41,40 +37,34 @@ function CreateTrip() {
     });
   };
 
-  // Optional effect to help debug form values; logs whenever formData changes
   useEffect(() => {
     console.log(formData);
   }, [formData]);
 
-  // Sets up Google Login
   const login = useGoogleLogin({
     onSuccess: (codeResp) => {
       const { access_token } = codeResp;
-      GetUSerProfile(access_token); // Fetch profile on success
+      GetUSerProfile(access_token);
     },
     onError: (error) => {
       console.log(error);
     },
   });
 
-  // Main function: Handles when "Generate Trip" is clicked
   const OnGenerateTrip = async () => {
-    // 1. Check if user is logged in
     const user = localStorage.getItem("User");
     if (!user) {
-      setOpenDialoge(true); // Open login dialog if not logged in
+      setOpenDialoge(true);
       return;
     }
 
-    // 2. Check if form is fully filled out
     if (!formData?.location || !formData?.noOfDays || !formData?.budget || !formData?.Peoples) {
       toast("Please fill all details");
       return;
     }
 
-    setLoading(true); // Show spinner/loading
+    setLoading(true);
 
-    // 3. Prepare prompt for the AI using user input
     const FINAL_PROMPT = AI_PROMPT.replace("{location}", formData?.location)
       .replace("{totalDays}", formData?.noOfDays)
       .replace("{traveler}", formData?.Peoples)
@@ -82,10 +72,10 @@ function CreateTrip() {
 
     console.log("Final Prompt:", FINAL_PROMPT);
 
-    // 4. Setup Gemini AI (Google AI) config
     const ai = new GoogleGenAI({
-      apiKey: import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY, // Using key from ENV
+      apiKey: import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY,
     });
+
     const tools = [{ googleSearch: {} }];
     const config = {
       thinkingConfig: {
@@ -102,33 +92,41 @@ function CreateTrip() {
       },
     ];
 
-    let fullResponse = ""; // Accumulator for streamed AI reply
+    let fullResponse = "";
 
     try {
-      // 5. Call Gemini AI and stream the response
       const response = await ai.models.generateContentStream({
         model,
         config,
         contents,
       });
 
-      // Append stream results to fullResponse
       for await (const chunk of response) {
         fullResponse += chunk.text || "";
         console.log("Streamed Chunk: ", chunk.text);
       }
 
-      // 6. Save AI trip to Firestore after generating
-      await SaveAiTrip(fullResponse);
+      // Extract JSON from response
+      const match = fullResponse.match(/```json([\s\S]*?)```/);
+      const jsonText = match ? match[1].trim() : null;
+
+      if (!jsonText) {
+        toast("Failed to extract trip data from AI response.");
+        console.error("No JSON block found in AI response.");
+        setLoading(false);
+        return;
+      }
+
+      const parsedTrip = JSON.parse(jsonText);
+      await SaveAiTrip(parsedTrip); // Save structured data
     } catch (error) {
       console.error("Error generating trip plan:", error);
       toast("There was an error generating your trip plan.");
     }
 
-    setLoading(false); // Hide spinner
+    setLoading(false);
   };
 
-  // Saves the user's trip plan to Firestore database
   const SaveAiTrip = async (TripData) => {
     setLoading(true);
     const user = JSON.parse(localStorage.getItem("User"));
@@ -139,16 +137,19 @@ function CreateTrip() {
       return;
     }
 
-    const docId = Date.now().toString(); // Unique ID for trip
+    const docId = Date.now().toString();
 
     try {
       await setDoc(doc(db, "AI-Trips", docId), {
-        userSelection: formData,         // The user's answers
-        tripData: TripData,              // The AI-generated plan
-        userEmail: user.email,           // Whose trip
-        id: docId,                       // Document ID
+        userSelection: formData,
+        tripData: TripData, // now saved as JSON object
+        userEmail: user.email,
+        id: docId,
+        createdAt: new Date().toISOString(),
       });
+
       toast("Trip saved successfully!");
+      navigate("/view-trip/" + docId);
     } catch (err) {
       console.error("Error saving trip to Firestore:", err);
       toast("Failed to save trip. Try again.");
@@ -157,7 +158,6 @@ function CreateTrip() {
     setLoading(false);
   };
 
-  // Gets the user's Google profile after sign in, saves it, and proceeds to trip generation
   const GetUSerProfile = (accessToken) => {
     axios
       .get("https://www.googleapis.com/oauth2/v3/userinfo", {
@@ -167,11 +167,10 @@ function CreateTrip() {
         },
       })
       .then((resp) => {
-        console.log("User Profile:", resp.data);
         localStorage.setItem("UserProfile", JSON.stringify(resp.data));
         localStorage.setItem("User", JSON.stringify(resp.data));
-        setOpenDialoge(false); // Close dialog
-        OnGenerateTrip(); // Now create trip
+        setOpenDialoge(false);
+        OnGenerateTrip();
       })
       .catch((err) => {
         console.error("Error fetching user profile:", err);
@@ -181,14 +180,12 @@ function CreateTrip() {
   return (
     <>
       <div className="sm:px-10 md:px-32 lg:px-56 xl:px-70 px-5 mt-15">
-        {/* App Headings */}
         <h1 className="font-bold text-3xl">Tell us your Travel Preferences 🏕️🌳</h1>
         <p className="mt-3 text-gray-500 text-xl">
           Just provide some basic information, and our trip planner will
           generate a customized itinerary based on your Preferences.
         </p>
 
-        {/* Destination Input */}
         <div className="mt-10 flex flex-col gap-10">
           <div>
             <h2 className="text-xl my-1 font-medium">What is your destination of choice?</h2>
@@ -199,7 +196,6 @@ function CreateTrip() {
             />
           </div>
 
-          {/* Trip Duration Input */}
           <div>
             <h2 className="text-xl my-1 font-medium">How many days are you planning your trip?</h2>
             <Input
@@ -210,7 +206,6 @@ function CreateTrip() {
           </div>
         </div>
 
-        {/* Select Budget */}
         <div>
           <h2 className="text-xl mt-10 font-medium">What is your budget?</h2>
           <div className="grid grid-cols-3 gap-5 mt-5">
@@ -228,7 +223,6 @@ function CreateTrip() {
           </div>
         </div>
 
-        {/* Select Number of People */}
         <div>
           <h2 className="text-xl mt-10 font-medium">Select number of persons to travel</h2>
           <div className="grid grid-cols-3 gap-5 mt-5">
@@ -246,7 +240,6 @@ function CreateTrip() {
           </div>
         </div>
 
-        {/* Generate Trip Button */}
         <div className="my-10 justify-end flex">
           <Button disabled={Loading} onClick={OnGenerateTrip} className="cursor-pointer">
             {Loading ? (
@@ -257,7 +250,6 @@ function CreateTrip() {
           </Button>
         </div>
 
-        {/* Google Sign In Dialog, shows if not logged in */}
         <Dialog open={opendialoge}>
           <DialogContent>
             <DialogHeader>
@@ -265,17 +257,18 @@ function CreateTrip() {
                 <img src="/logo.svg" alt="Logo" />
                 <h2 className="font-bold text-lg mt-7">Sign In With Google</h2>
                 <p>Sign in to the app with Google authentication securely</p>
-                <Button onClick={login} className="w-full mt-5 cursor-pointer flex gap-2 items-center">
-                  <FcGoogle className="h-7 w-7" />Sign In With Google
-                </Button>
+
+                <div onClick={login} className="p-4 border flex gap-3 mt-6 rounded-lg cursor-pointer hover:shadow-md items-center justify-center">
+                  <FcGoogle className="text-2xl" />
+                  <h2>Sign In With Google</h2>
+                </div>
               </DialogDescription>
             </DialogHeader>
           </DialogContent>
         </Dialog>
-      </div>
 
-      {/* Notification system */}
-      <Toaster />
+        <Toaster />
+      </div>
     </>
   );
 }
