@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog"
 import { FcGoogle } from "react-icons/fc";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 
@@ -42,8 +43,10 @@ function Header() {
 
   return (
     <div className='p-3 shadow-sm flex justify-between items-center px-4'>
-      <img src='/logo.svg' alt='Logo' className='h-10 w-auto'
-           onError={(e)=>{ e.currentTarget.onerror=null; e.currentTarget.src='/vite.svg'; }} />
+      <>
+        <img src='/logo.svg' alt='Logo' className='h-10 w-auto'
+             onError={(e)=>{ e.currentTarget.onerror=null; e.currentTarget.src='/vite.svg'; }} />
+      </>
       <div >
        {user? 
        <div className='flex items-center gap-4'>
