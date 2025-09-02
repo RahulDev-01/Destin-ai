@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from '../ui/button'
 import { Link } from 'react-router-dom'
+import img from '../../../public/Main-Img.png'
 function Hero() {
   return (
     <div className='flex flex-col items-center mx-56 gap-9'>
@@ -9,7 +10,7 @@ function Hero() {
         <Link to={'/create-trip'}>
         <Button className='px-[20px] py-[25px] text-xl cursor-pointer'>Get Started,It's Free</Button>
         </Link>
-
+      <img src={img} alt="" />
     </div>
   )
 }

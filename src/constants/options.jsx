@@ -51,6 +51,6 @@ export const SelectTravelList=[
 ]
 
 
-export const AI_PROMPT='Generate Travel Plan for Location : {location} for {totalDays} Days for {traveler} with a {budget} budget, Give me a Hotels options list with HotelName,Hotel address,Price, hotel image url,geo coordinates,rating,descriptions and suggest itinerary with placeName,Place Details,Place Image Url, Geo Coordinates,ticket Pricing,rating,Time travel each of the location for 3 days with each day plan with best time to visit in JSON format.'
+export const AI_PROMPT='Generate a travel plan for location: {location}, for {totalDays} days, for {traveler} travelers, with a {budget} budget. STRICTLY follow this output contract: Respond ONLY with a fenced JSON block (```json ... ```). The JSON must match EXACTLY this schema and field names (no extra keys, no renaming, no commentary): {"trip": {"hotels": [{"hotelName": "string", "hotelAddress": "string", "price": "string or number", "rating": "string or number"}], "itinerary": [{"day": number, "plan": [{"placeName": "string", "placeDetails": "string", "ticketPricing": "string or number", "timeToTravel": "string"}]}]}}. Requirements: 1) Use the exact keys: hotelName, hotelAddress, price, rating, day, plan, placeName, placeDetails, ticketPricing, timeToTravel. 2) Provide {totalDays} itinerary days (1-index day numbering). 3) Provide between 4 and 8 hotel options under trip.hotels (prefer 4–6). 4) Ensure arrays are present even if empty; avoid undefined/null. 5) Do NOT include markdown or text outside the single ```json block.'
 
 
