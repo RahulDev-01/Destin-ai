@@ -52,7 +52,7 @@ function CreateTrip() {
   });
 
   const OnGenerateTrip = async () => {
-    const user = localStorage.getItem("User");
+    const user = localStorage.getItem("User") || localStorage.getItem("user") || localStorage.getItem("UserProfile");
     if (!user) {
       setOpenDialoge(true);
       return;
@@ -106,19 +106,16 @@ function CreateTrip() {
         console.log("Streamed Chunk: ", chunk.text);
       }
 
-      // Extract JSON from response
-      const match = fullResponse.match(/```json([\s\S]*?)```/);
-      const jsonText = match ? match[1].trim() : null;
-
-      if (!jsonText) {
+      // Extract JSON from response (robust handling)
+      const parsedTrip = parseAiJson(fullResponse);
+      if (!parsedTrip) {
         toast("Failed to extract trip data from AI response.");
-        console.error("No JSON block found in AI response.");
+        console.error("Could not parse AI response into JSON.", fullResponse);
         setLoading(false);
         return;
       }
-
-      const parsedTrip = JSON.parse(jsonText);
-      await SaveAiTrip(parsedTrip); // Save structured data
+      const normalized = normalizeTripData(parsedTrip);
+      await SaveAiTrip(normalized); // Save structured data
     } catch (error) {
       console.error("Error generating trip plan:", error);
       toast("There was an error generating your trip plan.");
@@ -127,9 +124,173 @@ function CreateTrip() {
     setLoading(false);
   };
 
+  // Try to parse JSON from an LLM response with various fence styles or raw JSON
+  const parseAiJson = (text) => {
+    if (!text) return null;
+    const clean = (s) => s.replace(/[\u200B-\u200D\uFEFF]/g, "").trim();
+
+    const candidates = [];
+    // ```json ... ```
+    const fenceJson = text.match(/```json\s*([\s\S]*?)\s*```/i);
+    if (fenceJson && fenceJson[1]) candidates.push(clean(fenceJson[1]));
+    // ``` ... ``` (no language)
+    const fenceAny = text.match(/```\s*([\s\S]*?)\s*```/);
+    if (fenceAny && fenceAny[1]) candidates.push(clean(fenceAny[1]));
+    // Raw: from first { to last }
+    const firstBrace = text.indexOf("{");
+    const lastBrace = text.lastIndexOf("}");
+    if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+      candidates.push(clean(text.substring(firstBrace, lastBrace + 1)));
+    }
+    // Fallback: entire text
+    candidates.push(clean(text));
+
+    for (const c of candidates) {
+      try {
+        return JSON.parse(c);
+      } catch (e) {
+        continue;
+      }
+    }
+    return null;
+  };
+
+  // Normalize AI response to the schema expected by the view components
+  const normalizeTripData = (raw) => {
+    try {
+      const data = raw?.trip ? raw.trip : raw;
+
+      const normalizeHotels = (hotelsInput) => {
+        if (!Array.isArray(hotelsInput)) return [];
+        return hotelsInput.map((h) => {
+          const name = h?.hotelName || h?.name || h?.title || h?.hotel || "";
+          const address = h?.hotelAddress || h?.address || h?.location || "";
+          const price = h?.price || h?.cost || h?.pricing || h?.rate || "";
+          const rating = h?.rating || h?.stars || h?.score || "";
+          return {
+            hotelName: String(name),
+            hotelAddress: String(address),
+            price: typeof price === "number" || typeof price === "string" ? price : "",
+            rating: typeof rating === "number" || typeof rating === "string" ? rating : "",
+          };
+        });
+      };
+
+      const findHotelsDeep = (obj) => {
+        const results = [];
+        const visit = (node) => {
+          if (!node || typeof node !== "object") return;
+          if (Array.isArray(node)) {
+            const normalized = normalizeHotels(node);
+            if (normalized.length >= 1) {
+              results.push(...normalized);
+            } else {
+              node.forEach(visit);
+            }
+            return;
+          }
+          // direct candidates by key name
+          Object.entries(node).forEach(([k, v]) => {
+            const key = String(k).toLowerCase();
+            if (key.includes("hotel")) {
+              const normalized = normalizeHotels(v);
+              if (normalized.length >= 1) results.push(...normalized);
+            }
+            visit(v);
+          });
+        };
+        visit(obj);
+        return results;
+      };
+
+      const pickHotels = () => {
+        const direct =
+          normalizeHotels(data?.hotels) ||
+          normalizeHotels(raw?.hotels) ||
+          normalizeHotels(data?.hotelRecommendations) ||
+          [];
+        if (direct && direct.length) return direct;
+        const deep = findHotelsDeep(raw);
+        return deep && deep.length ? deep : [];
+      };
+
+      const normalizePlanItem = (p) => {
+        const placeName = p?.placeName || p?.name || p?.title || p?.place || "";
+        const placeDetails = p?.placeDetails || p?.description || p?.details || "";
+        const ticketPricing = p?.ticketPricing || p?.price || p?.cost || "";
+        const timeToTravel = p?.timeToTravel || p?.time || p?.slot || "";
+        return {
+          placeName: String(placeName),
+          placeDetails: String(placeDetails),
+          ticketPricing: typeof ticketPricing === "number" || typeof ticketPricing === "string" ? ticketPricing : "",
+          timeToTravel: String(timeToTravel),
+        };
+      };
+
+      const normalizeItinerary = (itineraryInput) => {
+        if (!Array.isArray(itineraryInput)) return [];
+        return itineraryInput.map((d, idx) => {
+          const dayNumber = d?.day || d?.dayNumber || d?.dayIndex || idx + 1;
+          const planRaw = d?.plan || d?.activities || d?.places || [];
+          const plan = Array.isArray(planRaw) ? planRaw.map(normalizePlanItem) : [];
+          return { day: dayNumber, plan };
+        });
+      };
+
+      const findItineraryDeep = (obj) => {
+        const candidates = [];
+        const visit = (node) => {
+          if (!node || typeof node !== "object") return;
+          if (Array.isArray(node)) {
+            // try as full itinerary
+            const asItin = normalizeItinerary(node);
+            if (asItin.length) candidates.push(...asItin);
+            // or as a flat plan for a single day
+            const asPlan = node.map(normalizePlanItem).filter(Boolean);
+            if (asPlan.length) candidates.push({ day: candidates.length + 1, plan: asPlan });
+            node.forEach(visit);
+            return;
+          }
+          Object.entries(node).forEach(([k, v]) => {
+            const key = String(k).toLowerCase();
+            if (key.includes("itinerary") || key.includes("day") || key.includes("plan") || key.includes("places") || key.includes("activities")) {
+              const asItin = normalizeItinerary(v);
+              if (asItin.length) candidates.push(...asItin);
+            }
+            visit(v);
+          });
+        };
+        visit(obj);
+        return candidates;
+      };
+
+      const pickItinerary = () => {
+        const direct =
+          normalizeItinerary(data?.itinerary) ||
+          normalizeItinerary(raw?.itinerary) ||
+          normalizeItinerary(data?.days) ||
+          [];
+        if (direct && direct.length) return direct;
+        const deep = findItineraryDeep(raw);
+        return deep && deep.length ? deep : [];
+      };
+
+      const normalizedTrip = {
+        hotels: pickHotels(),
+        itinerary: pickItinerary(),
+      };
+
+      // Persist with a top-level `trip` key so the view reads trip.tripData.trip
+      return { trip: normalizedTrip };
+    } catch (e) {
+      console.error("Failed to normalize AI trip data:", e);
+      return { trip: { hotels: [], itinerary: [] } };
+    }
+  };
+
   const SaveAiTrip = async (TripData) => {
     setLoading(true);
-    const user = JSON.parse(localStorage.getItem("User"));
+    const user = JSON.parse(localStorage.getItem("User") || localStorage.getItem("user") || localStorage.getItem("UserProfile"));
     if (!user?.email) {
       console.error("User email is missing. Cannot save trip.");
       toast("User not authenticated properly.");
@@ -142,7 +303,7 @@ function CreateTrip() {
     try {
       await setDoc(doc(db, "AI-Trips", docId), {
         userSelection: formData,
-        tripData: TripData, // now saved as JSON object
+        tripData: TripData, // normalized { trip: { hotels, itinerary } }
         userEmail: user.email,
         id: docId,
         createdAt: new Date().toISOString(),
@@ -250,7 +411,7 @@ function CreateTrip() {
           </Button>
         </div>
 
-        <Dialog open={opendialoge}>
+        <Dialog open={opendialoge} onOpenChange={setOpenDialoge}>
           <DialogContent>
             <DialogHeader>
               <DialogDescription>
