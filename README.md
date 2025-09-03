@@ -1,7 +1,3 @@
-Sure! Adding emojis can make the README feel more visually engaging and easier to read. Here’s your **README** with relevant emojis included throughout the document:
-
----
-
 # ✈️ AI Travel Planner
 *App Link* : https://ai-travel-planner-xi-seven.vercel.app/
 
