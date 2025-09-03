@@ -15,12 +15,24 @@ import { Link } from 'react-router-dom';
 
 
 function Header() {
-  const user=JSON.parse(localStorage.getItem('user'));
+  const [user, setUser] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('user')); } catch { return null; }
+  });
   const [openDialog,setOpenDialog]=useState(false);
 
-  
   useEffect(() =>{
-    console.log(user)
+    const handleStorage = (e) => {
+      if (!e || e.key === 'user') {
+        try { setUser(JSON.parse(localStorage.getItem('user'))); } catch { setUser(null); }
+      }
+    };
+    const handleAuthChanged = () => handleStorage({ key: 'user' });
+    window.addEventListener('storage', handleStorage);
+    window.addEventListener('authChanged', handleAuthChanged);
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener('authChanged', handleAuthChanged);
+    };
   },[])
 
   const login=useGoogleLogin({
@@ -36,17 +48,18 @@ function Header() {
       }
     }).then((resp) => {console.log(resp);
       localStorage.setItem('user',JSON.stringify(resp.data));
+      setUser(resp.data);
       setOpenDialog(false);
-      window.location.reload();
+      window.dispatchEvent(new Event('authChanged'));
     })
   }
 
   return (
     <div className='p-3 shadow-sm flex justify-between items-center px-4'>
-      <>
-        <img src='/logo.svg' alt='Logo' className='h-10 w-auto'
+      <Link to="/">
+        <img src='/logo.svg' alt='Logo' className='h-10 w-auto cursor-pointer'
              onError={(e)=>{ e.currentTarget.onerror=null; e.currentTarget.src='/vite.svg'; }} />
-      </>
+      </Link>
       <div >
        {user? 
        <div className='flex items-center gap-4'>
@@ -61,8 +74,9 @@ function Header() {
          </div>
          <Button variant="outline" className="rounded-full" onClick={()=>{
               googleLogout();
-              localStorage.clear();
-              window.location.href='/';
+              localStorage.removeItem('user');
+              setUser(null);
+              window.dispatchEvent(new Event('authChanged'));
             }}>Logout</Button>
 
        </div>

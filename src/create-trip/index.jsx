@@ -52,7 +52,7 @@ function CreateTrip() {
   });
 
   const OnGenerateTrip = async () => {
-    const user = localStorage.getItem("User") || localStorage.getItem("user") || localStorage.getItem("UserProfile");
+    const user = localStorage.getItem("user");
     if (!user) {
       setOpenDialoge(true);
       return;
@@ -290,7 +290,7 @@ function CreateTrip() {
 
   const SaveAiTrip = async (TripData) => {
     setLoading(true);
-    const user = JSON.parse(localStorage.getItem("User") || localStorage.getItem("user") || localStorage.getItem("UserProfile"));
+    const user = JSON.parse(localStorage.getItem("user"));
     if (!user?.email) {
       console.error("User email is missing. Cannot save trip.");
       toast("User not authenticated properly.");
@@ -328,8 +328,8 @@ function CreateTrip() {
         },
       })
       .then((resp) => {
-        localStorage.setItem("UserProfile", JSON.stringify(resp.data));
-        localStorage.setItem("User", JSON.stringify(resp.data));
+        localStorage.setItem("user", JSON.stringify(resp.data));
+        window.dispatchEvent(new Event('authChanged'));
         setOpenDialoge(false);
         OnGenerateTrip();
       })
