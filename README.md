@@ -1,5 +1,5 @@
 # ✈️ AI Travel Planner
-*App Link* : https://ai-travel-planner-xi-seven.vercel.app/
+*App Working Link* : https://ai-travel-planner-xi-seven.vercel.app/
 
 **AI Travel Planner** is an intelligent web application designed to simplify and enhance the travel planning experience 🌍. The app leverages AI-powered recommendations, custom itineraries, and real-time notifications to help users plan their perfect trips. Whether you’re a solo traveler, a couple, or a family, this tool will make your trip planning process seamless, organized, and fun 🎒.
 
