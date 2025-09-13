@@ -1,17 +1,13 @@
-Sure! Adding emojis can make the README feel more visually engaging and easier to read. Here’s your **README** with relevant emojis included throughout the document:
+# ✈️ Destin-Ai
+*App Working Link* : https://ai-travel-planner-xi-seven.vercel.app/
 
----
-
-# ✈️ AI Travel Planner
-*App Link* : https://ai-travel-planner-xi-seven.vercel.app/
-
-**AI Travel Planner** is an intelligent web application designed to simplify and enhance the travel planning experience 🌍. The app leverages AI-powered recommendations, custom itineraries, and real-time notifications to help users plan their perfect trips. Whether you’re a solo traveler, a couple, or a family, this tool will make your trip planning process seamless, organized, and fun 🎒.
+**Destin-Ai** is an intelligent web application designed to simplify and enhance the travel planning experience 🌍. The app leverages AI-powered recommendations, custom itineraries, and real-time notifications to help users plan their perfect trips. Whether you’re a solo traveler, a couple, or a family, this tool will make your trip planning process seamless, organized, and fun 🎒.
 
 ---
 
 ## 🌟 Overview
 
-**AI Travel Planner** is designed to help travelers plan their trips in a hassle-free and personalized manner 🧳. With its AI-powered destination recommendations and custom itinerary builder, users can input their preferences and instantly get a tailored travel plan. The app also enables users to manage their trips, save itineraries, and sign in securely via **Google OAuth** 🔐.
+**Destin-Ai** is designed to help travelers plan their trips in a hassle-free and personalized manner 🧳. With its AI-powered destination recommendations and custom itinerary builder, users can input their preferences and instantly get a tailored travel plan. The app also enables users to manage their trips, save itineraries, and sign in securely via **Google OAuth** 🔐.
 
 ### Key Features:
 
@@ -28,7 +24,7 @@ Sure! Adding emojis can make the README feel more visually engaging and easier t
 
 #### 1. **AI-Powered Destination Recommendations** 🌍
 
-The core feature of the AI Travel Planner is its ability to recommend destinations based on your travel preferences. Whether you're looking for beach vacations, cultural experiences, or adventure trips, the app uses intelligent algorithms to suggest the best places that match your criteria. You can specify factors such as:
+The core feature of the Destin-Ai is its ability to recommend destinations based on your travel preferences. Whether you're looking for beach vacations, cultural experiences, or adventure trips, the app uses intelligent algorithms to suggest the best places that match your criteria. You can specify factors such as:
 
 * Budget 💰
 * Weather preferences 🌞🌧️
@@ -57,7 +53,7 @@ Instant feedback is crucial when interacting with the app. The app integrates **
 
 ---
 
-### Why AI Travel Planner? 🤔
+### Why Destin-Ai ? 🤔
 
 * **Efficient Travel Planning** ⏳: Traditional travel planning involves hours of research, back-and-forth between websites, and lots of time organizing itineraries. The AI Travel Planner automates much of this process, making it easier for travelers to get started with their plans.
 * **Personalized Experience** 🎯: Instead of generic recommendations, the AI Travel Planner tailors each suggestion to your individual preferences, ensuring that your trip aligns with your desires and expectations.
@@ -80,7 +76,7 @@ While the current version is already packed with powerful features, here’s a g
 ## 🎥 Demo
 
 You can try out the AI Travel Planner by visiting the live demo:
-[AI Travel Planner Demo](https://ai-travel-planner-git-main-rahuldev-01s-projects.vercel.app/)
+[Destin-Ai](https://ai-travel-planner-git-main-rahuldev-01s-projects.vercel.app/)
 
 ---
 
@@ -98,13 +94,13 @@ Follow the steps below to set up the project on your local machine.
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/RahulDev-01/ai-travel-planner.git
+   git clone https://github.com/RahulDev-01/Destin-ai
    ```
 
 2. **Navigate to the project directory**:
 
    ```bash
-   cd ai-travel-planner
+   cd Destin-ai
    ```
 
 3. **Install dependencies**:
