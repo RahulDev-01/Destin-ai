@@ -1,5 +1,5 @@
 # ✈️ Destin-Ai
-*App Working Link* : https://ai-travel-planner-xi-seven.vercel.app/
+*App Working Link* : https://destinai-rahul.vercel.app/
 
 **Destin-Ai** is an intelligent web application designed to simplify and enhance the travel planning experience 🌍. The app leverages AI-powered recommendations, custom itineraries, and real-time notifications to help users plan their perfect trips. Whether you’re a solo traveler, a couple, or a family, this tool will make your trip planning process seamless, organized, and fun 🎒.
 
@@ -76,7 +76,7 @@ While the current version is already packed with powerful features, here’s a g
 ## 🎥 Demo
 
 You can try out the AI Travel Planner by visiting the live demo:
-[Destin-Ai](https://ai-travel-planner-git-main-rahuldev-01s-projects.vercel.app/)
+[Destin-Ai](https://destinai-rahul.vercel.app/)
 
 ---
 
