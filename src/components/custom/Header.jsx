@@ -88,7 +88,7 @@ function Header() {
         <DialogContent>
           <DialogHeader>
             <DialogDescription>
-              <img src="/logo.svg" className="h-16 w-auto mx-auto"/>
+              <img src="/logo.png" className="h-16 w-auto mx-auto"/>
               <h2 className="font-bold text-lg mt-6">Sign In with Google</h2>
               <p>Sign In to the App with Google authentication securely</p>
               <Button 
