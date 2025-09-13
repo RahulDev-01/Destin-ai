@@ -402,7 +402,7 @@ function CreateTrip() {
         </div>
 
         <div className="my-10 justify-end flex">
-          <Button disabled={Loading} onClick={OnGenerateTrip} className="cursor-pointer">
+          <Button disabled={Loading} onClick={OnGenerateTrip} className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white">
             {Loading ? (
               <AiOutlineLoading3Quarters className="h-7 w-7 animate-spin" />
             ) : (
@@ -415,7 +415,7 @@ function CreateTrip() {
           <DialogContent>
             <DialogHeader>
               <DialogDescription>
-                <img src="/logo.svg" alt="Logo" />
+                <img src="/logo.svg" alt="Logo" className="h-16 w-auto mx-auto" />
                 <h2 className="font-bold text-lg mt-7">Sign In With Google</h2>
                 <p>Sign in to the app with Google authentication securely</p>
 

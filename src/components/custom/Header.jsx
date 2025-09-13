@@ -55,9 +55,9 @@ function Header() {
   }
 
   return (
-    <div className='p-3 shadow-sm flex justify-between items-center px-4'>
+    <div className=' px-10 shadow-sm flex justify-between items-center'>
       <Link to="/">
-        <img src='/logo.svg' alt='Logo' className='h-10 w-auto cursor-pointer'
+        <img src='/logo.png' alt='Logo' className='h-24 w-auto object-contain cursor-pointer top-1 relative -left-15'
              onError={(e)=>{ e.currentTarget.onerror=null; e.currentTarget.src='/vite.svg'; }} />
       </Link>
       <div >
@@ -80,7 +80,7 @@ function Header() {
             }}>Logout</Button>
 
        </div>
-       : <Button onClick={()=>setOpenDialog(true)}>Sign In</Button> 
+       : <Button onClick={()=>setOpenDialog(true)} className="px-5 bg-blue-500 hover:bg-blue-600 text-white">Sign In</Button> 
        }
       </div>
       
@@ -88,11 +88,11 @@ function Header() {
         <DialogContent>
           <DialogHeader>
             <DialogDescription>
-              <img src="/logo.svg"/>
+              <img src="/logo.svg" className="h-16 w-auto mx-auto"/>
               <h2 className="font-bold text-lg mt-6">Sign In with Google</h2>
               <p>Sign In to the App with Google authentication securely</p>
               <Button 
-              onClick={login} className="w-full mt-5 flex gap-4 items-center">
+              onClick={login} className="w-full mt-5 flex gap-4 items-center bg-blue-500 hover:bg-blue-600 text-white">
                 <FcGoogle className="h-7 w-7"/>
                 Sign In With Google
               </Button>

@@ -31,7 +31,7 @@ export default function InfoSection({trip}) {
                 <h2 className='p-1 px-3 bg-gray-200 rounded-full text-gray-500 text-sm md:text-md font-semibold'>✈️ No of Travelers  {trip?.userSelection?.Peoples}</h2>
             </div>
         </div>
-        <Button className='mt-6 cursor-pointer'><FaShareAlt /></Button>
+        <Button className='mt-6 cursor-pointer bg-blue-500 hover:bg-blue-600 text-white'><FaShareAlt /></Button>
         </div>
     </div>
   )

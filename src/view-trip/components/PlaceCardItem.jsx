@@ -33,7 +33,7 @@ function PlaceCardItem({place}) {
             <p className='text-sm text-gray-400  h-[80px] overflow-hidden'>{place.placeDetails}</p>
             <div className='flex gap-5 items-center '>
             <h2 className='text-green-500'> 💸 {place.ticketPricing}</h2>
-            <Button className='cursor-pointer' onClick={reDirect}><FaMapMarked /></Button>
+            <Button className='cursor-pointer bg-blue-500 hover:bg-blue-600 text-white' onClick={reDirect}><FaMapMarked /></Button>
             </div>
         </div>
     </div>
