@@ -63,6 +63,12 @@ function CreateTrip() {
       return;
     }
 
+    // Add this block to check for more than 20 days
+    if (parseInt(formData.noOfDays, 10) > 20) {
+      toast("You cannot proceed with more than 20 days.");
+      return;
+    }
+
     setLoading(true);
 
     const FINAL_PROMPT = AI_PROMPT.replace("{location}", formData?.location)
