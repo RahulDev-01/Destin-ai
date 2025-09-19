@@ -27,9 +27,6 @@ function Hero() {
                   Get Started — It’s Free
                 </Button>
               </Link>
-              <a href='#how-it-works' className='text-blue-700 hover:text-blue-800 font-medium'>
-                Learn how it works →
-              </a>
             </div>
 
             <div className='mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-gray-500 lg:justify-start'>

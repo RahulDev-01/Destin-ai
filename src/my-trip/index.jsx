@@ -21,7 +21,7 @@ function MyTrips() {
     const GetUserTrips=async()=>{
         const user=JSON.parse(localStorage.getItem('User') || localStorage.getItem('user') || localStorage.getItem('UserProfile'));
         if(!user){
-            navigate('/');
+            navigate('/login?next=/my-trips');
             return ;
         }
         setUserTrips([]);
