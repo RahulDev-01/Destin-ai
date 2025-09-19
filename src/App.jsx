@@ -1,17 +1,12 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-
 import './App.css'
-import { Button } from './components/ui/button'
 import Hero from './components/custom/Hero'
-import { BrowserRouter } from 'react-router-dom';
 
 function App() {
-  const [count, setCount] = useState(0)
+  // Root app wrapped with BrowserRouter to support <Link> components used in Hero
 
  return(
   <>
- <Hero />
+    <Hero />
   </>
  )
 }
