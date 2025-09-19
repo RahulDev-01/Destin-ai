@@ -8,6 +8,7 @@ import { Hotel } from 'lucide-react';
 import Hotels from '../components/Hotels';
 import PlacesToVisit from '../components/PlacesToVisit';
 import Footer from '../components/Footer';
+import { useSEO } from '@/lib/seo';
 
 function Viewtrip() {
   const { tripId } = useParams();
@@ -34,6 +35,15 @@ function Viewtrip() {
       toast.error("Failed to fetch trip data");
     }
   };
+
+  // SEO for View Trip page (dynamic by location when available)
+  useSEO({
+    title: trip?.userSelection?.location
+      ? `${trip.userSelection.location} Trip Itinerary | Destin AI`
+      : 'Trip Itinerary | Destin AI',
+    description: 'View your AI-generated itinerary with recommended hotels and places to visit.',
+    image: '/hero.png',
+  });
 
   return (
     <>

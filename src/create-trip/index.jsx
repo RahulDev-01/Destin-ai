@@ -18,6 +18,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/service/firebaseConfig";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { useSEO } from "@/lib/seo";
 
 function CreateTrip() {
   const [opendialoge, setOpenDialoge] = useState(false);
@@ -29,6 +30,14 @@ function CreateTrip() {
   });
   const [Loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  // SEO for Create Trip page
+  useSEO({
+    title: "Create Trip | Destin AI",
+    description:
+      "Tell us your travel preferences and let Destin AI generate a personalized itinerary in seconds.",
+    image: "/hero.png",
+  });
 
   const handleInputChange = (name, value) => {
     setFormData({

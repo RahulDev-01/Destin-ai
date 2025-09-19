@@ -3,10 +3,18 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import UserTripCard from './components/UserTripCard';
+import { useSEO } from '@/lib/seo';
 
 function MyTrips() {
     const navigate = useNavigate();
     const [userTrips,setUserTrips] = useState([]);
+    
+    // SEO for My Trips page
+    useSEO({
+      title: 'My Trips | Destin AI',
+      description: 'View and manage your saved AI-generated itineraries.',
+      image: '/hero.png',
+    });
     useEffect(() =>{
         GetUserTrips();
     },[])
