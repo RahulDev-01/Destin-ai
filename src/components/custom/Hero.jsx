@@ -23,10 +23,33 @@ function Hero() {
 
             <div className='mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start'>
               <Link to={'/create-trip'}>
-                <Button className='h-12 px-6 text-base bg-blue-600 hover:bg-blue-700 text-white'>
-                  Get Started — It’s Free
+                <Button className='h-12 px-6 text-base bg-blue-600 hover:bg-blue-700 text-white transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg'>
+                  Get Started — It's Free
                 </Button>
               </Link>
+              <Link to={'/login'}>
+                <Button variant='outline' className='h-12 px-6 text-base transition-transform duration-200 hover:-translate-y-0.5 hover:shadow'>
+                  See how it works
+                </Button>
+              </Link>
+            </div>
+
+            {/* Destination input mock */}
+            <div className='mt-6 mx-auto lg:mx-0 w-full max-w-xl rounded-xl border bg-white/70 p-2 shadow-sm ring-1 ring-gray-200'>
+              <div className='flex items-center gap-2 p-3 rounded-lg'>
+                <svg className='h-5 w-5 text-gray-400' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='1.5' d='M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 110-15 7.5 7.5 0 010 15z' />
+                </svg>
+                <input
+                  type='text'
+                  placeholder='Try “5 days in Bali on a budget”'
+                  className='flex-1 bg-transparent outline-none placeholder:text-gray-400'
+                  disabled
+                />
+                <Link to={'/create-trip'}>
+                  <Button className='bg-blue-600 hover:bg-blue-700 text-white'>Plan</Button>
+                </Link>
+              </div>
             </div>
 
             <div className='mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-gray-500 lg:justify-start'>
@@ -34,15 +57,23 @@ function Hero() {
               <span>• Plan in under a minute</span>
               <span>• Edit anytime</span>
             </div>
+            {/* Trust indicators */}
+            <div className='mt-6 flex items-center justify-center lg:justify-start gap-6 text-gray-400'>
+              <span className='text-xs'>Trusted by 5k+ travelers</span>
+              <span className='inline-flex h-6 items-center gap-2'>
+                <img src='/vite.svg' className='h-5 w-5' alt='Vite'/>
+                <img src='/favicon.png' className='h-5 w-5' alt='Logo'/>
+              </span>
+            </div>
           </div>
 
           {/* Right: Hero image */}
-          <div className='relative w-full'>
+          <div className='relative w-full group'>
             {/* Use public folder image reference */}
             <img
               src='/hero.png'
               alt='Illustration of a traveler planning an itinerary with AI'
-              className='mx-auto max-h-[520px] w-full max-w-[720px] object-contain drop-shadow-xl'
+              className='mx-auto max-h-[520px] w-full max-w-[720px] object-contain drop-shadow-xl transition-transform duration-300 ease-out group-hover:scale-[1.02]'
               loading='eager'
               decoding='async'
             />
