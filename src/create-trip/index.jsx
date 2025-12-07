@@ -355,88 +355,202 @@ function CreateTrip() {
 
   return (
     <>
-      <div className="sm:px-10 md:px-32 lg:px-56 xl:px-70 px-5 mt-15">
-        <h1 className="font-bold text-3xl">Tell us your Travel Preferences 🏕️🌳</h1>
-        <p className="mt-3 text-gray-500 text-xl">
-          Just provide some basic information, and our trip planner will
-          generate a customized itinerary based on your Preferences.
-        </p>
+      <div className="relative min-h-screen bg-gradient-to-b from-blue-50 via-white to-indigo-50 overflow-hidden">
+        {/* Background Decorations */}
+        <div className='absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse'></div>
+        <div className='absolute bottom-0 left-0 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000'></div>
 
-        <div className="mt-10 flex flex-col gap-10">
-          <div>
-            <h2 className="text-xl my-1 font-medium">What is your destination of choice?</h2>
-            <Input
-              placeholder={"Enter Destination"}
-              type="text"
-              onChange={(e) => handleInputChange("location", e.target.value)}
-            />
+        <div className="relative sm:px-10 md:px-32 lg:px-56 xl:px-70 px-5 py-12">
+          {/* Header Section */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 rounded-full glass-strong px-4 py-2 text-sm font-medium text-blue-700 shadow-lg mb-4">
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+              <span>AI-Powered Trip Planning</span>
+            </div>
+            <h1 className="font-extrabold text-4xl sm:text-5xl mb-4">
+              <span className="gradient-text">Tell us your Travel</span> Preferences
+            </h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Just provide some basic information, and our trip planner will generate a customized itinerary based on your preferences.
+            </p>
           </div>
 
-          <div>
-            <h2 className="text-xl my-1 font-medium">How many days are you planning your trip?</h2>
-            <Input
-              placeholder={"Ex. 3"}
-              type="number"
-              onChange={(e) => handleInputChange("noOfDays", e.target.value)}
-            />
-          </div>
-        </div>
+          {/* Form Container */}
+          <div className="max-w-4xl mx-auto">
+            <div className="card-premium rounded-3xl p-8 sm:p-10 shadow-2xl">
+              <div className="space-y-8">
+                {/* Destination Input */}
+                <div className="space-y-3">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-900">
+                    <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    What is your destination of choice?
+                  </label>
+                  <Input
+                    placeholder="Enter Destination (e.g., Paris, Tokyo, New York)"
+                    type="text"
+                    className="h-12 text-base rounded-xl border-2 border-gray-200 focus:border-blue-500 transition-colors"
+                    onChange={(e) => handleInputChange("location", e.target.value)}
+                  />
+                </div>
 
-        <div>
-          <h2 className="text-xl mt-10 font-medium">What is your budget?</h2>
-          <div className="grid grid-cols-3 gap-5 mt-5">
-            {SelectBudgetOptions.map((item, index) => (
-              <div
-                key={index}
-                className={`p-4 border rounded-lg hover:shadow-lg cursor-pointer ${formData?.budget === item.title ? "shadow-lg border-black" : ""}`}
-                onClick={() => handleInputChange("budget", item.title)}
-              >
-                <h2 className="text-4xl">{item.icon}</h2>
-                <h2 className="font-bold text-lg">{item.title}</h2>
-                <h2 className="text-sm text-gray-500">{item.desc}</h2>
+                {/* Days Input */}
+                <div className="space-y-3">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-900">
+                    <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    How many days are you planning your trip?
+                  </label>
+                  <Input
+                    placeholder="Ex. 3 (Max: 20 days)"
+                    type="number"
+                    max="20"
+                    className="h-12 text-base rounded-xl border-2 border-gray-200 focus:border-blue-500 transition-colors"
+                    onChange={(e) => handleInputChange("noOfDays", e.target.value)}
+                  />
+                </div>
+
+                {/* Budget Selection */}
+                <div className="space-y-4">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-900">
+                    <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    What is your budget?
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {SelectBudgetOptions.map((item, index) => (
+                      <div
+                        key={index}
+                        className={`group relative p-6 border-2 rounded-2xl cursor-pointer transition-all duration-300 hover-lift ${formData?.budget === item.title
+                            ? "border-blue-600 bg-gradient-to-br from-blue-50 to-indigo-50 shadow-lg"
+                            : "border-gray-200 bg-white hover:border-blue-300"
+                          }`}
+                        onClick={() => handleInputChange("budget", item.title)}
+                      >
+                        <div className="text-center">
+                          <div className="text-5xl mb-3">{item.icon}</div>
+                          <h3 className="font-bold text-lg mb-1">{item.title}</h3>
+                          <p className="text-sm text-gray-600">{item.desc}</p>
+                        </div>
+                        {formData?.budget === item.title && (
+                          <div className="absolute top-3 right-3">
+                            <svg className="h-6 w-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Travelers Selection */}
+                <div className="space-y-4">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-900">
+                    <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    Select number of persons to travel
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {SelectTravelList.map((item, index) => (
+                      <div
+                        key={index}
+                        className={`group relative p-6 border-2 rounded-2xl cursor-pointer transition-all duration-300 hover-lift ${formData?.Peoples === item.people
+                            ? "border-blue-600 bg-gradient-to-br from-blue-50 to-indigo-50 shadow-lg"
+                            : "border-gray-200 bg-white hover:border-blue-300"
+                          }`}
+                        onClick={() => handleInputChange("Peoples", item.people)}
+                      >
+                        <div className="text-center">
+                          <div className="text-5xl mb-3">{item.icon}</div>
+                          <h3 className="font-bold text-lg mb-1">{item.title}</h3>
+                          <p className="text-sm text-gray-600">{item.desc}</p>
+                        </div>
+                        {formData?.Peoples === item.people && (
+                          <div className="absolute top-3 right-3">
+                            <svg className="h-6 w-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Generate Button */}
+                <div className="pt-6">
+                  <Button
+                    disabled={Loading}
+                    onClick={OnGenerateTrip}
+                    className="w-full h-14 text-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl shadow-xl hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {Loading ? (
+                      <div className="flex items-center gap-3">
+                        <AiOutlineLoading3Quarters className="h-6 w-6 animate-spin" />
+                        <span>Generating Your Perfect Trip...</span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2 justify-center">
+                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <span>Generate My Trip</span>
+                      </div>
+                    )}
+                  </Button>
+                </div>
               </div>
-            ))}
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600">
+              <span className="flex items-center gap-2">
+                <svg className="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                Free to use
+              </span>
+              <span className="flex items-center gap-2">
+                <svg className="h-5 w-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                </svg>
+                Generated in seconds
+              </span>
+              <span className="flex items-center gap-2">
+                <svg className="h-5 w-5 text-indigo-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                </svg>
+                Fully customizable
+              </span>
+            </div>
           </div>
         </div>
 
-        <div>
-          <h2 className="text-xl mt-10 font-medium">Select number of persons to travel</h2>
-          <div className="grid grid-cols-3 gap-5 mt-5">
-            {SelectTravelList.map((item, index) => (
-              <div
-                key={index}
-                className={`p-4 border rounded-lg hover:shadow-lg cursor-pointer ${formData?.Peoples === item.people ? "shadow-lg border-black" : ""}`}
-                onClick={() => handleInputChange("Peoples", item.people)}
-              >
-                <h2 className="text-4xl">{item.icon}</h2>
-                <h2 className="font-bold text-lg">{item.title}</h2>
-                <h2 className="text-sm text-gray-500">{item.desc}</h2>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="my-10 justify-end flex">
-          <Button disabled={Loading} onClick={OnGenerateTrip} className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white">
-            {Loading ? (
-              <AiOutlineLoading3Quarters className="h-7 w-7 animate-spin" />
-            ) : (
-              "Generate Trip"
-            )}
-          </Button>
-        </div>
-
+        {/* Sign In Dialog */}
         <Dialog open={opendialoge} onOpenChange={setOpenDialoge}>
-          <DialogContent>
+          <DialogContent className="sm:max-w-md">
             <DialogHeader>
               <DialogDescription>
-                <img src="/logo.png" alt="Logo" className="h-16 w-auto mx-auto" />
-                <h2 className="font-bold text-lg mt-7">Sign In With Google</h2>
-                <p>Sign in to the app with Google authentication securely</p>
+                <div className="text-center">
+                  <img src="/logo.png" alt="Logo" className="h-16 w-auto mx-auto mb-6" />
+                  <h2 className="font-bold text-2xl mb-2 text-gray-900">Sign In to Continue</h2>
+                  <p className="text-gray-600 mb-6">Sign in with Google to save and access your trips</p>
 
-                <div onClick={login} className="p-4 border flex gap-3 mt-6 rounded-lg cursor-pointer hover:shadow-md items-center justify-center">
-                  <FcGoogle className="text-2xl" />
-                  <h2>Sign In With Google</h2>
+                  <div
+                    onClick={login}
+                    className="group p-4 border-2 border-gray-200 flex gap-3 rounded-xl cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 items-center justify-center"
+                  >
+                    <FcGoogle className="text-3xl" />
+                    <span className="font-semibold text-gray-700 group-hover:text-blue-700">Sign In With Google</span>
+                  </div>
                 </div>
               </DialogDescription>
             </DialogHeader>

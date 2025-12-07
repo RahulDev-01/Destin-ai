@@ -8,7 +8,7 @@ function Testimonials() {
       meta: 'Solo Traveller',
       avatar: 'https://i.pravatar.cc/96?img=12',
       rating: 5,
-      gradient: 'from-purple-500 to-pink-500',
+      gradient: 'from-blue-500 to-indigo-600',
     },
     {
       quote: 'We loved the family-friendly suggestions and the ability to quickly edit days.',
@@ -16,7 +16,7 @@ function Testimonials() {
       meta: 'Family Trip',
       avatar: 'https://i.pravatar.cc/96?img=32',
       rating: 5,
-      gradient: 'from-blue-500 to-cyan-500',
+      gradient: 'from-cyan-500 to-blue-600',
     },
     {
       quote: 'Saved me hours of research. Highly recommend for weekend getaways!',
@@ -24,7 +24,7 @@ function Testimonials() {
       meta: 'Weekend Traveller',
       avatar: 'https://i.pravatar.cc/96?img=68',
       rating: 4,
-      gradient: 'from-orange-500 to-pink-500',
+      gradient: 'from-sky-500 to-blue-700',
     },
   ]
 
