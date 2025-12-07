@@ -11,15 +11,13 @@ function Hero() {
           <div className='text-center lg:text-left space-y-6'>
             {/* Badge */}
             <div className='inline-flex items-center gap-2 rounded-full bg-blue-50 border border-blue-200 px-4 py-2 text-sm font-medium text-blue-700'>
-              <svg className='h-4 w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M13 10V3L4 14h7v7l9-11h-7z' />
-              </svg>
+              <span>🤖</span>
               <span>AI-Powered Travel Planning</span>
             </div>
 
             {/* Main Heading */}
             <h1 className='font-extrabold leading-tight text-4xl sm:text-5xl lg:text-6xl text-gray-900'>
-              Plan Your Perfect Trip with <span className='text-blue-600'>AI Assistance</span>
+              Plan Your Perfect Trip with <span className='text-blue-600'>AI Assistance</span> 🌍
             </h1>
 
             {/* Description */}
@@ -31,7 +29,7 @@ function Hero() {
             <div className='flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start pt-4'>
               <Link to={'/create-trip'}>
                 <Button className='h-12 px-8 text-base bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200'>
-                  Get Started Free
+                  Get Started Free ✨
                   <svg className='ml-2 h-4 w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                     <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M13 7l5 5m0 0l-5 5m5-5H6' />
                   </svg>
@@ -39,7 +37,7 @@ function Hero() {
               </Link>
               <Link to={'/create-trip'}>
                 <Button variant='outline' className='h-12 px-8 text-base border-gray-300 hover:bg-gray-50 font-semibold rounded-lg transition-all duration-200'>
-                  See How It Works
+                  See How It Works 🎯
                 </Button>
               </Link>
             </div>
@@ -50,19 +48,19 @@ function Hero() {
                 <svg className='h-5 w-5 text-green-600' fill='currentColor' viewBox='0 0 20 20'>
                   <path fillRule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clipRule='evenodd' />
                 </svg>
-                No credit card required
+                No credit card required 💳
               </span>
               <span className='flex items-center gap-2'>
                 <svg className='h-5 w-5 text-blue-600' fill='currentColor' viewBox='0 0 20 20'>
                   <path fillRule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z' clipRule='evenodd' />
                 </svg>
-                Ready in 60 seconds
+                Ready in 60 seconds ⚡
               </span>
               <span className='flex items-center gap-2'>
                 <svg className='h-5 w-5 text-blue-600' fill='currentColor' viewBox='0 0 20 20'>
                   <path d='M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z' />
                 </svg>
-                Fully customizable
+                Fully customizable ✏️
               </span>
             </div>
 

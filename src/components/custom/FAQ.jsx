@@ -5,130 +5,102 @@ function FAQ() {
 
   const faqs = [
     {
-      q: 'Is this AI Travel Planner free to use?',
-      a: 'Yes, you can plan trips for free. We may add premium options in the future for power users with advanced features.',
-      icon: (
-        <svg className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-          <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z' />
-        </svg>
-      ),
+      emoji: '💳',
+      q: 'Is this service really free?',
+      a: 'Yes! Our basic trip planning service is completely free. No credit card required, no hidden fees. Create unlimited trips and save them to your account.',
     },
     {
-      q: 'Do I need to sign in?',
-      a: 'You can generate trips without signing in. Sign in to save and access them later across all your devices.',
-      icon: (
-        <svg className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-          <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' />
-        </svg>
-      ),
+      emoji: '🔐',
+      q: 'Do I need to create an account?',
+      a: 'You can explore and generate trips without signing in. However, creating a free account allows you to save trips, access them across devices, and customize them anytime.',
     },
     {
-      q: 'Can I edit the itinerary?',
-      a: 'Absolutely! Regenerate days, swap activities, or change pace. Your plan stays consistent and personalized.',
-      icon: (
-        <svg className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-          <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z' />
-        </svg>
-      ),
+      emoji: '✏️',
+      q: 'Can I modify the AI-generated itinerary?',
+      a: 'Absolutely! The AI creates a starting point, but you have full control to edit, add, or remove activities. Customize every detail to match your perfect trip.',
     },
     {
-      q: 'How accurate are the AI recommendations?',
-      a: 'Our AI uses real-time data and traveler reviews to provide highly accurate, personalized recommendations tailored to your preferences.',
-      icon: (
-        <svg className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-          <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' />
-        </svg>
-      ),
+      emoji: '🌍',
+      q: 'Which destinations are supported?',
+      a: 'We support destinations worldwide! From bustling cities to remote islands, our AI can plan trips anywhere. Just tell us where you want to go.',
     },
     {
-      q: 'Can I share my itinerary with others?',
-      a: 'Yes! You can easily share your trip plans with friends and family via link or export them as PDF.',
-      icon: (
-        <svg className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-          <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z' />
-        </svg>
-      ),
+      emoji: '⚡',
+      q: 'How long does it take to generate a trip?',
+      a: 'Most trips are generated in less than 60 seconds! Our AI analyzes your preferences and creates a comprehensive itinerary almost instantly.',
     },
     {
-      q: 'What destinations are supported?',
-      a: 'We support destinations worldwide! From popular cities to hidden gems, our AI can plan trips anywhere you want to go.',
-      icon: (
-        <svg className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-          <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z' />
-        </svg>
-      ),
+      emoji: '📱',
+      q: 'Can I access my trips on mobile?',
+      a: 'Yes! Our platform is fully responsive. Access your saved trips from any device - phone, tablet, or computer - anytime, anywhere.',
     },
   ]
 
   return (
-    <section className='relative w-full bg-gradient-to-b from-slate-50 to-white py-20 sm:py-24 overflow-hidden'>
-      {/* Background Pattern */}
-      <div className='absolute inset-0 opacity-5'>
-        <div className='absolute inset-0' style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgb(0 0 0 / 0.15) 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
-      </div>
-
-      <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10'>
+    <section className='w-full bg-gradient-to-b from-slate-50 to-white py-20 sm:py-24'>
+      <div className='mx-auto max-w-4xl px-6 sm:px-8 lg:px-10'>
         {/* Section Header */}
-        <div className='max-w-3xl mx-auto text-center mb-16'>
-          <h2 className='text-4xl sm:text-5xl font-extrabold tracking-tight mb-4'>
-            Frequently Asked <span className='gradient-text'>Questions</span>
+        <div className='text-center mb-16'>
+          <div className='inline-flex items-center gap-2 rounded-full bg-green-50 border border-green-200 px-4 py-2 text-sm font-semibold text-green-700 mb-4'>
+            ❓ FAQ
+          </div>
+          <h2 className='text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 text-gray-900'>
+            Got <span className='text-blue-600'>Questions?</span> 🤔
           </h2>
-          <p className='text-lg text-gray-600'>Everything you need to know about using our AI Travel Planner.</p>
+          <p className='text-lg text-gray-600'>Everything you need to know about planning with AI</p>
         </div>
 
-        {/* FAQ Grid */}
-        <dl className='grid grid-cols-1 gap-6 sm:grid-cols-2 max-w-5xl mx-auto'>
-          {faqs.map((f, idx) => (
+        {/* FAQ Accordion */}
+        <div className='space-y-4'>
+          {faqs.map((faq, idx) => (
             <div
               key={idx}
-              className='group relative rounded-3xl bg-white p-6 shadow-lg hover-lift border border-gray-100 hover:border-blue-200 transition-all duration-300 cursor-pointer'
-              onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+              className='rounded-2xl bg-white border-2 border-gray-200 hover:border-blue-300 transition-all duration-200 overflow-hidden'
             >
-              {/* Icon and Question */}
-              <dt className='flex items-start gap-3 mb-3'>
-                <div className='flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform duration-300'>
-                  {f.icon}
+              <button
+                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                className='w-full text-left p-6 flex items-start justify-between gap-4 hover:bg-gray-50 transition-colors'
+              >
+                <div className='flex items-start gap-4 flex-1'>
+                  <span className='text-3xl'>{faq.emoji}</span>
+                  <span className='font-bold text-lg text-gray-900 pt-1'>{faq.q}</span>
                 </div>
-                <div className='flex-1'>
-                  <span className='font-bold text-gray-900 text-lg'>{f.q}</span>
-                  <div className='ml-auto'>
-                    <svg
-                      className={`h-5 w-5 text-blue-600 transition-transform duration-300 ${openIndex === idx ? 'rotate-180' : ''}`}
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      stroke='currentColor'
-                    >
-                      <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M19 9l-7 7-7-7' />
-                    </svg>
-                  </div>
-                </div>
-              </dt>
+                <svg
+                  className={`w-6 h-6 text-blue-600 flex-shrink-0 transition-transform duration-200 mt-1 ${openIndex === idx ? 'rotate-180' : ''
+                    }`}
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  stroke='currentColor'
+                >
+                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M19 9l-7 7-7-7' />
+                </svg>
+              </button>
 
-              {/* Answer */}
-              <dd
-                className={`text-gray-600 text-sm leading-relaxed ml-13 overflow-hidden transition-all duration-300 ${openIndex === idx ? 'max-h-40 opacity-100 mt-2' : 'max-h-0 opacity-0'
+              <div
+                className={`overflow-hidden transition-all duration-300 ${openIndex === idx ? 'max-h-40' : 'max-h-0'
                   }`}
               >
-                {f.a}
-              </dd>
-
-              {/* Decorative Element */}
-              <div className='absolute -bottom-2 -right-2 w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full opacity-0 group-hover:opacity-5 blur-2xl transition-opacity duration-300'></div>
+                <div className='px-6 pb-6 pl-20'>
+                  <p className='text-gray-600 leading-relaxed'>{faq.a}</p>
+                </div>
+              </div>
             </div>
           ))}
-        </dl>
+        </div>
 
-        {/* Bottom CTA */}
-        <div className='mt-16 text-center'>
-          <p className='text-gray-600 mb-4'>Still have questions?</p>
+        {/* Still have questions CTA */}
+        <div className='mt-12 text-center p-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-3xl border border-blue-100'>
+          <div className='text-4xl mb-3'>💬</div>
+          <h3 className='text-xl font-bold text-gray-900 mb-2'>Still have questions?</h3>
+          <p className='text-gray-600 mb-4'>We're here to help! Reach out to our support team</p>
           <a
             href='mailto:support@example.com'
-            className='inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl'
+            className='inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all duration-200 shadow-md hover:shadow-lg'
           >
             <svg className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' />
             </svg>
-            Contact Support
+            Contact Support 📧
           </a>
         </div>
       </div>

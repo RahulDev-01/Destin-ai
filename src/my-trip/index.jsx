@@ -45,13 +45,11 @@ function MyTrips() {
         {/* Header Section */}
         <div className='mb-10'>
           <div className='inline-flex items-center gap-2 rounded-full bg-blue-50 border border-blue-200 px-4 py-2 text-sm font-medium text-blue-700 mb-3'>
-            <svg className='h-4 w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-              <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' />
-            </svg>
+            <span>🗺️</span>
             <span>Your Travel Collection</span>
           </div>
           <h2 className='font-extrabold text-3xl sm:text-4xl mb-2 text-gray-900'>
-            My <span className='text-blue-600'>Trips</span>
+            My <span className='text-blue-600'>Trips</span> ✈️
           </h2>
           <p className='text-base text-gray-600'>View and manage all your AI-generated travel itineraries</p>
         </div>
@@ -83,8 +81,8 @@ function MyTrips() {
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' />
               </svg>
             </div>
-            <h3 className='text-2xl font-bold text-gray-900 mb-2'>No trips yet</h3>
-            <p className='text-gray-600 mb-6'>Start planning your first adventure with AI</p>
+            <h3 className='text-2xl font-bold text-gray-900 mb-2'>No trips yet 🎒</h3>
+            <p className='text-gray-600 mb-6'>Start planning your first adventure with AI 🌟</p>
             <a
               href='/create-trip'
               className='inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all duration-200 shadow-md hover:shadow-lg'
@@ -92,7 +90,7 @@ function MyTrips() {
               <svg className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M12 4v16m8-8H4' />
               </svg>
-              Create Your First Trip
+              Create Your First Trip 🚀
             </a>
           </div>
         )}
