@@ -81,19 +81,19 @@ function FAQ() {
           {faqs.map((f, idx) => (
             <div
               key={idx}
-              className='group relative rounded-3xl bg-white p-6 shadow-lg hover-lift border border-gray-100 hover:border-purple-200 transition-all duration-300 cursor-pointer'
+              className='group relative rounded-3xl bg-white p-6 shadow-lg hover-lift border border-gray-100 hover:border-blue-200 transition-all duration-300 cursor-pointer'
               onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
             >
               {/* Icon and Question */}
               <dt className='flex items-start gap-3 mb-3'>
-                <div className='flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform duration-300'>
+                <div className='flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform duration-300'>
                   {f.icon}
                 </div>
                 <div className='flex-1'>
                   <span className='font-bold text-gray-900 text-lg'>{f.q}</span>
                   <div className='ml-auto'>
                     <svg
-                      className={`h-5 w-5 text-purple-600 transition-transform duration-300 ${openIndex === idx ? 'rotate-180' : ''}`}
+                      className={`h-5 w-5 text-blue-600 transition-transform duration-300 ${openIndex === idx ? 'rotate-180' : ''}`}
                       fill='none'
                       viewBox='0 0 24 24'
                       stroke='currentColor'
@@ -113,7 +113,7 @@ function FAQ() {
               </dd>
 
               {/* Decorative Element */}
-              <div className='absolute -bottom-2 -right-2 w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full opacity-0 group-hover:opacity-5 blur-2xl transition-opacity duration-300'></div>
+              <div className='absolute -bottom-2 -right-2 w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full opacity-0 group-hover:opacity-5 blur-2xl transition-opacity duration-300'></div>
             </div>
           ))}
         </dl>
@@ -123,7 +123,7 @@ function FAQ() {
           <p className='text-gray-600 mb-4'>Still have questions?</p>
           <a
             href='mailto:support@example.com'
-            className='inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl'
+            className='inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl'
           >
             <svg className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' />

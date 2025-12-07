@@ -6,12 +6,12 @@ function Hero() {
   return (
     <section className='relative w-full overflow-hidden bg-animated-gradient min-h-[90vh] flex items-center'>
       {/* Animated Background Overlay */}
-      <div className='absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-pink-900/20'></div>
+      <div className='absolute inset-0 bg-gradient-to-br from-blue-900/20 via-indigo-900/20 to-cyan-900/20'></div>
 
       {/* Floating Orbs */}
-      <div className='absolute top-20 left-10 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse'></div>
+      <div className='absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse'></div>
       <div className='absolute top-40 right-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000'></div>
-      <div className='absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-2000'></div>
+      <div className='absolute -bottom-8 left-1/2 w-72 h-72 bg-cyan-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-2000'></div>
 
       <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10 py-12 md:py-16 lg:py-20'>
         <div className='grid lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
@@ -41,7 +41,7 @@ function Hero() {
             {/* CTA Buttons */}
             <div className='flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start'>
               <Link to={'/create-trip'}>
-                <Button className='h-14 px-8 text-lg bg-white text-purple-600 hover:bg-white/90 font-semibold rounded-full shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105'>
+                <Button className='h-14 px-8 text-lg bg-white text-blue-600 hover:bg-white/90 font-semibold rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105'>
                   Get Started — It's Free
                   <svg className='ml-2 h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                     <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M13 7l5 5m0 0l-5 5m5-5H6' />
@@ -69,7 +69,7 @@ function Hero() {
                     disabled
                   />
                   <Link to={'/create-trip'}>
-                    <Button className='bg-white text-purple-600 hover:bg-white/90 font-semibold rounded-xl px-6 shadow-lg'>
+                    <Button className='bg-white text-blue-600 hover:bg-white/90 font-semibold rounded-xl px-6 shadow-lg'>
                       Plan
                     </Button>
                   </Link>
@@ -92,7 +92,7 @@ function Hero() {
                 Plan in under a minute
               </span>
               <span className='flex items-center gap-2'>
-                <svg className='h-5 w-5 text-purple-400' fill='currentColor' viewBox='0 0 20 20'>
+                <svg className='h-5 w-5 text-blue-400' fill='currentColor' viewBox='0 0 20 20'>
                   <path d='M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z' />
                 </svg>
                 Edit anytime
