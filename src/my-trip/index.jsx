@@ -40,28 +40,24 @@ function MyTrips() {
   }
 
   return (
-    <div className='relative min-h-screen bg-gradient-to-b from-blue-50 via-white to-indigo-50 overflow-hidden'>
-      {/* Background Decorations */}
-      <div className='absolute top-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse'></div>
-      <div className='absolute bottom-0 right-0 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000'></div>
-
-      <div className='relative px-5 py-12 sm:px-10 md:px-32 lg:px-56 xl:px-72'>
+    <div className='min-h-screen bg-gradient-to-b from-slate-50 to-white'>
+      <div className='px-5 py-12 sm:px-10 md:px-32 lg:px-56 xl:px-72'>
         {/* Header Section */}
-        <div className='mb-12'>
-          <div className='inline-flex items-center gap-2 rounded-full glass-strong px-4 py-2 text-sm font-medium text-blue-700 shadow-lg mb-4'>
-            <svg className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <div className='mb-10'>
+          <div className='inline-flex items-center gap-2 rounded-full bg-blue-50 border border-blue-200 px-4 py-2 text-sm font-medium text-blue-700 mb-3'>
+            <svg className='h-4 w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' />
             </svg>
             <span>Your Travel Collection</span>
           </div>
-          <h2 className='font-extrabold text-4xl sm:text-5xl mb-3'>
-            <span className='gradient-text'>My</span> Trips
+          <h2 className='font-extrabold text-3xl sm:text-4xl mb-2 text-gray-900'>
+            My <span className='text-blue-600'>Trips</span>
           </h2>
-          <p className='text-lg text-gray-600'>View and manage all your AI-generated travel itineraries</p>
+          <p className='text-base text-gray-600'>View and manage all your AI-generated travel itineraries</p>
         </div>
 
         {/* Trips Grid */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'>
           {userTrips?.length > 0 ? (
             userTrips.map((trip, index) => (
               <UserTripCard trip={trip} key={trip?.id || index} onDelete={handleTripDelete} />
@@ -71,11 +67,9 @@ function MyTrips() {
             [1, 2, 3, 4, 5, 6].map((item, index) => (
               <div
                 key={index}
-                className='h-[280px] w-full rounded-3xl overflow-hidden shadow-lg'
+                className='h-[240px] w-full rounded-2xl overflow-hidden shadow-md'
               >
-                <div className='h-full w-full bg-gradient-to-br from-gray-200 to-gray-300 animate-pulse relative'>
-                  <div className='absolute inset-0 bg-gradient-to-t from-gray-400/50 to-transparent'></div>
-                </div>
+                <div className='h-full w-full bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse'></div>
               </div>
             ))
           )}
@@ -84,8 +78,8 @@ function MyTrips() {
         {/* Empty State */}
         {userTrips?.length === 0 && (
           <div className='text-center py-16'>
-            <div className='inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 mb-6'>
-              <svg className='h-12 w-12 text-blue-600' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <div className='inline-flex items-center justify-center w-20 h-20 rounded-full bg-blue-50 mb-5'>
+              <svg className='h-10 w-10 text-blue-600' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' />
               </svg>
             </div>
@@ -93,7 +87,7 @@ function MyTrips() {
             <p className='text-gray-600 mb-6'>Start planning your first adventure with AI</p>
             <a
               href='/create-trip'
-              className='inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl'
+              className='inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all duration-200 shadow-md hover:shadow-lg'
             >
               <svg className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M12 4v16m8-8H4' />

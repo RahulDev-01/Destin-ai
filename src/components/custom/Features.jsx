@@ -48,57 +48,41 @@ function Features() {
   ]
 
   return (
-    <section className='relative w-full bg-gradient-to-b from-white via-purple-50/30 to-white py-20 sm:py-24 overflow-hidden'>
-      {/* Background Decorations */}
-      <div className='absolute top-0 left-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse'></div>
-      <div className='absolute bottom-0 right-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000'></div>
-
-      <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10'>
-        {/* Section Header */}
-        <div className='max-w-3xl mx-auto text-center mb-16'>
-          <h2 className='text-4xl sm:text-5xl font-extrabold tracking-tight mb-4'>
-            <span className='gradient-text'>Plan Smarter</span> with Powerful Features
+    <section className='w-full bg-white py-16 sm:py-20'>
+      <div className='mx-auto max-w-7xl px-6 sm:px-8 lg:px-10'>
+        <div className='max-w-3xl mx-auto text-center mb-12'>
+          <h2 className='text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 text-gray-900'>
+            Powerful Features for <span className='text-blue-600'>Smarter Planning</span>
           </h2>
           <p className='text-lg text-gray-600'>Everything you need to craft the perfect trip—without the spreadsheets.</p>
         </div>
 
-        {/* Features Grid */}
-        <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4'>
+        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
           {features.map((f, idx) => (
             <div
               key={f.title}
-              className='group relative rounded-3xl bg-white p-8 shadow-lg hover-lift border border-gray-100 hover:border-transparent overflow-hidden'
-              style={{ animationDelay: `${idx * 100}ms` }}
+              className='group relative rounded-2xl bg-white p-6 shadow-md hover-lift border border-gray-100 hover:border-blue-200 transition-all duration-200'
             >
-              {/* Gradient Border on Hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${f.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-3xl`}></div>
 
-              {/* Icon Container */}
-              <div className={`relative inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${f.gradient} shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <div className='absolute inset-0 bg-white/20 rounded-2xl'></div>
-                <div className='relative text-white'>
+              <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${f.gradient} shadow-md mb-4 group-hover:scale-105 transition-transform duration-200`}>
+                <div className='text-white'>
                   {f.icon}
                 </div>
               </div>
 
-              {/* Content */}
-              <h3 className='text-xl font-bold mb-3 text-gray-900 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300'>
+              <h3 className='text-lg font-bold mb-2 text-gray-900'>
                 {f.title}
               </h3>
               <p className='text-sm text-gray-600 leading-relaxed'>{f.desc}</p>
-
-              {/* Decorative Element */}
-              <div className={`absolute -bottom-2 -right-2 w-24 h-24 bg-gradient-to-br ${f.gradient} rounded-full opacity-0 group-hover:opacity-5 blur-2xl transition-opacity duration-300`}></div>
             </div>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className='mt-16 text-center'>
+        <div className='mt-12 text-center'>
           <Link to='/create-trip'>
-            <Button className='h-14 px-10 text-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-full shadow-xl hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105'>
+            <Button className='h-12 px-8 text-base bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200'>
               Start Planning Your Trip
-              <svg className='ml-2 h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+              <svg className='ml-2 h-4 w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M13 7l5 5m0 0l-5 5m5-5H6' />
               </svg>
             </Button>
