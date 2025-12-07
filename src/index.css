@@ -75,14 +75,14 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   
-  /* Premium Design Tokens */
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  --gradient-warm: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-  --gradient-cool: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
-  --gradient-sunset: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
-  --gradient-ocean: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  /* Premium Design Tokens - Blue Theme */
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  --gradient-secondary: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+  --gradient-accent: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  --gradient-warm: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --gradient-cool: linear-gradient(135deg, #0ea5e9 0%, #1e40af 100%);
+  --gradient-sunset: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #0ea5e9 100%);
+  --gradient-ocean: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
   
   /* Glassmorphism */
   --glass-bg: rgba(255, 255, 255, 0.1);
@@ -184,7 +184,7 @@
   
   /* Animated Gradients */
   .bg-animated-gradient {
-    background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
+    background: linear-gradient(-45deg, #1e40af, #3b82f6, #60a5fa, #06b6d4);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
   }

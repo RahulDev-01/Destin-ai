@@ -12,7 +12,7 @@ function Features() {
           <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z' />
         </svg>
       ),
-      gradient: 'from-purple-500 to-pink-500',
+      gradient: 'from-blue-500 to-indigo-600',
     },
     {
       title: 'Smart Budgeting',
@@ -32,7 +32,7 @@ function Features() {
           <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z' />
         </svg>
       ),
-      gradient: 'from-green-500 to-emerald-500',
+      gradient: 'from-cyan-500 to-blue-600',
     },
     {
       title: 'Local Gems',
@@ -43,7 +43,7 @@ function Features() {
           <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M15 11a3 3 0 11-6 0 3 3 0 016 0z' />
         </svg>
       ),
-      gradient: 'from-orange-500 to-red-500',
+      gradient: 'from-sky-500 to-blue-700',
     },
   ]
 
@@ -96,7 +96,7 @@ function Features() {
         {/* CTA */}
         <div className='mt-16 text-center'>
           <Link to='/create-trip'>
-            <Button className='h-14 px-10 text-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-full shadow-xl hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105'>
+            <Button className='h-14 px-10 text-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-full shadow-xl hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105'>
               Start Planning Your Trip
               <svg className='ml-2 h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M13 7l5 5m0 0l-5 5m5-5H6' />

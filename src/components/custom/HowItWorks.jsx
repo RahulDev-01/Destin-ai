@@ -53,7 +53,7 @@ function HowItWorks() {
         {/* Steps Grid */}
         <div className='relative grid grid-cols-1 gap-8 sm:grid-cols-3'>
           {/* Connecting Line (Desktop) */}
-          <div className='hidden sm:block absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-200 via-blue-200 to-pink-200' style={{ top: '4rem', left: '16.67%', right: '16.67%' }}></div>
+          <div className='hidden sm:block absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-200 via-cyan-200 to-sky-200' style={{ top: '4rem', left: '16.67%', right: '16.67%' }}></div>
 
           {steps.map((s, idx) => (
             <div
@@ -66,17 +66,17 @@ function HowItWorks() {
                 {/* Step Number Badge */}
                 <div className='absolute -top-6 left-1/2 -translate-x-1/2'>
                   <div className='relative'>
-                    <div className='w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300'>
+                    <div className='w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300'>
                       <span className='text-2xl font-bold text-white'>{s.step}</span>
                     </div>
                     {/* Glow Effect */}
-                    <div className='absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-600 to-pink-600 blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300'></div>
+                    <div className='absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300'></div>
                   </div>
                 </div>
 
                 {/* Icon */}
                 <div className='mt-8 mb-6 flex justify-center'>
-                  <div className='w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform duration-300'>
+                  <div className='w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform duration-300'>
                     {s.icon}
                   </div>
                 </div>
@@ -86,7 +86,7 @@ function HowItWorks() {
                 <p className='text-sm text-gray-600 text-center leading-relaxed'>{s.desc}</p>
 
                 {/* Decorative Corner */}
-                <div className='absolute -bottom-2 -right-2 w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full opacity-0 group-hover:opacity-10 blur-2xl transition-opacity duration-300'></div>
+                <div className='absolute -bottom-2 -right-2 w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full opacity-0 group-hover:opacity-10 blur-2xl transition-opacity duration-300'></div>
               </div>
             </div>
           ))}
@@ -95,8 +95,8 @@ function HowItWorks() {
         {/* Bottom CTA */}
         <div className='mt-16 text-center'>
           <p className='text-gray-600 mb-4'>Ready to start planning?</p>
-          <div className='inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200'>
-            <svg className='h-5 w-5 text-purple-600' fill='currentColor' viewBox='0 0 20 20'>
+          <div className='inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200'>
+            <svg className='h-5 w-5 text-blue-600' fill='currentColor' viewBox='0 0 20 20'>
               <path fillRule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clipRule='evenodd' />
             </svg>
             <span className='text-sm font-medium text-gray-700'>Takes less than 60 seconds</span>
