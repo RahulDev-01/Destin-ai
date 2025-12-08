@@ -99,7 +99,7 @@ function CreateTrip() {
       tools,
       systemInstruction: [{ text: FINAL_PROMPT }],
     };
-    const model = "gemini-2.5-pro";
+    const model = "gemini-1.5-flash";
     const contents = [
       {
         role: "user",
@@ -133,7 +133,11 @@ function CreateTrip() {
       await SaveAiTrip(normalized); // Save structured data
     } catch (error) {
       console.error("Error generating trip plan:", error);
-      toast("There was an error generating your trip plan.");
+      if (error.message && (error.message.includes("429") || error.message.includes("Quota"))) {
+        toast("API Quota exceeded. Please try again later or check billing.");
+      } else {
+        toast("There was an error generating your trip plan. Please try again.");
+      }
     }
 
     setLoading(false);
