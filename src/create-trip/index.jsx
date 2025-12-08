@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { AI_PROMPT, SelectBudgetOptions, SelectTravelList } from "@/constants/options";
 import { Button } from "@/components/ui/button";
 import { toast, Toaster } from "sonner";
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import {
   Dialog,
   DialogContent,
@@ -87,38 +87,18 @@ function CreateTrip() {
 
     console.log("Final Prompt:", FINAL_PROMPT);
 
-    const ai = new GoogleGenAI({
-      apiKey: import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY,
-    });
-
-    const tools = [{ googleSearch: {} }];
-    const config = {
-      thinkingConfig: {
-        thinkingBudget: -1,
-      },
-      tools,
-      systemInstruction: [{ text: FINAL_PROMPT }],
-    };
-    const model = "gemini-1.5-flash-001";
-    const contents = [
-      {
-        role: "user",
-        parts: [{ text: FINAL_PROMPT }],
-      },
-    ];
+    const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
     let fullResponse = "";
 
     try {
-      const response = await ai.models.generateContentStream({
-        model,
-        config,
-        contents,
-      });
+      const result = await model.generateContentStream(FINAL_PROMPT);
 
-      for await (const chunk of response) {
-        fullResponse += chunk.text || "";
-        console.log("Streamed Chunk: ", chunk.text);
+      for await (const chunk of result.stream) {
+        const chunkText = chunk.text();
+        fullResponse += chunkText;
+        console.log("Streamed Chunk: ", chunkText);
       }
 
       // Extract JSON from response (robust handling)
