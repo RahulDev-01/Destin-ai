@@ -89,7 +89,7 @@ function Hero() {
           <div className='relative w-full'>
             <div className='relative rounded-2xl overflow-hidden shadow-xl'>
               <img
-                src='/plane.png'
+                src='/plane.jpg'
                 alt='AI Travel Planning Interface'
                 className='w-full h-auto object-cover'
                 loading='eager'

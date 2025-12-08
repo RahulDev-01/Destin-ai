@@ -57,7 +57,7 @@ function Header() {
   }
 
   return (
-    <header className='px-4 md:px-8 lg:px-10 shadow-lg sticky top-0 z-50 glass-strong border-b border-white/10'>
+    <header className='px-4 md:px-8 lg:px-10 shadow-lg sticky top-0 z-[100] glass-strong border-b border-white/10'>
       <div className='flex h-16 items-center justify-between'>
         {/* Left: Logo */}
         <div className='flex items-center gap-3'>
