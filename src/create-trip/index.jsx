@@ -99,7 +99,7 @@ function CreateTrip() {
       tools,
       systemInstruction: [{ text: FINAL_PROMPT }],
     };
-    const model = "gemini-1.5-flash";
+    const model = "gemini-1.5-flash-001";
     const contents = [
       {
         role: "user",
