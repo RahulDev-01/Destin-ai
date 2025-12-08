@@ -1,5 +1,6 @@
 import './App.css'
 import Hero from './components/custom/Hero'
+import Destinations from './components/custom/Destinations'
 import Features from './components/custom/Features'
 import HowItWorks from './components/custom/HowItWorks'
 import Testimonials from './components/custom/Testimonials'
@@ -12,6 +13,7 @@ function App() {
   return (
     <>
       <Hero />
+      <Destinations />
       <Features />
       <HowItWorks />
       <Testimonials />
