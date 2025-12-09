@@ -3,92 +3,116 @@ import React from 'react'
 function HowItWorks() {
   const steps = [
     {
-      step: '1',
-      emoji: '📝',
-      title: 'Share Your Preferences',
-      desc: 'Tell us where you want to go, your budget, travel dates, and what you love to do.',
-      color: 'from-blue-500 to-cyan-500',
-    },
-    {
-      step: '2',
-      emoji: '🤖',
-      title: 'AI Creates Your Plan',
-      desc: 'Our smart AI analyzes thousands of options and creates a personalized itinerary just for you.',
+      number: '01',
+      icon: '📍',
+      title: 'Choose Destination',
+      description: 'Tell us where you want to go and when. Pick from thousands of destinations worldwide',
       color: 'from-purple-500 to-pink-500',
+      bgColor: 'bg-purple-50'
     },
     {
-      step: '3',
-      emoji: '✨',
-      title: 'Customize & Explore',
-      desc: 'Fine-tune your trip, save it, and access it anytime. Your perfect adventure awaits!',
-      color: 'from-orange-500 to-red-500',
+      number: '02',
+      icon: '⚙️',
+      title: 'Set Preferences',
+      description: 'Select your budget, travel style, and interests. Our AI will understand your needs',
+      color: 'from-pink-500 to-orange-500',
+      bgColor: 'bg-pink-50'
     },
+    {
+      number: '03',
+      icon: '🤖',
+      title: 'AI Magic',
+      description: 'Watch as our AI analyzes millions of options to create your perfect itinerary',
+      color: 'from-orange-500 to-yellow-500',
+      bgColor: 'bg-orange-50'
+    },
+    {
+      number: '04',
+      icon: '✈️',
+      title: 'Start Exploring',
+      description: 'Get your personalized plan with hotels, activities, and local recommendations',
+      color: 'from-yellow-500 to-green-500',
+      bgColor: 'bg-yellow-50'
+    }
   ]
 
   return (
-    <section className='w-full bg-gradient-to-b from-slate-50 to-white py-20 sm:py-24'>
-      <div className='mx-auto max-w-7xl px-6 sm:px-8 lg:px-10'>
+    <section className='relative w-full py-24 md:py-32 bg-gradient-to-b from-white via-orange-50/20 to-white overflow-hidden'>
+      {/* Background Elements */}
+      <div className='absolute inset-0'>
+        <div className='absolute top-1/4 left-0 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob'></div>
+        <div className='absolute top-1/3 right-0 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000'></div>
+      </div>
+
+      <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10'>
         {/* Section Header */}
-        <div className='max-w-3xl mx-auto text-center mb-16'>
-          <div className='inline-flex items-center gap-2 rounded-full bg-purple-50 border border-purple-200 px-4 py-2 text-sm font-semibold text-purple-700 mb-4'>
-            🎯 Simple Process
+        <div className='text-center mb-20 space-y-4'>
+          <div className='inline-flex items-center gap-2 bg-gradient-to-r from-orange-100 to-yellow-100 px-4 py-2 rounded-full'>
+            <span className='text-2xl'>🎯</span>
+            <span className='font-bold text-orange-700'>Simple Process</span>
           </div>
-          <h2 className='text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 text-gray-900'>
-            How It <span className='text-blue-600'>Works</span> 🚀
+          <h2 className='text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-yellow-600'>
+            How It Works
           </h2>
-          <p className='text-lg text-gray-600'>Three simple steps to your dream vacation</p>
+          <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+            From dream to reality in 4 simple steps. Start planning your adventure today!
+          </p>
         </div>
 
-        {/* Steps Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-8 relative'>
-          {/* Connecting arrows for desktop */}
-          <div className='hidden md:block absolute top-24 left-1/4 right-1/4 flex items-center justify-between pointer-events-none'>
-            <svg className='w-full h-8 text-blue-200' fill='none' viewBox='0 0 100 20'>
-              <path d='M0 10 L45 10 L40 5 M45 10 L40 15' stroke='currentColor' strokeWidth='2' fill='none' />
-              <path d='M55 10 L100 10 L95 5 M100 10 L95 15' stroke='currentColor' strokeWidth='2' fill='none' />
-            </svg>
-          </div>
+        {/* Steps */}
+        <div className='relative'>
+          {/* Connecting Line */}
+          <div className='hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-purple-300 via-orange-300 to-green-300 transform -translate-y-1/2 z-0'></div>
 
-          {steps.map((s, idx) => (
-            <div
-              key={s.step}
-              className='relative group'
-            >
-              {/* Card */}
-              <div className='relative rounded-3xl bg-white p-8 shadow-lg hover-lift border border-gray-200 hover:border-blue-300 transition-all duration-300 h-full'>
-                {/* Step Number */}
-                <div className={`absolute -top-4 -right-4 w-12 h-12 rounded-full bg-gradient-to-br ${s.color} flex items-center justify-center shadow-lg`}>
-                  <span className='text-xl font-bold text-white'>{s.step}</span>
+          <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10'>
+            {steps.map((step, index) => (
+              <div key={index} className='relative group'>
+                {/* Card */}
+                <div className='bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 border border-gray-100'>
+                  {/* Step Number */}
+                  <div className={`absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500`}>
+                    {step.number}
+                  </div>
+
+                  {/* Icon */}
+                  <div className={`inline-flex items-center justify-center w-20 h-20 ${step.bgColor} rounded-2xl mb-6 text-5xl transform group-hover:scale-110 transition-all duration-500 shadow-md`}>
+                    {step.icon}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className='text-2xl font-black text-gray-900 mb-4'>
+                    {step.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className='text-gray-600 leading-relaxed font-medium'>
+                    {step.description}
+                  </p>
+
+                  {/* Arrow indicator (except last) */}
+                  {index < steps.length - 1 && (
+                    <div className='hidden lg:block absolute top-1/2 -right-12 transform -translate-y-1/2 text-4xl text-orange-400 animate-pulse'>
+                      →
+                    </div>
+                  )}
                 </div>
-
-                {/* Emoji */}
-                <div className='text-6xl mb-6 transform group-hover:scale-110 transition-transform duration-300'>
-                  {s.emoji}
-                </div>
-
-                {/* Content */}
-                <h3 className='text-xl font-bold mb-3 text-gray-900'>{s.title}</h3>
-                <p className='text-sm text-gray-600 leading-relaxed'>{s.desc}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Bottom CTA */}
-        <div className='mt-16 text-center p-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-3xl border border-blue-100'>
-          <div className='flex flex-col sm:flex-row items-center justify-center gap-4'>
-            <div className='flex items-center gap-2 text-gray-700'>
-              <svg className='h-6 w-6 text-green-600' fill='currentColor' viewBox='0 0 20 20'>
-                <path fillRule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clipRule='evenodd' />
-              </svg>
-              <span className='font-semibold'>Takes less than 60 seconds ⚡</span>
-            </div>
-            <div className='flex items-center gap-2 text-gray-700'>
-              <svg className='h-6 w-6 text-blue-600' fill='currentColor' viewBox='0 0 20 20'>
-                <path fillRule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clipRule='evenodd' />
-              </svg>
-              <span className='font-semibold'>100% Free to use 🎉</span>
-            </div>
+        {/* CTA Section */}
+        <div className='mt-20 text-center'>
+          <div className='inline-flex flex-col items-center gap-6 bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-12 shadow-2xl transform hover:scale-105 transition-all duration-500'>
+            <h3 className='text-4xl font-black text-white'>
+              Ready to Start Your Journey? 🌟
+            </h3>
+            <p className='text-xl text-white/90 max-w-2xl'>
+              Join thousands of happy travelers who trust our AI to plan their perfect trips
+            </p>
+            <button className='bg-white text-purple-600 px-10 py-4 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300'>
+              Create Your Trip Now →
+            </button>
           </div>
         </div>
       </div>

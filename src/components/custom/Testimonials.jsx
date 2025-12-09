@@ -3,98 +3,162 @@ import React from 'react'
 function Testimonials() {
   const testimonials = [
     {
-      quote: "This AI planner saved me hours of research! My Japan trip was perfectly organized and I discovered places I would have never found on my own. Absolutely amazing! 🇯🇵",
-      name: 'Sarah Chen',
-      role: 'Solo Traveler',
-      avatar: 'https://i.pravatar.cc/96?img=5',
+      name: 'Sarah Johnson',
+      location: 'New York, USA',
+      emoji: '🗽',
+      avatar: 'https://i.pravatar.cc/150?img=1',
       rating: 5,
-      location: '🌸 Tokyo, Japan',
+      text: 'This AI planner saved me HOURS of research! My Tokyo trip was perfectly planned with amazing hidden gems I would have never found.',
+      trip: 'Tokyo Adventure',
+      color: 'from-pink-500 to-rose-500'
     },
     {
-      quote: "Planning our family vacation was stress-free! The AI understood our needs perfectly and created an itinerary that kept everyone happy. Best tool ever! 👨‍👩‍👧‍👦",
-      name: 'Michael Rodriguez',
-      role: 'Family Vacation',
-      avatar: 'https://i.pravatar.cc/96?img=12',
+      name: 'Michael Chen',
+      location: 'Singapore',
+      emoji: '🇸🇬',
+      avatar: 'https://i.pravatar.cc/150?img=12',
       rating: 5,
-      location: '🏖️ Bali, Indonesia',
+      text: 'Absolutely incredible! The AI understood exactly what I wanted. My European backpacking trip was flawless from start to finish.',
+      trip: 'Europe Backpacking',
+      color: 'from-blue-500 to-cyan-500'
     },
     {
-      quote: "As a budget traveler, this tool is a game-changer! It helped me maximize my experience while staying within budget. Highly recommend to everyone! 💰",
-      name: 'Emma Thompson',
-      role: 'Budget Explorer',
-      avatar: 'https://i.pravatar.cc/96?img=45',
+      name: 'Emma Rodriguez',
+      location: 'Barcelona, Spain',
+      emoji: '🇪🇸',
+      avatar: 'https://i.pravatar.cc/150?img=5',
       rating: 5,
-      location: '🗼 Paris, France',
+      text: 'Best travel planning tool ever! It matched my budget perfectly and suggested activities I absolutely loved. 10/10 recommend!',
+      trip: 'Bali Getaway',
+      color: 'from-purple-500 to-pink-500'
     },
+    {
+      name: 'James Wilson',
+      location: 'London, UK',
+      emoji: '🇬🇧',
+      avatar: 'https://i.pravatar.cc/150?img=14',
+      rating: 5,
+      text: 'Mind-blowing experience! The itinerary was so detailed and personalized. Every recommendation was spot-on. Can\'t wait to use it again!',
+      trip: 'Dubai Luxury Trip',
+      color: 'from-yellow-500 to-orange-500'
+    },
+    {
+      name: 'Priya Patel',
+      location: 'Mumbai, India',
+      emoji: '🇮🇳',
+      avatar: 'https://i.pravatar.cc/150?img=9',
+      rating: 5,
+      text: 'This changed how I travel! No more stress or endless planning. Just input my preferences and boom - perfect itinerary in seconds!',
+      trip: 'Paris Romance',
+      color: 'from-green-500 to-emerald-500'
+    },
+    {
+      name: 'David Kim',
+      location: 'Seoul, Korea',
+      emoji: '🇰🇷',
+      avatar: 'https://i.pravatar.cc/150?img=13',
+      rating: 5,
+      text: 'Revolutionary! The AI considered everything - budget, interests, even weather. My Australia trip exceeded all expectations!',
+      trip: 'Australia Explorer',
+      color: 'from-indigo-500 to-purple-500'
+    }
   ]
 
   return (
-    <section className='w-full bg-white py-20 sm:py-24'>
-      <div className='mx-auto max-w-7xl px-6 sm:px-8 lg:px-10'>
+    <section className='relative w-full py-24 md:py-32 bg-gradient-to-b from-white via-green-50/20 to-white overflow-hidden'>
+      {/* Background decoration */}
+      <div className='absolute inset-0'>
+        <div className='absolute top-20 left-10 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob'></div>
+        <div className='absolute bottom-20 right-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000'></div>
+      </div>
+
+      <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10'>
         {/* Section Header */}
-        <div className='max-w-3xl mx-auto text-center mb-16'>
-          <div className='inline-flex items-center gap-2 rounded-full bg-yellow-50 border border-yellow-200 px-4 py-2 text-sm font-semibold text-yellow-700 mb-4'>
-            ⭐ Testimonials
+        <div className='text-center mb-16 space-y-4'>
+          <div className='inline-flex items-center gap-2 bg-gradient-to-r from-green-100 to-blue-100 px-4 py-2 rounded-full'>
+            <span className='text-2xl'>💬</span>
+            <span className='font-bold text-green-700'>Testimonials</span>
           </div>
-          <h2 className='text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 text-gray-900'>
-            Loved by <span className='text-blue-600'>Travelers Worldwide</span> 🌍
+          <h2 className='text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600'>
+            Loved by Travelers
           </h2>
-          <p className='text-lg text-gray-600'>See what our community is saying about their experiences</p>
+          <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+            Join thousands of happy travelers who trust our AI to plan their perfect adventures
+          </p>
         </div>
 
         {/* Testimonials Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-          {testimonials.map((t, i) => (
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+          {testimonials.map((testimonial, index) => (
             <div
-              key={i}
-              className='group relative rounded-3xl bg-gradient-to-br from-white to-gray-50 p-8 shadow-lg hover-lift border border-gray-200 hover:border-blue-300 transition-all duration-300'
+              key={index}
+              className='group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100'
             >
-              {/* Quote Icon */}
-              <div className='absolute top-6 right-6 text-6xl opacity-10'>💬</div>
+              {/* Background gradient on hover */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${testimonial.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl`}></div>
 
-              {/* Stars */}
-              <div className='flex items-center gap-1 mb-4'>
-                {Array.from({ length: 5 }).map((_, idx) => (
-                  <svg
-                    key={idx}
-                    className='h-5 w-5 text-yellow-400 fill-current'
-                    viewBox='0 0 20 20'
-                  >
-                    <path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.035a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.035a1 1 0 00-1.175 0L7.105 16.28c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L3.47 8.72c-.783-.57-.38-1.81.588-1.81H7.52a1 1 0 00.95-.69l1.07-3.292z' />
-                  </svg>
-                ))}
-              </div>
+              {/* Content */}
+              <div className='relative z-10'>
+                {/* Stars */}
+                <div className='flex gap-1 mb-4'>
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <span key={i} className='text-2xl text-yellow-400'>★</span>
+                  ))}
+                </div>
 
-              {/* Quote */}
-              <p className='text-gray-700 text-base leading-relaxed mb-6 relative z-10'>
-                "{t.quote}"
-              </p>
+                {/* Testimonial Text */}
+                <p className='text-gray-700 leading-relaxed mb-6 font-medium text-lg'>
+                  "{testimonial.text}"
+                </p>
 
-              {/* Author */}
-              <div className='flex items-center gap-4 pt-4 border-t border-gray-200'>
-                <img
-                  src={t.avatar}
-                  alt={t.name}
-                  className='w-12 h-12 rounded-full ring-2 ring-blue-100'
-                />
-                <div>
-                  <div className='font-bold text-gray-900'>{t.name}</div>
-                  <div className='text-sm text-gray-600'>{t.role}</div>
-                  <div className='text-xs text-blue-600 mt-1'>{t.location}</div>
+                {/* Trip Badge */}
+                <div className={`inline-flex items-center gap-2 bg-gradient-to-r ${testimonial.color} px-4 py-2 rounded-full mb-6`}>
+                  <span className='text-white font-bold text-sm'>{testimonial.trip}</span>
+                </div>
+
+                {/* Author Info */}
+                <div className='flex items-center gap-4'>
+                  <img
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                    className='w-14 h-14 rounded-full border-4 border-gray-100 shadow-md transform group-hover:scale-110 transition-transform duration-300'
+                  />
+                  <div>
+                    <h4 className='font-black text-gray-900 text-lg'>{testimonial.name}</h4>
+                    <p className='text-gray-600 font-medium flex items-center gap-1'>
+                      <span>{testimonial.emoji}</span>
+                      <span>{testimonial.location}</span>
+                    </p>
+                  </div>
+                </div>
+
+                {/* Quote Icon */}
+                <div className='absolute top-4 right-4 text-6xl text-gray-200 group-hover:text-gray-300 transition-colors duration-300'>
+                  "
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Trust Badge */}
-        <div className='mt-16 text-center'>
-          <div className='inline-flex flex-col items-center gap-3 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl border border-green-200'>
-            <div className='flex items-center gap-2'>
-              <span className='text-4xl'>🏆</span>
-              <div className='text-left'>
-                <div className='text-2xl font-bold text-gray-900'>Trusted by 10,000+ Travelers</div>
-                <div className='text-sm text-gray-600'>Join our growing community of happy explorers</div>
+        {/* Trust Section */}
+        <div className='mt-20 bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl p-12 text-center shadow-2xl'>
+          <div className='space-y-6'>
+            <h3 className='text-4xl font-black text-white'>
+              🌟 Trusted by 50,000+ Travelers Worldwide
+            </h3>
+            <p className='text-xl text-white/90 max-w-2xl mx-auto'>
+              Join our community of happy travelers and start planning your dream trip today
+            </p>
+            <div className='flex flex-wrap justify-center gap-6 pt-4'>
+              <div className='bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full text-white font-bold'>
+                ⭐ 4.9/5 Rating
+              </div>
+              <div className='bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full text-white font-bold'>
+                🌍 195+ Countries
+              </div>
+              <div className='bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full text-white font-bold'>
+                ⚡ 30s Avg Time
               </div>
             </div>
           </div>
