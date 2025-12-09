@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { Button } from '../ui/button'
 import { Link } from 'react-router-dom'
+
+// Lazy load the Globe component for better performance
+const GlobeComponent = lazy(() => import('./GlobeComponent'))
 
 function Hero() {
   return (
@@ -87,20 +90,24 @@ function Hero() {
             </div>
           </div>
 
-          {/* Right: Hero Image/Visual */}
-          <div className='relative w-full z-10'>
-            <div className='relative rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500 hover:rotate-1'>
-              <img
-                src='/plane.jpg'
-                alt='AI Travel Planning'
-                className='w-full h-auto object-cover'
-                loading='eager'
-              />
-              {/* Overlay gradient */}
-              <div className='absolute inset-0 bg-gradient-to-tr from-purple-600/20 to-pink-600/20'></div>
+          {/* Right: 3D Globe */}
+          <div className='relative w-full z-10 flex items-center justify-center'>
+            <div className='relative'>
+              <Suspense fallback={
+                <div className='w-[600px] h-[600px] flex items-center justify-center bg-gradient-to-br from-purple-100 to-pink-100 rounded-full'>
+                  <div className='text-center'>
+                    <div className='text-6xl mb-4 animate-spin'>🌍</div>
+                    <p className='text-xl font-bold text-purple-600'>Loading Globe...</p>
+                  </div>
+                </div>
+              }>
+                <div className='transform hover:scale-105 transition-all duration-500'>
+                  <GlobeComponent />
+                </div>
+              </Suspense>
 
               {/* Floating Stats Cards */}
-              <div className='absolute top-6 right-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl animate-float'>
+              <div className='absolute top-6 right-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl animate-float z-20'>
                 <div className='flex items-center gap-3'>
                   <div className='text-3xl'>🎉</div>
                   <div>
@@ -110,7 +117,7 @@ function Hero() {
                 </div>
               </div>
 
-              <div className='absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl animate-float animation-delay-2000'>
+              <div className='absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl animate-float animation-delay-2000 z-20'>
                 <div className='flex items-center gap-3'>
                   <div className='text-3xl'>⚡</div>
                   <div>
