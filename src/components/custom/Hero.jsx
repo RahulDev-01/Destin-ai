@@ -4,72 +4,137 @@ import { Link } from 'react-router-dom'
 
 function Hero() {
   return (
-    <section className='relative w-full bg-gradient-to-b from-slate-50 to-white py-16 md:py-24'>
-      <div className='mx-auto max-w-7xl px-6 sm:px-8 lg:px-10'>
+    <section className='relative w-full min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 overflow-hidden'>
+      {/* Animated Background Elements */}
+      <div className='absolute inset-0 overflow-hidden'>
+        <div className='absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob'></div>
+        <div className='absolute top-40 right-10 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000'></div>
+        <div className='absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000'></div>
+      </div>
+
+      <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10 py-20 md:py-32'>
         <div className='grid lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
           {/* Left: Text content */}
-          <div className='text-center lg:text-left space-y-8'>
+          <div className='text-center lg:text-left space-y-8 z-10'>
             {/* Badge */}
-            <div className='inline-flex items-center gap-2 rounded-full bg-blue-50/50 backdrop-blur-sm border border-blue-200/60 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-100/50 transition-colors cursor-default'>
-              <span className="animate-pulse">🤖</span>
-              <span>#1 AI-Powered Trip Planner</span>
+            <div className='inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-default'>
+              <span className="text-xl animate-bounce">✨</span>
+              <span>AI-Powered Travel Planning</span>
             </div>
 
             {/* Main Heading */}
-            <h1 className='font-extrabold leading-tight text-5xl sm:text-6xl lg:text-7xl text-gray-900 tracking-tight'>
-              Discover Your Next <br className="hidden lg:block" />
-              <span className='gradient-text'>Adventure</span> with AI 🌍
+            <h1 className='font-black leading-tight text-6xl sm:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 tracking-tight animate-fade-in'>
+              Plan Your Dream Trip in Seconds
             </h1>
 
             {/* Description */}
-            <p className='text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed'>
-              Stop spending hours planning. Let our advanced AI craft personalized itineraries tailored to your interests, budget, and travel style in seconds.
+            <p className='text-xl sm:text-2xl text-gray-700 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium'>
+              Let AI create <span className='text-purple-600 font-bold'>personalized itineraries</span> tailored to your style, budget, and interests. No more endless research! 🎯
             </p>
 
             {/* CTA Buttons */}
-            <div className='flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start pt-2'>
+            <div className='flex flex-col sm:flex-row items-center gap-5 justify-center lg:justify-start pt-4'>
               <Link to={'/create-trip'}>
-                <Button className='h-14 px-8 text-lg bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg hover:shadow-blue-500/30 hover:-translate-y-1 transition-all duration-300'>
-                  Start Planning Free 🚀
+                <Button className='group h-16 px-10 text-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold rounded-2xl shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105 transition-all duration-300'>
+                  <span className='mr-2'>🚀</span>
+                  Start Planning Free
+                  <span className='ml-2 group-hover:translate-x-1 transition-transform'>→</span>
                 </Button>
               </Link>
               <Link to={'/create-trip'}>
-                <Button variant='outline' className='h-14 px-8 text-lg border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-gray-700 font-bold rounded-xl transition-all duration-300'>
-                  <span className="mr-2">▶</span> Watch Demo
+                <Button variant='outline' className='h-16 px-10 text-xl border-3 border-purple-600 hover:bg-purple-50 text-purple-700 font-bold rounded-2xl transition-all duration-300 transform hover:scale-105'>
+                  <span className="mr-2">▶️</span>
+                  See How It Works
                 </Button>
               </Link>
             </div>
 
             {/* Social Proof */}
-            <div className='flex items-center justify-center lg:justify-start gap-6 pt-6 border-t border-gray-100'>
+            <div className='flex items-center justify-center lg:justify-start gap-8 pt-8'>
               <div className='flex -space-x-4'>
-                {[1, 2, 3, 4].map((i) => (
-                  <img key={i} src={`https://i.pravatar.cc/100?img=${i + 10}`} alt='User' className='w-10 h-10 rounded-full border-2 border-white ring-2 ring-gray-100' />
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <img
+                    key={i}
+                    src={`https://i.pravatar.cc/100?img=${i + 20}`}
+                    alt='Happy traveler'
+                    className='w-14 h-14 rounded-full border-4 border-white ring-2 ring-purple-200 shadow-lg hover:scale-110 transition-transform duration-300'
+                  />
                 ))}
               </div>
-              <div className='text-sm'>
-                <div className='flex items-center gap-1 mb-1'>
-                  <span className='font-bold text-gray-900 text-base'>4.9/5</span>
-                  <div className="flex text-yellow-400">★★★★★</div>
+              <div className='text-left'>
+                <div className='flex items-center gap-2 mb-1'>
+                  <span className='font-black text-2xl text-purple-600'>4.9</span>
+                  <div className="flex text-yellow-400 text-xl">★★★★★</div>
                 </div>
-                <p className='text-gray-500 font-medium'>from 10,000+ happy travelers</p>
+                <p className='text-gray-600 font-semibold'>from <span className='text-purple-600 font-bold'>50,000+</span> travelers</p>
+              </div>
+            </div>
+
+            {/* Trust Badges */}
+            <div className='flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-6'>
+              <div className='flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-md'>
+                <span className='text-2xl'>⚡</span>
+                <span className='font-bold text-gray-700'>Instant Results</span>
+              </div>
+              <div className='flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-md'>
+                <span className='text-2xl'>🔒</span>
+                <span className='font-bold text-gray-700'>100% Free</span>
+              </div>
+              <div className='flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-md'>
+                <span className='text-2xl'>🌍</span>
+                <span className='font-bold text-gray-700'>Global Coverage</span>
               </div>
             </div>
           </div>
 
-          {/* Right: Hero Image */}
-          <div className='relative w-full'>
-            <div className='relative rounded-2xl overflow-hidden shadow-xl'>
+          {/* Right: Hero Image/Visual */}
+          <div className='relative w-full z-10'>
+            <div className='relative rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500 hover:rotate-1'>
               <img
                 src='/plane.jpg'
-                alt='AI Travel Planning Interface'
+                alt='AI Travel Planning'
                 className='w-full h-auto object-cover'
                 loading='eager'
               />
+              {/* Overlay gradient */}
+              <div className='absolute inset-0 bg-gradient-to-tr from-purple-600/20 to-pink-600/20'></div>
+
+              {/* Floating Stats Cards */}
+              <div className='absolute top-6 right-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl animate-float'>
+                <div className='flex items-center gap-3'>
+                  <div className='text-3xl'>🎉</div>
+                  <div>
+                    <div className='font-black text-2xl text-purple-600'>50K+</div>
+                    <div className='text-sm text-gray-600 font-semibold'>Trips Planned</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className='absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl animate-float animation-delay-2000'>
+                <div className='flex items-center gap-3'>
+                  <div className='text-3xl'>⚡</div>
+                  <div>
+                    <div className='font-black text-2xl text-pink-600'>30 sec</div>
+                    <div className='text-sm text-gray-600 font-semibold'>Average Time</div>
+                  </div>
+                </div>
+              </div>
             </div>
-            {/* Subtle accent */}
-            <div className='absolute -bottom-4 -right-4 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-30 -z-10'></div>
+
+            {/* Decorative elements */}
+            <div className='absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full blur-2xl opacity-50'></div>
+            <div className='absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full blur-2xl opacity-50'></div>
           </div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className='absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce'>
+        <div className='flex flex-col items-center gap-2'>
+          <span className='text-gray-600 font-semibold text-sm'>Scroll to explore</span>
+          <svg className='w-6 h-6 text-purple-600' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={3} d='M19 14l-7 7m0 0l-7-7m7 7V3' />
+          </svg>
         </div>
       </div>
     </section>
