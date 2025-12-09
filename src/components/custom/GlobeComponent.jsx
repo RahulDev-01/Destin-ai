@@ -3,24 +3,29 @@ import Globe from 'react-globe.gl'
 
 function GlobeComponent() {
     const globeEl = useRef()
-    const [countries, setCountries] = useState({ features: [] })
+    const [arcsData, setArcsData] = useState([])
 
     useEffect(() => {
-        // Load country data
-        fetch('https://raw.githubusercontent.com/vasturiano/react-globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson')
-            .then(res => res.json())
-            .then(data => {
-                setCountries(data)
-            })
-            .catch(err => {
-                console.log('Failed to load country data:', err)
-            })
+        // Generate random arcs for orbital effect
+        const N = 20
+        const arcs = [...Array(N).keys()].map(() => ({
+            startLat: (Math.random() - 0.5) * 180,
+            startLng: (Math.random() - 0.5) * 360,
+            endLat: (Math.random() - 0.5) * 180,
+            endLng: (Math.random() - 0.5) * 360,
+            color: [
+                ['rgba(0, 255, 255, 0.8)', 'rgba(0, 150, 255, 0.8)'],
+                ['rgba(100, 200, 255, 0.8)', 'rgba(0, 255, 200, 0.8)'],
+                ['rgba(50, 150, 255, 0.8)', 'rgba(0, 200, 255, 0.8)']
+            ][Math.round(Math.random() * 2)]
+        }))
+        setArcsData(arcs)
 
-        // Set auto-rotate after a short delay to ensure globe is mounted
+        // Set auto-rotate after a short delay
         const timer = setTimeout(() => {
             if (globeEl.current && globeEl.current.controls) {
                 globeEl.current.controls().autoRotate = true
-                globeEl.current.controls().autoRotateSpeed = 0.5
+                globeEl.current.controls().autoRotateSpeed = 1.2
                 globeEl.current.controls().enableZoom = false
             }
         }, 100)
@@ -32,15 +37,23 @@ function GlobeComponent() {
         <div className='w-full h-full flex items-center justify-center'>
             <Globe
                 ref={globeEl}
-                globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+                globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
                 bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
                 backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
-                hexPolygonsData={countries.features}
-                hexPolygonResolution={3}
-                hexPolygonMargin={0.3}
-                hexPolygonColor={() => `rgba(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, 0.7)`}
-                atmosphereColor="lightskyblue"
-                atmosphereAltitude={0.25}
+
+                // Arcs for orbital rings effect
+                arcsData={arcsData}
+                arcColor={'color'}
+                arcDashLength={0.4}
+                arcDashGap={0.2}
+                arcDashAnimateTime={4000}
+                arcStroke={0.5}
+
+                // Atmosphere
+                atmosphereColor="rgba(100, 200, 255, 0.8)"
+                atmosphereAltitude={0.15}
+
+                // Settings
                 width={600}
                 height={600}
                 animateIn={true}
