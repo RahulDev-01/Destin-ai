@@ -1,163 +1,141 @@
-import React, { useRef } from 'react';
-import { Button } from '@/components/ui/button';
-
-const destinationsData = [
-    {
-        title: "Top Trending Destinations",
-        subtitle: "Catch the hottest holiday packages while prices are still low!",
-        items: [
-            { id: 1, title: "Thailand", image: "https://loremflickr.com/400/600/thailand" },
-            { id: 2, title: "Goa", image: "https://loremflickr.com/400/600/goa,beach" },
-            { id: 3, title: "Europe", image: "https://loremflickr.com/400/600/europe,city" },
-            { id: 4, title: "Kerala", image: "https://loremflickr.com/400/600/kerala" },
-            { id: 5, title: "Vietnam", image: "https://loremflickr.com/400/600/vietnam" },
-            { id: 6, title: "Andaman", image: "https://loremflickr.com/400/600/andaman" },
-            { id: 7, title: "Dubai", image: "https://loremflickr.com/400/600/dubai" },
-        ]
-    },
-    {
-        title: "Last-Minute Deals",
-        subtitle: "Use code: LASTMINUTE for big savings on last-minute holidays!",
-        items: [
-            { id: 8, title: "Goa", image: "https://loremflickr.com/400/600/goa" },
-            { id: 9, title: "Kerala", image: "https://loremflickr.com/400/600/kerala,boat" },
-            { id: 10, title: "Ooty", image: "https://loremflickr.com/400/600/ooty" },
-            { id: 11, title: "Manali", image: "https://loremflickr.com/400/600/manali" },
-            { id: 12, title: "Rajasthan", image: "https://loremflickr.com/400/600/rajasthan" },
-            { id: 13, title: "Andaman", image: "https://loremflickr.com/400/600/andaman,beach" },
-        ]
-    },
-    {
-        title: "Visa Free Destinations",
-        subtitle: "Dream Destinations, Zero Paperwork!",
-        items: [
-            { id: 14, title: "Maldives", price: "₹39,300", image: "https://loremflickr.com/400/600/maldives" },
-            { id: 15, title: "Thailand", price: "₹33,700", image: "https://loremflickr.com/400/600/thailand,temple" },
-            { id: 16, title: "Sri Lanka", price: "₹12,800", image: "https://loremflickr.com/400/600/srilanka" },
-            { id: 17, title: "Vietnam", price: "₹25,000", image: "https://loremflickr.com/400/600/vietnam,nature" },
-            { id: 18, title: "Malaysia", price: "₹11,700", image: "https://loremflickr.com/400/600/malaysia" },
-            { id: 19, title: "Seychelles", price: "₹82,700", image: "https://loremflickr.com/400/600/seychelles" },
-        ]
-    }
-];
-
-function DestinationsSection({ section }) {
-    const scrollRef = useRef(null);
-
-    const scroll = (direction) => {
-        if (scrollRef.current) {
-            const { current } = scrollRef;
-            const scrollAmount = direction === 'left' ? -300 : 300;
-            current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
-    };
-
-    return (
-        <div className='space-y-8 animate-fade-in'>
-            {/* Header */}
-            <div className='flex items-end justify-between px-2'>
-                <div>
-                    <h2 className='text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight'>
-                        {section.title}
-                    </h2>
-                    <p className='text-lg text-gray-600 mt-2 max-w-2xl font-medium'>
-                        {section.subtitle}
-                    </p>
-                </div>
-                <div className='hidden sm:flex gap-3'>
-                    <Button
-                        variant='outline'
-                        size='icon'
-                        className='rounded-full h-12 w-12 border-gray-300 hover:bg-gray-100 hover:border-gray-400 transition-all shadow-sm'
-                        onClick={() => scroll('left')}
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                        </svg>
-                    </Button>
-                    <Button
-                        variant='outline'
-                        size='icon'
-                        className='rounded-full h-12 w-12 border-gray-300 hover:bg-gray-100 hover:border-gray-400 transition-all shadow-sm'
-                        onClick={() => scroll('right')}
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                        </svg>
-                    </Button>
-                </div>
-            </div>
-
-            {/* Scrolling List */}
-            <div
-                ref={scrollRef}
-                className='flex gap-6 overflow-x-auto pb-10 pt-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide snap-x snap-mandatory'
-                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-                {section.items.map((item) => (
-                    <div
-                        key={item.id}
-                        className='min-w-[280px] md:min-w-[320px] relative group snap-start cursor-pointer hover:-translate-y-2 transition-transform duration-300'
-                    >
-                        <div className='relative h-[420px] rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-300'>
-                            <img
-                                src={item.image}
-                                alt={item.title}
-                                className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out'
-                                loading="lazy"
-                            />
-                            {/* Gradient Overlay */}
-                            <div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity'></div>
-
-                            {/* Content */}
-                            <div className='absolute bottom-0 left-0 right-0 p-6 text-white translate-y-2 group-hover:translate-y-0 transition-transform duration-300'>
-                                <h3 className='text-2xl font-bold leading-tight mb-2'>{item.title}</h3>
-                                {item.price ? (
-                                    <div className='flex items-center justify-between mt-2 pt-4 border-t border-white/20'>
-                                        <div>
-                                            <p className='text-xs opacity-80 uppercase tracking-wider font-semibold'>Starting at</p>
-                                            <p className='text-xl font-bold text-blue-300'>{item.price}</p>
-                                        </div>
-                                        <Badge className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm">
-                                            Book Now
-                                        </Badge>
-                                    </div>
-                                ) : (
-                                    <div className='flex items-center gap-2 text-sm font-medium text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100'>
-                                        <span>Explore deals</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                                        </svg>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-}
-
-// Simple Badge component internal to this file for now or import from ui (sticking to standard HTML/Tailwind for speed if not present)
-function Badge({ children, className }) {
-    return (
-        <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${className}`}>
-            {children}
-        </span>
-    );
-}
+import React from 'react'
 
 function Destinations() {
+    const destinations = [
+        {
+            name: 'Paris, France',
+            emoji: '🗼',
+            image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80',
+            description: 'City of lights and romance',
+            trips: '12,450',
+            color: 'from-pink-500 to-rose-500'
+        },
+        {
+            name: 'Tokyo, Japan',
+            emoji: '🗾',
+            image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80',
+            description: 'Modern meets traditional',
+            trips: '10,230',
+            color: 'from-red-500 to-orange-500'
+        },
+        {
+            name: 'Bali, Indonesia',
+            emoji: '🏝️',
+            image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+            description: 'Tropical paradise awaits',
+            trips: '8,890',
+            color: 'from-green-500 to-emerald-500'
+        },
+        {
+            name: 'New York, USA',
+            emoji: '🗽',
+            image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&q=80',
+            description: 'The city that never sleeps',
+            trips: '15,670',
+            color: 'from-blue-500 to-cyan-500'
+        },
+        {
+            name: 'Dubai, UAE',
+            emoji: '🏙️',
+            image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80',
+            description: 'Luxury and innovation',
+            trips: '9,340',
+            color: 'from-yellow-500 to-amber-500'
+        },
+        {
+            name: 'Santorini, Greece',
+            emoji: '🇬🇷',
+            image: 'https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=800&q=80',
+            description: 'Stunning sunsets & white cliffs',
+            trips: '7,120',
+            color: 'from-blue-400 to-indigo-500'
+        }
+    ]
+
     return (
-        <div className='py-20 bg-white'>
-            <div className='max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 space-y-24'>
-                {destinationsData.map((section, index) => (
-                    <DestinationsSection key={index} section={section} />
-                ))}
+        <section className='relative w-full py-24 md:py-32 bg-gradient-to-b from-white via-blue-50/30 to-white overflow-hidden'>
+            {/* Background decoration */}
+            <div className='absolute inset-0'>
+                <div className='absolute top-1/4 right-10 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob'></div>
+                <div className='absolute bottom-1/4 left-10 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000'></div>
             </div>
-        </div>
-    );
+
+            <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10'>
+                {/* Section Header */}
+                <div className='text-center mb-16 space-y-4'>
+                    <div className='inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full'>
+                        <span className='text-2xl'>🌍</span>
+                        <span className='font-bold text-blue-700'>Popular Destinations</span>
+                    </div>
+                    <h2 className='text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600'>
+                        Explore the World
+                    </h2>
+                    <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+                        Discover amazing destinations loved by thousands of travelers. Where will you go next?
+                    </p>
+                </div>
+
+                {/* Destinations Grid */}
+                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+                    {destinations.map((destination, index) => (
+                        <div
+                            key={index}
+                            className='group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer'
+                        >
+                            {/* Image */}
+                            <div className='relative h-64 overflow-hidden'>
+                                <img
+                                    src={destination.image}
+                                    alt={destination.name}
+                                    className='w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700'
+                                    onError={(e) => {
+                                        e.target.src = '/plane.jpg'
+                                    }}
+                                />
+                                {/* Gradient Overlay */}
+                                <div className={`absolute inset-0 bg-gradient-to-t ${destination.color} opacity-40 group-hover:opacity-60 transition-opacity duration-500`}></div>
+
+                                {/* Emoji Badge */}
+                                <div className='absolute top-4 right-4 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center text-4xl shadow-lg transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500'>
+                                    {destination.emoji}
+                                </div>
+
+                                {/* Trip Count */}
+                                <div className='absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg'>
+                                    <span className='font-black text-gray-900'>{destination.trips}</span>
+                                    <span className='text-gray-600 ml-1'>trips planned</span>
+                                </div>
+                            </div>
+
+                            {/* Content */}
+                            <div className='p-6'>
+                                <h3 className='text-2xl font-black text-gray-900 mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300'>
+                                    {destination.name}
+                                </h3>
+                                <p className='text-gray-600 font-medium mb-4'>
+                                    {destination.description}
+                                </p>
+
+                                {/* CTA */}
+                                <button className={`w-full bg-gradient-to-r ${destination.color} text-white font-bold py-3 rounded-xl transform group-hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg`}>
+                                    Plan Your Trip →
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* View All CTA */}
+                <div className='mt-16 text-center'>
+                    <button className='bg-gradient-to-r from-blue-600 to-purple-600 text-white px-12 py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300'>
+                        <span className='mr-2'>🌎</span>
+                        Explore All Destinations
+                        <span className='ml-2'>→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    )
 }
 
-export default Destinations;
+export default Destinations
