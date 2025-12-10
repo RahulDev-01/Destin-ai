@@ -6,6 +6,11 @@ import HowItWorks from './components/custom/HowItWorks'
 import Testimonials from './components/custom/Testimonials'
 import FAQ from './components/custom/FAQ'
 import Footer from './components/custom/Footer'
+import PopularDestinations from './components/custom/PopularDestinations'
+import PricingSection from './components/custom/PricingSection'
+import TravelInsights from './components/custom/TravelInsights'
+import Newsletter from './components/custom/Newsletter'
+import TrustBadges from './components/custom/TrustBadges'
 
 function App() {
   // Root app wrapped with BrowserRouter to support <Link> components used in Hero
@@ -13,11 +18,16 @@ function App() {
   return (
     <>
       <Hero />
-      <Destinations />
+      <PopularDestinations />
       <Features />
       <HowItWorks />
+      <PricingSection />
+      <Destinations />
+      <TravelInsights />
       <Testimonials />
       <FAQ />
+      <Newsletter />
+      <TrustBadges />
       <Footer />
     </>
   )
