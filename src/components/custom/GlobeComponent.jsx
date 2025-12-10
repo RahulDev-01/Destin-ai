@@ -14,9 +14,9 @@ function GlobeComponent() {
             endLat: (Math.random() - 0.5) * 180,
             endLng: (Math.random() - 0.5) * 360,
             color: [
-                ['rgba(0, 255, 255, 0.8)', 'rgba(0, 150, 255, 0.8)'],
-                ['rgba(100, 200, 255, 0.8)', 'rgba(0, 255, 200, 0.8)'],
-                ['rgba(50, 150, 255, 0.8)', 'rgba(0, 200, 255, 0.8)']
+                ['#00FFFF', '#0096FF'],
+                ['#64C8FF', '#00FFC8'],
+                ['#3296FF', '#00C8FF']
             ][Math.round(Math.random() * 2)]
         }))
         setArcsData(arcs)
@@ -49,7 +49,7 @@ function GlobeComponent() {
                 arcStroke={0.5}
 
                 // Atmosphere
-                atmosphereColor="rgba(100, 200, 255, 0.8)"
+                atmosphereColor="#64C8FF"
                 atmosphereAltitude={0.15}
 
                 // Settings
