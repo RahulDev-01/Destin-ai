@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/genai";
 import { toast, Toaster } from "sonner";
 import { AI_PROMPT } from "@/constants/options";
 import {
@@ -92,12 +92,11 @@ function CreateTrip() {
     const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY);
 
     // List of models to try in order of preference
+    // Using models known to work with the stable v1 API
     const modelsToTry = [
+      "gemini-pro",
       "gemini-1.5-flash",
-      "gemini-1.5-flash-001",
-      "gemini-1.5-flash-002",
-      "gemini-1.0-pro",
-      "gemini-pro" // Legacy fallback
+      "gemini-1.5-pro"
     ];
 
     let fullResponse = "";
