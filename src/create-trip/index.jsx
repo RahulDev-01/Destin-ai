@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GoogleGenerativeAI } from "@google/genai";
+// Using direct fetch instead of SDK to avoid v1beta 404 errors
 import { toast, Toaster } from "sonner";
 import { AI_PROMPT } from "@/constants/options";
 import {
@@ -89,44 +89,45 @@ function CreateTrip() {
 
     // console.log("Final Prompt:", FINAL_PROMPT);
 
-    const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY);
-
-    // List of models to try in order of preference
-    // Using models known to work with the stable v1 API
-    const modelsToTry = [
-      "gemini-pro",
-      "gemini-1.5-flash",
-      "gemini-1.5-pro"
-    ];
+    // Using v1 stable API endpoint directly to avoid v1beta compatibility issues
+    const API_KEY = import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY;
+    const model = "gemini-pro"; // Most widely available model
+    const API_URL = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent`;
 
     let fullResponse = "";
-    let modelSuccess = false;
 
-    // Try models sequentially
-    for (const modelName of modelsToTry) {
-      if (modelSuccess) break;
+    try {
+      const response = await fetch(`${API_URL}?key=${API_KEY}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: FINAL_PROMPT
+            }]
+          }]
+        })
+      });
 
-      try {
-        console.log(`Attempting to generate with model: ${modelName}`);
-        const model = genAI.getGenerativeModel({ model: modelName });
-        const result = await model.generateContentStream(FINAL_PROMPT);
-
-        for await (const chunk of result.stream) {
-          const chunkText = chunk.text();
-          fullResponse += chunkText;
-        }
-
-        // If we got here without error, mark as success
-        modelSuccess = true;
-        console.log(`Successfully generated with ${modelName}`);
-      } catch (error) {
-        console.warn(`Failed with model ${modelName}:`, error);
-        // Continue to next model
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`API Error: ${response.status} - ${JSON.stringify(errorData)}`);
       }
-    }
 
-    if (!modelSuccess || !fullResponse) {
-      toast("Failed to generate trip with all available AI models. Please try again later.");
+      const data = await response.json();
+
+      // Extract text from response
+      if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+        fullResponse = data.candidates[0].content.parts.map(part => part.text).join('');
+        console.log('Successfully generated with gemini-pro via v1 API');
+      } else {
+        throw new Error('Unexpected response format');
+      }
+    } catch (error) {
+      console.error('Error generating trip:', error);
+      toast('Failed to generate trip. Please check your API key and try again.');
       setLoading(false);
       return;
     }
