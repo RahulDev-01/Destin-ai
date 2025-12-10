@@ -90,7 +90,7 @@ function CreateTrip() {
     // console.log("Final Prompt:", FINAL_PROMPT);
 
     const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-001" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-002" });
 
     let fullResponse = "";
 
