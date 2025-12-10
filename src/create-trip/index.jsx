@@ -90,19 +90,47 @@ function CreateTrip() {
     // console.log("Final Prompt:", FINAL_PROMPT);
 
     const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-002" });
+
+    // List of models to try in order of preference
+    const modelsToTry = [
+      "gemini-1.5-flash",
+      "gemini-1.5-flash-001",
+      "gemini-1.0-pro"
+    ];
 
     let fullResponse = "";
+    let modelSuccess = false;
+
+    // Try models sequentially
+    for (const modelName of modelsToTry) {
+      if (modelSuccess) break;
+
+      try {
+        console.log(`Attempting to generate with model: ${modelName}`);
+        const model = genAI.getGenerativeModel({ model: modelName });
+        const result = await model.generateContentStream(FINAL_PROMPT);
+
+        for await (const chunk of result.stream) {
+          const chunkText = chunk.text();
+          fullResponse += chunkText;
+        }
+
+        // If we got here without error, mark as success
+        modelSuccess = true;
+        console.log(`Successfully generated with ${modelName}`);
+      } catch (error) {
+        console.warn(`Failed with model ${modelName}:`, error);
+        // Continue to next model
+      }
+    }
+
+    if (!modelSuccess || !fullResponse) {
+      toast("Failed to generate trip with all available AI models. Please try again later.");
+      setLoading(false);
+      return;
+    }
 
     try {
-      const result = await model.generateContentStream(FINAL_PROMPT);
-
-      for await (const chunk of result.stream) {
-        const chunkText = chunk.text();
-        fullResponse += chunkText;
-        // console.log("Streamed Chunk: ", chunkText);
-      }
-
       const parsedTrip = parseAiJson(fullResponse);
       if (!parsedTrip) {
         toast("Failed to extract trip data from AI response.");
@@ -113,12 +141,8 @@ function CreateTrip() {
       const normalized = normalizeTripData(parsedTrip);
       await SaveAiTrip(normalized);
     } catch (error) {
-      console.error("Error generating trip plan:", error);
-      if (error.message && (error.message.includes("429") || error.message.includes("Quota"))) {
-        toast("API Quota exceeded. Please try again later or check billing.");
-      } else {
-        toast("There was an error generating your trip plan. Please try again.");
-      }
+      console.error("Error processing trip data:", error);
+      toast("Error processing trip data.");
     }
 
     setLoading(false);
