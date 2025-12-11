@@ -95,24 +95,22 @@ function CreateTrip() {
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
 
     // DEBUG: List available models
-    useEffect(() => {
-      const listModels = async () => {
-        try {
-          const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${API_KEY}`);
-          const data = await resp.json();
-          console.log("--- DEBUG: AVAILABLE MODELS ---");
-          if (data.models) {
-            data.models.forEach(m => console.log(m.name, m.supportedGenerationMethods));
-          } else {
-            console.log("No models found or error:", data);
-          }
-          console.log("-------------------------------");
-        } catch (e) {
-          console.error("Failed to list models:", e);
+    const listModels = async () => {
+      try {
+        const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${API_KEY}`);
+        const data = await resp.json();
+        console.log("--- DEBUG: AVAILABLE MODELS ---");
+        if (data.models) {
+          data.models.forEach(m => console.log(m.name, m.supportedGenerationMethods));
+        } else {
+          console.log("No models found or error:", data);
         }
-      };
-      listModels();
-    }, []);
+        console.log("-------------------------------");
+      } catch (e) {
+        console.error("Failed to list models:", e);
+      }
+    };
+    listModels();
 
     let fullResponse = "";
 
