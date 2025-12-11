@@ -128,11 +128,11 @@ function Hero() {
               </div>
             </div> */}
 
-            <img
+            {/* <img
               src='/hero.png'
               alt='Travel planning'
               className='w-full max-w-2xl object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500'
-            />
+            /> */}
 
             {/* Decorative elements */}
             <div className='absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full blur-2xl opacity-50'></div>
