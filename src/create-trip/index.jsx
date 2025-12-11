@@ -89,10 +89,10 @@ function CreateTrip() {
 
     // console.log("Final Prompt:", FINAL_PROMPT);
 
-    // Using v1 stable API endpoint directly to avoid v1beta compatibility issues
+    // Using v1beta API endpoint which supports newer models like gemini-1.5-flash
     const API_KEY = import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY;
-    const model = "gemini-pro"; // Most widely available model
-    const API_URL = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent`;
+    const model = "gemini-1.5-flash"; // Newer, faster, and more reliable model
+    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
 
     let fullResponse = "";
 
@@ -121,7 +121,7 @@ function CreateTrip() {
       // Extract text from response
       if (data.candidates && data.candidates[0] && data.candidates[0].content) {
         fullResponse = data.candidates[0].content.parts.map(part => part.text).join('');
-        console.log('Successfully generated with gemini-pro via v1 API');
+        console.log('Successfully generated with gemini-1.5-flash via v1beta API');
       } else {
         throw new Error('Unexpected response format');
       }
