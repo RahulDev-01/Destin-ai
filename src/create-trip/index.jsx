@@ -91,8 +91,28 @@ function CreateTrip() {
 
     // Using v1beta API endpoint which supports newer models like gemini-1.5-flash
     const API_KEY = import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY;
-    const model = "gemini-1.5-flash-001"; // Newer, faster, and more reliable model
+    const model = "gemini-1.5-flash";
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+
+    // DEBUG: List available models
+    useEffect(() => {
+      const listModels = async () => {
+        try {
+          const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${API_KEY}`);
+          const data = await resp.json();
+          console.log("--- DEBUG: AVAILABLE MODELS ---");
+          if (data.models) {
+            data.models.forEach(m => console.log(m.name, m.supportedGenerationMethods));
+          } else {
+            console.log("No models found or error:", data);
+          }
+          console.log("-------------------------------");
+        } catch (e) {
+          console.error("Failed to list models:", e);
+        }
+      };
+      listModels();
+    }, []);
 
     let fullResponse = "";
 
