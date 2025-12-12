@@ -374,13 +374,19 @@ function CreateTrip() {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-50/50 py-12 px-6 sm:px-10 lg:px-20">
-        <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+
+        {/* Decorative Background Blobs */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+
+        <div className="max-w-5xl mx-auto relative z-10 transition-all duration-300">
           {/* Header Progress */}
           <StepIndicator currentStep={currentStep} totalSteps={5} />
 
           {/* Form Content */}
-          <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 md:p-12 min-h-[500px]">
+          <div className="glass-panel rounded-3xl p-6 md:p-12 min-h-[500px] transition-all duration-500 hover:shadow-2xl">
             {currentStep === 1 && (
               <DestinationStep
                 formData={formData}
@@ -429,19 +435,22 @@ function CreateTrip() {
 
         {/* Sign In Dialog */}
         <Dialog open={opendialoge} onOpenChange={setOpenDialoge}>
-          <DialogContent className="sm:max-w-md">
+          <DialogContent className="sm:max-w-md glass-card border-0">
             <DialogHeader>
               <DialogDescription>
-                <div className="text-center">
-                  <img src="/logo.png" alt="Logo" className="h-16 w-auto mx-auto mb-6" />
-                  <h2 className="font-bold text-2xl mb-2 text-gray-900">Sign In to Continue</h2>
-                  <p className="text-gray-600 mb-6">Sign in with Google to save and access your trips</p>
+                <div className="text-center p-4">
+                  <div className="bg-white/50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
+                    <img src="/logo.png" alt="Logo" className="h-12 w-auto" />
+                  </div>
+                  <h2 className="font-black text-2xl mb-2 text-gray-900">Sign In to Continue</h2>
+                  <p className="text-gray-600 mb-8 text-lg">Sign in with Google to save and access your personalized itineraries.</p>
+
                   <div
                     onClick={login}
-                    className="group p-4 border-2 border-gray-200 flex gap-3 rounded-xl cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 items-center justify-center"
+                    className="group w-full p-4 bg-white border border-gray-200 hover:border-blue-500 rounded-xl cursor-pointer hover:bg-blue-50 transition-all duration-300 flex items-center justify-center gap-4 hover:shadow-md"
                   >
                     <FcGoogle className="text-3xl" />
-                    <span className="font-semibold text-gray-700 group-hover:text-blue-700">Sign In With Google</span>
+                    <span className="font-bold text-gray-700 group-hover:text-blue-700 text-lg">Sign In With Google</span>
                   </div>
                 </div>
               </DialogDescription>
