@@ -4,43 +4,45 @@ import { Button } from '@/components/ui/button'
 
 function BudgetStyleStep({ formData, handleInputChange, onNext, onBack }) {
     return (
-        <div className='flex flex-col gap-8 animate-in fade-in slide-in-from-right-4 duration-500'>
-            <div className='text-center space-y-2'>
-                <h2 className='text-3xl font-black text-gray-900'>
-                    What's your budget style? 💰
+        <div className='flex flex-col gap-10 animate-fade-in'>
+            <div className='text-center space-y-4'>
+                <h2 className='text-4xl font-black text-gray-900 leading-tight'>
+                    What's your <span className='text-purple-600'>budget?</span> 💰
                 </h2>
-                <p className='text-gray-500 text-lg'>
+                <p className='text-gray-500 text-xl font-medium'>
                     The budget is exclusively allocated for activities and dining purposes.
                 </p>
             </div>
 
-            <div className='grid grid-cols-1 sm:grid-cols-3 gap-6'>
+            <div className='grid grid-cols-1 sm:grid-cols-3 gap-8'>
                 {SelectBudgetOptions.map((item, index) => (
                     <div
                         key={index}
                         onClick={() => handleInputChange('budget', item.title)}
-                        className={`cursor-pointer group relative p-6 border-2 rounded-2xl transition-all duration-300 hover:-translate-y-1
+                        className={`cursor-pointer group relative p-8 border-2 rounded-3xl transition-all duration-300 hover:-translate-y-2
               ${formData?.budget === item.title
-                                ? 'border-blue-600 bg-blue-50/50 shadow-xl ring-2 ring-blue-600 ring-offset-2'
-                                : 'border-gray-200 bg-white hover:border-blue-300 hover:shadow-lg'
+                                ? 'border-purple-600 bg-purple-50/50 shadow-2xl ring-2 ring-purple-600 ring-offset-4'
+                                : 'border-gray-100 bg-white hover:border-purple-300 hover:shadow-xl'
                             }
             `}
                     >
-                        <div className='text-5xl mb-4 bg-white w-20 h-20 rounded-full flex items-center justify-center shadow-md mx-auto group-hover:scale-110 transition-transform'>
+                        <div className={`text-6xl mb-6 w-24 h-24 rounded-full flex items-center justify-center shadow-lg mx-auto transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6
+                            ${formData?.budget === item.title ? 'bg-white' : 'bg-gray-50 group-hover:bg-white'}
+                        `}>
                             {item.icon}
                         </div>
 
-                        <div className='text-center space-y-2'>
-                            <h3 className='font-bold text-xl text-gray-900'>{item.title}</h3>
-                            <p className='text-sm text-gray-500 leading-relaxed font-medium'>
+                        <div className='text-center space-y-3'>
+                            <h3 className='font-black text-2xl text-gray-900'>{item.title}</h3>
+                            <p className='text-base text-gray-500 leading-relaxed font-medium'>
                                 {item.desc}
                             </p>
                         </div>
 
                         {formData?.budget === item.title && (
-                            <div className='absolute top-4 right-4 text-blue-600 bg-white rounded-full p-1 shadow-sm'>
+                            <div className='absolute top-4 right-4 text-purple-600 bg-white rounded-full p-1.5 shadow-md animate-in zoom-in duration-300'>
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 13l4 4L19 7" />
                                 </svg>
                             </div>
                         )}
@@ -52,14 +54,14 @@ function BudgetStyleStep({ formData, handleInputChange, onNext, onBack }) {
                 <Button
                     variant="ghost"
                     onClick={onBack}
-                    className="h-14 px-8 text-lg font-bold text-gray-500"
+                    className="h-16 px-10 text-xl font-bold text-gray-500 hover:text-gray-900 icon-hover-left"
                 >
                     ← Back
                 </Button>
                 <Button
                     disabled={!formData?.budget}
                     onClick={onNext}
-                    className="h-14 px-10 text-lg rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-lg shadow-blue-500/30"
+                    className="h-16 px-12 text-xl rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold shadow-xl shadow-purple-500/20 transform hover:scale-105 transition-all duration-300"
                 >
                     Next Step →
                 </Button>
