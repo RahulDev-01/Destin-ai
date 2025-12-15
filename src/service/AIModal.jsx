@@ -2,7 +2,7 @@ import { GoogleGenAI } from '@google/genai';
 
 async function main() {
   const ai = new GoogleGenAI({
-    apiKey: import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY 
+    apiKey: (import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY || '').trim()
   });
 
   const tools = [

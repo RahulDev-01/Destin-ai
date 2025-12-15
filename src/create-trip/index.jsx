@@ -90,9 +90,14 @@ function CreateTrip() {
     // console.log("Final Prompt:", FINAL_PROMPT);
 
     // Using v1beta API endpoint which supports newer models like gemini-1.5-flash
-    const API_KEY = import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY;
+    const API_KEY = ((((typeof globalThis !== 'undefined' && globalThis.__GEMINI_KEY__) || import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY) || '')).trim();
     const model = "gemini-1.5-flash";
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+
+    try {
+      const masked = API_KEY ? `...${API_KEY.slice(-6)}` : '(missing)';
+      console.log('Gemini key suffix', masked, 'origin', typeof window!== 'undefined' ? window.location.origin : 'ssr');
+    } catch {}
 
     if (!API_KEY) {
       toast('Missing API key. Set VITE_GOOGLE_GEMINI_AI_API_KEY and restart the app.');
