@@ -94,6 +94,12 @@ function CreateTrip() {
     const model = "gemini-1.5-flash";
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
 
+    if (!API_KEY) {
+      toast('Missing API key. Set VITE_GOOGLE_GEMINI_AI_API_KEY and restart the app.');
+      setLoading(false);
+      return;
+    }
+
     // DEBUG: List available models
     const listModels = async () => {
       try {
@@ -110,7 +116,8 @@ function CreateTrip() {
         console.error("Failed to list models:", e);
       }
     };
-    listModels();
+    const DEBUG_MODELS = false;
+    if (DEBUG_MODELS) listModels();
 
     let fullResponse = "";
 
@@ -145,7 +152,12 @@ function CreateTrip() {
       }
     } catch (error) {
       console.error('Error generating trip:', error);
-      toast('Failed to generate trip. Please check your API key and try again.');
+      const msg = String(error?.message || '');
+      if (msg.includes('API_KEY_INVALID') || msg.includes('API key not valid')) {
+        toast('Invalid API key. Update VITE_GOOGLE_GEMINI_AI_API_KEY and restart.');
+      } else {
+        toast('Failed to generate trip. Please try again.');
+      }
       setLoading(false);
       return;
     }
