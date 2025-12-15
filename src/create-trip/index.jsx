@@ -91,8 +91,8 @@ function CreateTrip() {
 
     // Using v1beta API endpoint which supports newer models like gemini-1.5-flash
     const API_KEY = ((((typeof globalThis !== 'undefined' && globalThis.__GEMINI_KEY__) || import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY) || '')).trim();
-    const model = "gemini-1.5-pro-latest";
-    const API_URL = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent`;
+    let model = "gemini-1.5-pro";
+    let API_URL = "";
 
     try {
       const masked = API_KEY ? `...${API_KEY.slice(-6)}` : '(missing)';
@@ -123,6 +123,36 @@ function CreateTrip() {
     };
     const DEBUG_MODELS = false;
     if (DEBUG_MODELS) listModels();
+
+    try {
+      const resolveModel = async () => {
+        try {
+          const r = await fetch(`https://generativelanguage.googleapis.com/v1/models?key=${API_KEY}`);
+          const d = await r.json();
+          const models = Array.isArray(d.models) ? d.models : [];
+          const hasGen = (n) => {
+            const m = models.find(mm => mm.name === n || mm.name.endsWith(`/${n}`));
+            return m && Array.isArray(m.supportedGenerationMethods) && m.supportedGenerationMethods.includes('generateContent');
+          };
+          const candidates = [
+            'gemini-1.5-pro',
+            'gemini-1.5-pro-latest',
+            'gemini-1.5-pro-002',
+            'gemini-1.5-flash',
+            'gemini-1.5-flash-latest',
+            'gemini-1.5-flash-001'
+          ];
+          for (const c of candidates) {
+            if (hasGen(c) || hasGen(`models/${c}`)) return c;
+          }
+          const any = models.find(m => Array.isArray(m.supportedGenerationMethods) && m.supportedGenerationMethods.includes('generateContent'));
+          if (any) return any.name.replace(/^models\//, '');
+        } catch {}
+        return 'gemini-1.5-pro';
+      };
+      model = await resolveModel();
+    } catch {}
+    API_URL = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent`;
 
     let fullResponse = "";
 
