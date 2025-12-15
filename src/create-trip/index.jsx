@@ -91,7 +91,7 @@ function CreateTrip() {
 
     // Using v1beta API endpoint which supports newer models like gemini-1.5-flash
     const API_KEY = ((((typeof globalThis !== 'undefined' && globalThis.__GEMINI_KEY__) || import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY) || '')).trim();
-    const model = "gemini-1.5-flash";
+    const model = "gemini-1.5-pro-latest";
     const API_URL = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent`;
 
     try {
@@ -151,7 +151,7 @@ function CreateTrip() {
       // Extract text from response
       if (data.candidates && data.candidates[0] && data.candidates[0].content) {
         fullResponse = data.candidates[0].content.parts.map(part => part.text).join('');
-        console.log('Successfully generated with gemini-1.5-flash via v1beta API');
+        console.log('Successfully generated with', model, 'via v1 API');
       } else {
         throw new Error('Unexpected response format');
       }
