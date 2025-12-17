@@ -24,18 +24,18 @@ function GlobeComponent() {
         ]
         setPointsData(destinations)
 
-        // Generate flight route arcs with gradient colors
-        const N = 25
+        // Generate flight route arcs with BRIGHTER, more visible colors
+        const N = 20
         const arcs = [...Array(N).keys()].map(() => ({
             startLat: (Math.random() - 0.5) * 160,
             startLng: (Math.random() - 0.5) * 360,
             endLat: (Math.random() - 0.5) * 160,
             endLng: (Math.random() - 0.5) * 360,
             color: [
-                ['rgba(147, 51, 234, 0.6)', 'rgba(236, 72, 153, 0.8)'],  // Purple to Pink
-                ['rgba(99, 102, 241, 0.6)', 'rgba(168, 85, 247, 0.8)'],  // Indigo to Purple
-                ['rgba(236, 72, 153, 0.6)', 'rgba(251, 146, 60, 0.8)'],  // Pink to Orange
-                ['rgba(168, 85, 247, 0.6)', 'rgba(147, 51, 234, 0.8)'],  // Purple variants
+                ['rgba(168, 85, 247, 0.9)', 'rgba(236, 72, 153, 1)'],     // Bright Purple to Hot Pink
+                ['rgba(236, 72, 153, 0.9)', 'rgba(251, 146, 60, 1)'],     // Hot Pink to Orange
+                ['rgba(99, 102, 241, 0.9)', 'rgba(168, 85, 247, 1)'],     // Indigo to Purple
+                ['rgba(147, 51, 234, 0.9)', 'rgba(219, 39, 119, 1)'],     // Deep Purple to Pink
             ][Math.round(Math.random() * 3)]
         }))
         setArcsData(arcs)
@@ -56,49 +56,50 @@ function GlobeComponent() {
 
     return (
         <div className='w-full h-full flex items-center justify-center relative'>
-            {/* Glow effect behind globe */}
+            {/* Bright glow effect behind globe */}
             <div className='absolute inset-0 flex items-center justify-center'>
-                <div className='w-[500px] h-[500px] rounded-full bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-orange-500/20 blur-3xl animate-pulse'></div>
+                <div className='w-[450px] h-[450px] rounded-full bg-gradient-to-r from-purple-400/30 via-pink-400/30 to-orange-400/30 blur-3xl animate-pulse'></div>
             </div>
 
             <Globe
                 ref={globeEl}
                 globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
                 bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-                backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+                // NO background - removed the dark starfield that made it hard to see
 
-                // Animated flight route arcs
+                // Animated flight route arcs - now BRIGHTER and more visible
                 arcsData={arcsData}
                 arcColor={'color'}
-                arcDashLength={0.6}
-                arcDashGap={0.3}
-                arcDashAnimateTime={3000}
-                arcStroke={0.8}
-                arcAltitudeAutoScale={0.3}
+                arcDashLength={0.5}
+                arcDashGap={0.2}
+                arcDashAnimateTime={2500}
+                arcStroke={1.2}  // Thicker for better visibility
+                arcAltitudeAutoScale={0.35}
 
-                // Destination points
+                // Bright destination points
                 pointsData={pointsData}
                 pointAltitude={0.01}
-                pointRadius={0.15}
-                pointColor={() => '#ec4899'}
+                pointRadius={0.2}  // Slightly larger
+                pointColor={() => '#ff1493'}  // Bright deep pink
                 pointLabel={(d) => `
                     <div style="
-                        background: linear-gradient(135deg, rgba(147, 51, 234, 0.95), rgba(236, 72, 153, 0.95));
+                        background: linear-gradient(135deg, rgba(147, 51, 234, 0.98), rgba(236, 72, 153, 0.98));
                         color: white;
-                        padding: 8px 16px;
-                        border-radius: 12px;
+                        padding: 10px 18px;
+                        border-radius: 14px;
                         font-weight: bold;
-                        font-size: 14px;
-                        box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-                        backdrop-filter: blur(10px);
+                        font-size: 15px;
+                        box-shadow: 0 10px 20px rgba(147, 51, 234, 0.4);
+                        backdrop-filter: blur(12px);
+                        border: 1px solid rgba(255, 255, 255, 0.2);
                     ">
                         ✈️ ${d.city}
                     </div>
                 `}
 
-                // Enhanced atmosphere with gradient
-                atmosphereColor="rgba(147, 51, 234, 0.7)"
-                atmosphereAltitude={0.25}
+                // Brighter, more visible atmosphere
+                atmosphereColor="rgba(168, 85, 247, 0.4)"  // Brighter purple
+                atmosphereAltitude={0.2}
 
                 // Settings
                 width={600}
