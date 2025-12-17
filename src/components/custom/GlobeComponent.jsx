@@ -43,7 +43,7 @@ function GlobeComponent() {
 
             <Globe
                 ref={globeEl}
-                globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+                globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
                 bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
 
                 // Bright cyan/blue arcs
