@@ -188,12 +188,28 @@
   .hover-scale:hover {
     transform: scale(1.02);
   }
+
+  /* Background size and position utilities for gradient animation */
+  .bg-size-200 {
+    background-size: 200%;
+  }
+  .bg-pos-0 {
+    background-position: 0%;
+  }
+  .bg-pos-100 {
+    background-position: 100%;
+  }
 }
 
 @keyframes gradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+@keyframes gradientX {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
 }
 
 @keyframes float {
@@ -221,6 +237,7 @@ html { scroll-behavior: smooth; }
   .animate-fade-in { animation: fadeInUp 0.6s ease-out forwards; }
   .animate-blob { animation: blob 10s infinite; }
   .animate-float { animation: float 4s ease-in-out infinite; }
+  .animate-gradient-x { animation: gradientX 8s ease infinite; }
   .animation-delay-2000 { animation-delay: 2s; }
   .animation-delay-4000 { animation-delay: 4s; }
 }
