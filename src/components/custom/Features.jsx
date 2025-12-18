@@ -54,23 +54,23 @@ function Features() {
         <div className='absolute bottom-20 left-10 w-64 h-64 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20'></div>
       </div>
 
-      <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10'>
+      <div className='relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-10'>
         {/* Section Header */}
-        <div className='text-center mb-16 space-y-4'>
-          <div className='inline-flex items-center gap-2 bg-gradient-to-r from-purple-100 to-pink-100 px-4 py-2 rounded-full'>
-            <span className='text-2xl'>✨</span>
-            <span className='font-bold text-purple-700'>Why Choose Us</span>
+        <div className='text-center mb-12 sm:mb-20 space-y-4 px-4'>
+          <div className='inline-flex items-center gap-2 bg-gradient-to-r from-purple-100 to-pink-100 px-4 py-2 rounded-full transform hover:scale-110 transition-transform'>
+            <span className='text-xl sm:text-2xl'>✨</span>
+            <span className='font-bold text-purple-700 text-xs sm:text-sm uppercase tracking-wider'>Why Choose Us</span>
           </div>
-          <h2 className='text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'>
+          <h2 className='text-3xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 animate-gradient-x bg-size-200'>
             Powerful Features
           </h2>
-          <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+          <p className='text-base sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium'>
             Everything you need to plan the perfect trip, powered by cutting-edge AI technology
           </p>
         </div>
 
         {/* Features Grid */}
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8'>
           {features.map((feature, index) => (
             <div
               key={index}
@@ -104,23 +104,24 @@ function Features() {
         </div>
 
         {/* Stats Section */}
-        <div className='mt-20 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-12 shadow-2xl'>
-          <div className='grid md:grid-cols-4 gap-8 text-center text-white'>
-            <div className='space-y-2'>
-              <div className='text-5xl font-black'>50K+</div>
-              <div className='text-lg font-semibold opacity-90'>Trips Planned</div>
+        <div className='mt-16 sm:mt-24 bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden group'>
+          <div className='absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-20 transition-opacity duration-700'></div>
+          <div className='grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white relative z-10'>
+            <div className='space-y-1 sm:space-y-2'>
+              <div className='text-3xl sm:text-5xl font-black'>50K+</div>
+              <div className='text-xs sm:text-lg font-semibold opacity-90 uppercase tracking-wider'>Trips Planned</div>
             </div>
-            <div className='space-y-2'>
-              <div className='text-5xl font-black'>195+</div>
-              <div className='text-lg font-semibold opacity-90'>Countries</div>
+            <div className='space-y-1 sm:space-y-2'>
+              <div className='text-3xl sm:text-5xl font-black'>195+</div>
+              <div className='text-xs sm:text-lg font-semibold opacity-90 uppercase tracking-wider'>Countries</div>
             </div>
-            <div className='space-y-2'>
-              <div className='text-5xl font-black'>4.9★</div>
-              <div className='text-lg font-semibold opacity-90'>User Rating</div>
+            <div className='space-y-1 sm:space-y-2'>
+              <div className='text-3xl sm:text-5xl font-black'>4.9★</div>
+              <div className='text-xs sm:text-lg font-semibold opacity-90 uppercase tracking-wider'>User Rating</div>
             </div>
-            <div className='space-y-2'>
-              <div className='text-5xl font-black'>30s</div>
-              <div className='text-lg font-semibold opacity-90'>Avg. Time</div>
+            <div className='space-y-1 sm:space-y-2'>
+              <div className='text-3xl sm:text-5xl font-black'>30s</div>
+              <div className='text-xs sm:text-lg font-semibold opacity-90 uppercase tracking-wider'>Avg. Time</div>
             </div>
           </div>
         </div>
