@@ -121,74 +121,95 @@ function CreateTrip() {
         console.error("Failed to list models:", e);
       }
     };
-    const DEBUG_MODELS = false;
     if (DEBUG_MODELS) listModels();
+    const getCandidates = async () => {
+      try {
+        const r = await fetch(`https://generativelanguage.googleapis.com/v1/models?key=${API_KEY}`);
+        const d = await r.json();
+        const models = Array.isArray(d.models) ? d.models : [];
+        const hasGen = (n) => {
+          const m = models.find(mm => mm.name === n || mm.name.endsWith(`/${n}`));
+          return m && Array.isArray(m.supportedGenerationMethods) && m.supportedGenerationMethods.includes('generateContent');
+        };
+        const prioritized = [
+          'gemini-1.5-flash',
+          'gemini-1.5-flash-latest',
+          'gemini-1.5-flash-001',
+          'gemini-1.5-pro',
+          'gemini-1.5-pro-latest',
+          'gemini-1.5-pro-002'
+        ];
+        const active = prioritized.filter(c => hasGen(c) || hasGen(`models/${c}`));
+        if (active.length) return active;
 
-    try {
-      const resolveModel = async () => {
-        try {
-          const r = await fetch(`https://generativelanguage.googleapis.com/v1/models?key=${API_KEY}`);
-          const d = await r.json();
-          const models = Array.isArray(d.models) ? d.models : [];
-          const hasGen = (n) => {
-            const m = models.find(mm => mm.name === n || mm.name.endsWith(`/${n}`));
-            return m && Array.isArray(m.supportedGenerationMethods) && m.supportedGenerationMethods.includes('generateContent');
-          };
-          const candidates = [
-            'gemini-1.5-pro',
-            'gemini-1.5-pro-latest',
-            'gemini-1.5-pro-002',
-            'gemini-1.5-flash',
-            'gemini-1.5-flash-latest',
-            'gemini-1.5-flash-001'
-          ];
-          for (const c of candidates) {
-            if (hasGen(c) || hasGen(`models/${c}`)) return c;
-          }
-          const any = models.find(m => Array.isArray(m.supportedGenerationMethods) && m.supportedGenerationMethods.includes('generateContent'));
-          if (any) return any.name.replace(/^models\//, '');
-        } catch { }
-        return 'gemini-1.5-pro';
-      };
-      model = await resolveModel();
-    } catch { }
-    API_URL = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent`;
+        const any = models.find(m =>
+          Array.isArray(m.supportedGenerationMethods) &&
+          m.supportedGenerationMethods.includes('generateContent') &&
+          !m.name.includes('vision') &&
+          !m.name.includes('experimental')
+        );
+        if (any) return [any.name.replace(/^models\//, '')];
+      } catch { }
+      return ['gemini-1.5-flash', 'gemini-1.5-pro'];
+    };
 
+    const candidates = await getCandidates();
     let fullResponse = "";
+    let lastError = null;
 
-    try {
-      const response = await fetch(`${API_URL}?key=${API_KEY}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          contents: [{
-            parts: [{
-              text: FINAL_PROMPT
+    for (const modelCandidate of candidates) {
+      try {
+        const API_URL = `https://generativelanguage.googleapis.com/v1/models/${modelCandidate}:generateContent`;
+        console.log(`Attempting generation with ${modelCandidate}...`);
+
+        const response = await fetch(`${API_URL}?key=${API_KEY}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            contents: [{
+              parts: [{
+                text: FINAL_PROMPT
+              }]
             }]
-          }]
-        })
-      });
+          })
+        });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(`API Error: ${response.status} - ${JSON.stringify(errorData)}`);
+        if (!response.ok) {
+          const errorData = await response.json();
+          const status = response.status;
+          console.warn(`Model ${modelCandidate} failed with status ${status}`);
+
+          if (status === 503 || status === 429) {
+            lastError = new Error(`API Error: ${status} - Model overloaded or rate limited`);
+            continue; // Try next model
+          }
+          throw new Error(`API Error: ${status} - ${JSON.stringify(errorData)}`);
+        }
+
+        const data = await response.json();
+
+        if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+          fullResponse = data.candidates[0].content.parts.map(part => part.text).join('');
+          console.log('Successfully generated with', modelCandidate);
+          break; // Success!
+        } else {
+          throw new Error('Unexpected response format');
+        }
+      } catch (error) {
+        lastError = error;
+        console.error(`Generation attempt with ${modelCandidate} failed:`, error);
+        // If it's the last candidate, we stop and throw
+        if (modelCandidate === candidates[candidates.length - 1]) break;
       }
+    }
 
-      const data = await response.json();
-
-      // Extract text from response
-      if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-        fullResponse = data.candidates[0].content.parts.map(part => part.text).join('');
-        console.log('Successfully generated with', model, 'via v1 API');
-      } else {
-        throw new Error('Unexpected response format');
-      }
-    } catch (error) {
-      console.error('Error generating trip:', error);
-      const msg = String(error?.message || '');
-      if (msg.includes('API_KEY_INVALID') || msg.includes('API key not valid')) {
+    if (!fullResponse) {
+      const msg = String(lastError?.message || '');
+      if (msg.includes('503') || msg.includes('overloaded')) {
+        toast('AI models are currently overloaded. Please try again in a moment.');
+      } else if (msg.includes('API_KEY_INVALID') || msg.includes('API key not valid')) {
         toast('Invalid API key. Update VITE_GOOGLE_GEMINI_AI_API_KEY and restart.');
       } else {
         toast('Failed to generate trip. Please try again.');
