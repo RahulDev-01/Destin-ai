@@ -20,19 +20,19 @@ function UserTripCard({ trip, onDelete }) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
-  useEffect(()=>{
-    const fetchPhoto = async()=>{
-      try{
+  useEffect(() => {
+    const fetchPhoto = async () => {
+      try {
         const q = trip?.userSelection?.location;
-        if(!q) return;
-        const url = await getRelevantImageUrl(q,{width:600,height:200});
+        if (!q) return;
+        const url = await getRelevantImageUrl(q, { width: 600, height: 200 });
         setCoverUrl(url);
-      }catch(err){
-        setCoverUrl(buildSeededPhotoURL(trip?.userSelection?.location,{width:600,height:200}));
+      } catch (err) {
+        setCoverUrl(buildSeededPhotoURL(trip?.userSelection?.location, { width: 600, height: 200 }));
       }
     };
     fetchPhoto();
-  },[trip?.userSelection?.location]);
+  }, [trip?.userSelection?.location]);
 
   const handleDeleteClick = (e) => {
     e.preventDefault();
@@ -60,33 +60,44 @@ function UserTripCard({ trip, onDelete }) {
   };
 
   return (
-    <div className='border rounded-xl hover:shadow-md hover:scale-[1.01] transition-all overflow-hidden relative group'>
-      <Link to={`/view-trip/${trip?.id}`}>
-        <img
-          src={coverUrl||'/image.png'}
-          alt='cover'
-          className='w-full h-[140px] object-cover'
-          onError={(e)=>{ e.currentTarget.onerror=null; e.currentTarget.src = buildSeededPhotoURL(trip?.userSelection?.location,{width:600,height:200}); }}
-        />
-        <div className='p-3 flex flex-col gap-2'>
-          <h3 className='font-semibold text-lg truncate'>{trip?.userSelection?.location||'Trip'}</h3>
-          <div className='flex flex-wrap gap-2 text-sm text-gray-600'>
-            <span className='bg-gray-100 rounded-full px-2 py-1'>📅 {trip?.userSelection?.noOfDays} days</span>
-            <span className='bg-gray-100 rounded-full px-2 py-1'>💰 {trip?.userSelection?.budget}</span>
-            <span className='bg-gray-100 rounded-full px-2 py-1'>👥 {trip?.userSelection?.Peoples}</span>
+    <div className='group bg-white border border-gray-100 rounded-[2rem] overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative flex flex-col h-full'>
+      <Link to={`/view-trip/${trip?.id}`} className='flex flex-col h-full'>
+        <div className='relative h-[180px] sm:h-[200px] overflow-hidden'>
+          <img
+            src={coverUrl || '/image.png'}
+            alt='cover'
+            className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110'
+            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = buildSeededPhotoURL(trip?.userSelection?.location, { width: 600, height: 400 }); }}
+          />
+          <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500'></div>
+        </div>
+        <div className='p-5 sm:p-6 flex flex-col gap-3 flex-1'>
+          <h3 className='font-black text-xl sm:text-2xl text-gray-900 group-hover:text-blue-600 transition-colors truncate'>
+            {trip?.userSelection?.location || 'Trip'}
+          </h3>
+          <div className='flex flex-wrap gap-2'>
+            <span className='inline-flex items-center gap-1.5 px-3 py-1 bg-gray-50 border border-gray-100 rounded-full text-xs font-black text-gray-600'>
+              <span>📅</span> {trip?.userSelection?.noOfDays} Days
+            </span>
+            <span className='inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-xs font-black text-blue-600'>
+              <span>💰</span> {trip?.userSelection?.budget}
+            </span>
+            <span className='inline-flex items-center gap-1.5 px-3 py-1 bg-purple-50 border border-purple-100 rounded-full text-xs font-black text-purple-600'>
+              <span>👥</span> {trip?.userSelection?.Peoples}
+            </span>
           </div>
         </div>
       </Link>
-      
+
       {/* Delete Button */}
       <button
         onClick={handleDeleteClick}
         disabled={isDeleting}
-        className='absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 disabled:opacity-50 cursor-pointer'
-        title='Delete trip '
+        className='absolute top-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-red-500 hover:text-white text-red-500 w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg transform hover:rotate-12 active:scale-90 disabled:opacity-50 cursor-pointer z-10'
+        title='Delete trip'
       >
         {isDeleting ? (
-          <div className='w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin'></div>
+          <div className='w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin'></div>
         ) : (
           <FaTrash className='w-4 h-4' />
         )}
@@ -98,20 +109,20 @@ function UserTripCard({ trip, onDelete }) {
           <DialogHeader>
             <DialogTitle>Delete Trip</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete this trip to <strong>{trip?.userSelection?.location}</strong>? 
+              Are you sure you want to delete this trip to <strong>{trip?.userSelection?.location}</strong>?
               This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="flex gap-4 sm:gap-4">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               onClick={handleDeleteCancel}
               disabled={isDeleting}
             >
               Cancel
             </Button>
-            <Button 
-              variant="destructive" 
+            <Button
+              variant="destructive"
               onClick={handleDeleteConfirm}
               disabled={isDeleting}
               className="bg-red-500 hover:bg-red-600"
