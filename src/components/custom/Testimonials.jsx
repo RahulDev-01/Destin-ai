@@ -72,17 +72,17 @@ function Testimonials() {
         <div className='absolute bottom-20 right-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000'></div>
       </div>
 
-      <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10'>
+      <div className='relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-10'>
         {/* Section Header */}
-        <div className='text-center mb-16 space-y-4'>
-          <div className='inline-flex items-center gap-2 bg-gradient-to-r from-green-100 to-blue-100 px-4 py-2 rounded-full'>
-            <span className='text-2xl'>💬</span>
-            <span className='font-bold text-green-700'>Testimonials</span>
+        <div className='text-center mb-12 sm:mb-20 space-y-4 px-4'>
+          <div className='inline-flex items-center gap-2 bg-gradient-to-r from-green-100 to-blue-100 px-4 py-2 rounded-full transform hover:scale-110 transition-transform'>
+            <span className='text-xl sm:text-2xl'>💬</span>
+            <span className='font-bold text-green-700 text-xs sm:text-sm uppercase tracking-wider'>Testimonials</span>
           </div>
-          <h2 className='text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600'>
+          <h2 className='text-3xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-blue-600 to-green-600 animate-gradient-x bg-size-200'>
             Loved by Travelers
           </h2>
-          <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+          <p className='text-base sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium'>
             Join thousands of happy travelers who trust our AI to plan their perfect adventures
           </p>
         </div>
@@ -142,23 +142,26 @@ function Testimonials() {
         </div>
 
         {/* Trust Section */}
-        <div className='mt-20 bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl p-12 text-center shadow-2xl'>
-          <div className='space-y-6'>
-            <h3 className='text-4xl font-black text-white'>
-              🌟 Trusted by 50,000+ Travelers Worldwide
-            </h3>
-            <p className='text-xl text-white/90 max-w-2xl mx-auto'>
-              Join our community of happy travelers and start planning your dream trip today
-            </p>
-            <div className='flex flex-wrap justify-center gap-6 pt-4'>
-              <div className='bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full text-white font-bold'>
-                ⭐ 4.9/5 Rating
-              </div>
-              <div className='bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full text-white font-bold'>
-                🌍 195+ Countries
-              </div>
-              <div className='bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full text-white font-bold'>
-                ⚡ 30s Avg Time
+        <div className='mt-16 sm:mt-24 px-4'>
+          <div className='bg-gradient-to-br from-green-600 via-teal-600 to-blue-600 rounded-[2.5rem] p-8 sm:p-14 text-center shadow-2xl group relative overflow-hidden'>
+            <div className='absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-10 transition-opacity duration-700'></div>
+            <div className='relative z-10 space-y-6 sm:space-y-8'>
+              <h3 className='text-2xl sm:text-5xl font-black text-white leading-tight'>
+                🌟 Trusted by 50,000+ Travelers Worldwide
+              </h3>
+              <p className='text-base sm:text-xl text-white/90 max-w-2xl mx-auto font-medium'>
+                Join our community of happy travelers and start planning your dream trip today
+              </p>
+              <div className='flex flex-wrap justify-center gap-4 sm:gap-8 pt-4'>
+                <div className='bg-white/20 backdrop-blur-md px-6 py-3 rounded-2xl text-white font-bold text-sm sm:text-lg border border-white/20 shadow-xl transform hover:scale-110 transition-all'>
+                  ⭐ 4.9/5 Rating
+                </div>
+                <div className='bg-white/20 backdrop-blur-md px-6 py-3 rounded-2xl text-white font-bold text-sm sm:text-lg border border-white/20 shadow-xl transform hover:scale-110 transition-all'>
+                  🌍 195+ Countries
+                </div>
+                <div className='bg-white/20 backdrop-blur-md px-6 py-3 rounded-2xl text-white font-bold text-sm sm:text-lg border border-white/20 shadow-xl transform hover:scale-110 transition-all'>
+                  ⚡ 30s Avg Time
+                </div>
               </div>
             </div>
           </div>
