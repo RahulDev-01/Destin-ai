@@ -62,17 +62,17 @@ function PopularDestinations() {
                 <div className='absolute bottom-20 right-10 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000'></div>
             </div>
 
-            <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10'>
+            <div className='relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-10'>
                 {/* Section Header */}
-                <div className='text-center mb-16 space-y-4'>
-                    <div className='inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-cyan-100 px-4 py-2 rounded-full'>
-                        <span className='text-2xl'>🌍</span>
-                        <span className='font-bold text-blue-700'>Explore the World</span>
+                <div className='text-center mb-12 sm:mb-16 space-y-4 px-4'>
+                    <div className='inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-cyan-100 px-4 py-2 rounded-full transform hover:scale-110 transition-transform'>
+                        <span className='text-xl sm:text-2xl'>🌍</span>
+                        <span className='font-bold text-blue-700 text-xs sm:text-sm uppercase tracking-wider'>Explore the World</span>
                     </div>
-                    <h2 className='text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600'>
+                    <h2 className='text-3xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600 animate-gradient-x bg-size-200'>
                         Popular Destinations
                     </h2>
-                    <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+                    <p className='text-base sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium'>
                         Discover the most sought-after destinations. Let AI plan your perfect trip to these amazing places!
                     </p>
                 </div>
@@ -136,13 +136,13 @@ function PopularDestinations() {
                 </div>
 
                 {/* View All CTA */}
-                <div className='mt-16 text-center'>
+                <div className='mt-12 sm:mt-16 text-center px-4'>
                     <Link to='/create-trip'>
-                        <Button className='h-16 px-10 text-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold rounded-2xl shadow-2xl hover:shadow-blue-500/50 transform hover:scale-105 transition-all duration-300'>
+                        <button className='w-full sm:w-auto h-14 sm:h-16 px-8 sm:px-10 text-lg sm:text-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:bg-pos-100 bg-size-200 text-white font-black rounded-2xl shadow-2xl hover:shadow-blue-500/50 transform hover:scale-105 active:scale-95 transition-all duration-300'>
                             <span className='mr-2'>🗺️</span>
                             Explore More Destinations
                             <span className='ml-2'>→</span>
-                        </Button>
+                        </button>
                     </Link>
                 </div>
             </div>
