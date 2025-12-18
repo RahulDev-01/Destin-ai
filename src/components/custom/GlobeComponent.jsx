@@ -60,8 +60,9 @@ function GlobeComponent() {
                 atmosphereAltitude={0.2}
 
                 // Settings
-                width={600}
-                height={600}
+                backgroundColor="rgba(0,0,0,0)"
+                width={globeEl.current?.parentElement?.clientWidth || 600}
+                height={globeEl.current?.parentElement?.clientHeight || 600}
                 animateIn={true}
             />
         </div>
