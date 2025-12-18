@@ -64,25 +64,25 @@ function PricingSection() {
                 <div className='absolute bottom-0 left-0 w-[500px] h-[500px] bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000'></div>
             </div>
 
-            <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10'>
+            <div className='relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-10'>
                 {/* Header */}
-                <div className='text-center mb-16'>
-                    <h2 className='text-4xl md:text-5xl font-black text-gray-900 mb-4'>
-                        Simple, Transparent Pricing
+                <div className='text-center mb-12 sm:mb-20 px-4'>
+                    <h2 className='text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight'>
+                        Simple, Transparent <span className='stunning-text'>Pricing</span>
                     </h2>
-                    <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+                    <p className='text-base sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium'>
                         Start for free and upgrade as you go. No hidden fees, cancel anytime.
                     </p>
                 </div>
 
                 {/* Plans Grid */}
-                <div className='grid md:grid-cols-3 gap-8 items-center max-w-6xl mx-auto'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-center max-w-6xl mx-auto px-4'>
                     {plans.map((plan, index) => (
                         <div
                             key={index}
-                            className={`relative bg-white rounded-3xl p-8 border-2 transition-all duration-300 hover:-translate-y-2
+                            className={`relative bg-white rounded-[2.5rem] p-6 sm:p-8 border-2 transition-all duration-500 transform hover:-translate-y-2 group
                 ${plan.popular
-                                    ? 'border-purple-600 shadow-2xl scale-105 z-10'
+                                    ? 'border-purple-600 shadow-2xl lg:scale-105 z-10'
                                     : 'border-gray-100 shadow-xl hover:shadow-2xl'
                                 }
               `}
