@@ -19,29 +19,29 @@ function StepIndicator({ currentStep, totalSteps }) {
                     const isCompleted = stepNumber < currentStep
 
                     return (
-                        <div key={index} className='flex flex-col items-center gap-3 group cursor-default'>
+                        <div key={index} className='flex flex-col items-center gap-2 group cursor-default'>
                             <div
-                                className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg border-[3px] transition-all duration-300 transform group-hover:scale-110
+                                className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-black text-sm sm:text-lg border-2 sm:border-[3px] transition-all duration-500 transform
                   ${isActive
-                                        ? 'bg-white border-purple-600 text-purple-600 shadow-lg shadow-purple-200 scale-110'
+                                        ? 'bg-white border-purple-600 text-purple-600 shadow-xl shadow-purple-200 scale-110'
                                         : isCompleted
-                                            ? 'bg-gradient-to-br from-blue-500 to-purple-600 border-transparent text-white shadow-md'
+                                            ? 'bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 border-transparent text-white shadow-md'
                                             : 'bg-white border-gray-200 text-gray-300'
                                     }
                 `}
                             >
                                 {isCompleted ? (
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={3} d="M5 13l4 4L19 7" />
                                     </svg>
                                 ) : stepNumber}
                             </div>
-                            <span className={`text-xs font-bold uppercase tracking-wider hidden sm:block transition-colors duration-300 ${isActive ? 'text-purple-600' : isCompleted ? 'text-gray-700' : 'text-gray-300'}`}>
-                                {stepNumber === 1 && 'Destination'}
-                                {stepNumber === 2 && 'Duration'}
+                            <span className={`text-[10px] sm:text-xs font-black uppercase tracking-tighter sm:tracking-wider transition-colors duration-500 ${isActive ? 'text-purple-600' : isCompleted ? 'text-gray-700' : 'text-gray-300'}`}>
+                                {stepNumber === 1 && (isActive ? 'Start' : 'Dest.')}
+                                {stepNumber === 2 && 'Days'}
                                 {stepNumber === 3 && 'Budget'}
-                                {stepNumber === 4 && 'Travelers'}
-                                {stepNumber === 5 && 'Review'}
+                                {stepNumber === 4 && (isActive ? 'Peoples' : 'Who')}
+                                {stepNumber === 5 && 'Plan'}
                             </span>
                         </div>
                     )
