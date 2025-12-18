@@ -83,16 +83,24 @@ function Header() {
 
           {/* Auth section */}
           {user ? (
-            <div className='hidden md:flex items-center gap-3'>
-              <Link to="/create-trip"><Button variant="outline" className="rounded-full">Create Trip</Button></Link>
-              <Link to="/my-trips"><Button variant="outline" className="rounded-full">My Trips</Button></Link>
-              <img src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-male-user-profile-vector-illustration-isolated-background-man-profile-sign-business-concept_157943-38764.jpg" alt="User avatar" className='rounded-full w-[38px] h-[38px]' />
-              <Button variant="outline" className="rounded-full" onClick={() => {
-                googleLogout();
-                localStorage.removeItem('user');
-                setUser(null);
-                window.dispatchEvent(new Event('authChanged'));
-              }}>Logout</Button>
+            <div className='hidden md:flex items-center gap-4'>
+              <img 
+                src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-male-user-profile-vector-illustration-isolated-background-man-profile-sign-business-concept_157943-38764.jpg" 
+                alt="User avatar" 
+                className='rounded-full w-10 h-10 border-2 border-white shadow-sm' 
+              />
+              <Button 
+                variant="outline" 
+                className="rounded-full border-gray-200 hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors" 
+                onClick={() => {
+                  googleLogout();
+                  localStorage.removeItem('user');
+                  setUser(null);
+                  window.dispatchEvent(new Event('authChanged'));
+                }}
+              >
+                Logout
+              </Button>
             </div>
           ) : (
             <Link to="/login">
