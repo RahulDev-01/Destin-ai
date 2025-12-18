@@ -21,7 +21,7 @@ function Viewtrip() {
   const GetTripData = async () => {
     try {
       const docRef = doc(db, 'AI-Trips', tripId);
-      const docSnap = await getDoc(docRef); 
+      const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
         console.log("Document:", docSnap.data());
@@ -47,12 +47,12 @@ function Viewtrip() {
 
   return (
     <>
-    <div className='p-10 md:px-20 lg:px-44 xl:px-56'>
-    <InfoSection trip={trip}/>
-    <Hotels trip={trip}/>
-    <PlacesToVisit trip={trip}/>
-    <Footer trip={trip}/>
-   </div> </>
+      <div className='max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-24 py-10'>
+        <InfoSection trip={trip} />
+        <Hotels trip={trip} />
+        <PlacesToVisit trip={trip} />
+        <Footer trip={trip} />
+      </div> </>
   );
 }
 
