@@ -105,52 +105,56 @@ function CreateTrip() {
       return;
     }
 
-    // DEBUG: List available models
-    const listModels = async () => {
-      try {
-        const resp = await fetch(`https://generativelanguage.googleapis.com/v1/models?key=${API_KEY}`);
-        const data = await resp.json();
-        console.log("--- DEBUG: AVAILABLE MODELS ---");
-        if (data.models) {
-          data.models.forEach(m => console.log(m.name, m.supportedGenerationMethods));
-        } else {
-          console.log("No models found or error:", data);
-        }
-        console.log("-------------------------------");
-      } catch (e) {
-        console.error("Failed to list models:", e);
-      }
-    };
-    if (DEBUG_MODELS) listModels();
     const getCandidates = async () => {
+      // Always use a hardcoded stable list to avoid API fetch issues
+      const prioritized = [
+        'gemini-1.5-flash',
+        'gemini-1.5-flash-latest',
+        'gemini-1.5-flash-001',
+        'gemini-1.5-pro',
+        'gemini-1.5-pro-latest',
+        'gemini-1.5-pro-002'
+      ];
+
       try {
         const r = await fetch(`https://generativelanguage.googleapis.com/v1/models?key=${API_KEY}`);
+        if (!r.ok) {
+          console.warn('Failed to fetch models list, using fallback');
+          return prioritized;
+        }
         const d = await r.json();
         const models = Array.isArray(d.models) ? d.models : [];
+
         const hasGen = (n) => {
           const m = models.find(mm => mm.name === n || mm.name.endsWith(`/${n}`));
           return m && Array.isArray(m.supportedGenerationMethods) && m.supportedGenerationMethods.includes('generateContent');
         };
-        const prioritized = [
-          'gemini-1.5-flash',
-          'gemini-1.5-flash-latest',
-          'gemini-1.5-flash-001',
-          'gemini-1.5-pro',
-          'gemini-1.5-pro-latest',
-          'gemini-1.5-pro-002'
-        ];
-        const active = prioritized.filter(c => hasGen(c) || hasGen(`models/${c}`));
-        if (active.length) return active;
 
+        const active = prioritized.filter(c => hasGen(c) || hasGen(`models/${c}`));
+        if (active.length) {
+          console.log('Available models:', active);
+          return active;
+        }
+
+        // If none of our prioritized models are available, find any stable model
         const any = models.find(m =>
           Array.isArray(m.supportedGenerationMethods) &&
           m.supportedGenerationMethods.includes('generateContent') &&
           !m.name.includes('vision') &&
-          !m.name.includes('experimental')
+          !m.name.includes('experimental') &&
+          !m.name.includes('2.5')
         );
-        if (any) return [any.name.replace(/^models\//, '')];
-      } catch { }
-      return ['gemini-1.5-flash', 'gemini-1.5-pro'];
+        if (any) {
+          const modelName = any.name.replace(/^models\//, '');
+          console.log('Using alternative model:', modelName);
+          return [modelName];
+        }
+      } catch (err) {
+        console.warn('Error fetching models, using fallback:', err);
+      }
+
+      console.log('Using fallback models:', prioritized);
+      return prioritized;
     };
 
     const candidates = await getCandidates();
