@@ -3,36 +3,58 @@ import { getRelevantImageUrl, buildSeededPhotoURL } from '@/service/Globalapi';
 import React, { useEffect, useMemo, useState } from 'react'
 import { FaShareAlt } from "react-icons/fa";
 
-export default function InfoSection({trip}) {
+export default function InfoSection({ trip }) {
   const [coverUrl, setCoverUrl] = useState('');
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchPhoto = async () => {
-      try{
-        if(!trip?.userSelection?.location) return;
-        const url = await getRelevantImageUrl(trip?.userSelection?.location,{width:1200,height:300});
+      try {
+        if (!trip?.userSelection?.location) return;
+        const url = await getRelevantImageUrl(trip?.userSelection?.location, { width: 1200, height: 300 });
         setCoverUrl(url);
-      }catch(err){
-        setCoverUrl(buildSeededPhotoURL(trip?.userSelection?.location,{width:1200,height:300}));
+      } catch (err) {
+        setCoverUrl(buildSeededPhotoURL(trip?.userSelection?.location, { width: 1200, height: 300 }));
       }
     };
     fetchPhoto();
-  },[trip?.userSelection?.location]);
+  }, [trip?.userSelection?.location]);
   return (
-    <div>
-        <img src={coverUrl||"/image.png"} alt="" className='h-[300px] w-full object-cover rounded-xl'
-             onError={(e)=>{ e.currentTarget.onerror=null; e.currentTarget.src = buildSeededPhotoURL(trip?.userSelection?.location,{width:1200,height:300}); }} />
-        <div className='flex items-center justify-between'>
-        <div className='my-5 flex flex-col gap-2'>
-            <h2 className='font-bold text-2xl'>{trip?.userSelection?.location}</h2>
-            <div className='flex gap-5 mt-2'>
-                <h2 className='p-1 px-3 bg-gray-200 rounded-full text-gray-500 text-sm md:text-md font-semibold'>📅 {trip?.userSelection?.noOfDays} Days</h2>
-                <h2 className='p-1 px-3 bg-gray-200 rounded-full text-gray-500 text-sm md:text-md font-semibold'> 💰 {trip?.userSelection?.budget}</h2>
-                <h2 className='p-1 px-3 bg-gray-200 rounded-full text-gray-500 text-sm md:text-md font-semibold'>✈️ No of Travelers  {trip?.userSelection?.Peoples}</h2>
+    <div className='space-y-6'>
+      <div className='relative group overflow-hidden rounded-[2rem] shadow-2xl'>
+        <img
+          src={coverUrl || "/image.png"}
+          alt=""
+          className='h-[200px] sm:h-[350px] md:h-[400px] w-full object-cover transition-transform duration-700 group-hover:scale-105'
+          onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = buildSeededPhotoURL(trip?.userSelection?.location, { width: 1200, height: 400 }); }}
+        />
+        <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60'></div>
+      </div>
+
+      <div className='flex flex-col md:flex-row md:items-end justify-between gap-6 px-2'>
+        <div className='space-y-4'>
+          <div className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 text-purple-700 text-xs font-black uppercase tracking-widest'>
+            <span>📍</span>
+            <span>Destination</span>
+          </div>
+          <h2 className='font-black text-3xl sm:text-5xl md:text-6xl text-gray-900 tracking-tight leading-none'>
+            {trip?.userSelection?.location}
+          </h2>
+          <div className='flex flex-wrap gap-3 mt-4'>
+            <div className='flex items-center gap-2 p-2 px-4 bg-gray-100/80 backdrop-blur-sm rounded-2xl text-gray-600 text-xs sm:text-sm font-black border border-gray-200 hover:bg-white hover:shadow-md transition-all'>
+              <span>📅</span> {trip?.userSelection?.noOfDays} Days
             </div>
+            <div className='flex items-center gap-2 p-2 px-4 bg-gray-100/80 backdrop-blur-sm rounded-2xl text-gray-600 text-xs sm:text-sm font-black border border-gray-200 hover:bg-white hover:shadow-md transition-all'>
+              <span>💰</span> {trip?.userSelection?.budget} Budget
+            </div>
+            <div className='flex items-center gap-2 p-2 px-4 bg-gray-100/80 backdrop-blur-sm rounded-2xl text-gray-600 text-xs sm:text-sm font-black border border-gray-200 hover:bg-white hover:shadow-md transition-all'>
+              <span>👥</span> {trip?.userSelection?.Peoples} Travelers
+            </div>
+          </div>
         </div>
-        <Button className='mt-6 cursor-pointer bg-blue-500 hover:bg-blue-600 text-white'><FaShareAlt /></Button>
-        </div>
+        <Button className='h-14 w-14 sm:h-16 sm:w-16 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl shadow-blue-500/20 transform hover:scale-110 active:scale-95 transition-all'>
+          <FaShareAlt className='text-xl sm:text-2xl' />
+        </Button>
+      </div>
     </div>
   )
 }
