@@ -20,7 +20,7 @@ function Footer() {
         <div className='absolute bottom-0 left-1/2 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000'></div>
       </div>
 
-      <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10 py-16'>
+      <div className='relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-10 py-12 sm:py-16'>
         {/* Newsletter Section */}
         <div className='mb-16 bg-white/10 backdrop-blur-sm rounded-3xl p-10 border border-white/20'>
           <div className='grid md:grid-cols-2 gap-8 items-center'>
@@ -53,7 +53,7 @@ function Footer() {
         </div>
 
         {/* Main Footer Content */}
-        <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-12 text-center sm:text-left'>
           {/* Company Info */}
           <div className='space-y-6'>
             <div className='flex items-center gap-3'>
@@ -62,7 +62,7 @@ function Footer() {
             <p className='text-white/80 leading-relaxed font-medium'>
               🌍 AI-powered travel planning that makes your dream trips a reality. Plan smarter, travel better.
             </p>
-            <div className='flex gap-4'>
+            <div className='flex justify-center sm:justify-start gap-4'>
               <a href='#' className='w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center hover:bg-white/20 transition-all duration-300 transform hover:scale-110 text-2xl'>
                 📘
               </a>
