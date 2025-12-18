@@ -41,21 +41,23 @@ function MyTrips() {
 
   return (
     <div className='min-h-screen bg-gradient-to-b from-slate-50 to-white'>
-      <div className='px-5 py-12 sm:px-10 md:px-32 lg:px-56 xl:px-72'>
+      <div className='px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-10 sm:py-16'>
         {/* Header Section */}
-        <div className='mb-10'>
-          <div className='inline-flex items-center gap-2 rounded-full bg-blue-50 border border-blue-200 px-4 py-2 text-sm font-medium text-blue-700 mb-3'>
+        <div className='mb-10 sm:mb-16 text-center sm:text-left px-2'>
+          <div className='inline-flex items-center gap-2 rounded-full bg-blue-50 border border-blue-200 px-4 py-2 text-xs sm:text-sm font-black text-blue-700 mb-4 sm:mb-5 transform hover:scale-105 transition-transform'>
             <span>🗺️</span>
-            <span>Your Travel Collection</span>
+            <span className='uppercase tracking-widest'>Your Travel Collection</span>
           </div>
-          <h2 className='font-extrabold text-3xl sm:text-4xl mb-2 text-gray-900'>
-            My <span className='text-blue-600'>Trips</span> ✈️
+          <h2 className='font-black text-3xl sm:text-5xl md:text-6xl mb-4 text-gray-900 tracking-tight'>
+            My <span className='stunning-text'>Trips</span> ✈️
           </h2>
-          <p className='text-base text-gray-600'>View and manage all your AI-generated travel itineraries</p>
+          <p className='text-sm sm:text-xl text-gray-600 max-w-2xl font-medium leading-relaxed'>
+            Explore and manage your collection of AI-crafted adventures around the globe.
+          </p>
         </div>
 
         {/* Trips Grid */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8'>
           {userTrips?.length > 0 ? (
             userTrips.map((trip, index) => (
               <UserTripCard trip={trip} key={trip?.id || index} onDelete={handleTripDelete} />

@@ -96,8 +96,8 @@ function CreateTrip() {
 
     try {
       const masked = API_KEY ? `...${API_KEY.slice(-6)}` : '(missing)';
-      console.log('Gemini key suffix', masked, 'origin', typeof window!== 'undefined' ? window.location.origin : 'ssr');
-    } catch {}
+      console.log('Gemini key suffix', masked, 'origin', typeof window !== 'undefined' ? window.location.origin : 'ssr');
+    } catch { }
 
     if (!API_KEY) {
       toast('Missing API key. Set VITE_GOOGLE_GEMINI_AI_API_KEY and restart the app.');
@@ -147,11 +147,11 @@ function CreateTrip() {
           }
           const any = models.find(m => Array.isArray(m.supportedGenerationMethods) && m.supportedGenerationMethods.includes('generateContent'));
           if (any) return any.name.replace(/^models\//, '');
-        } catch {}
+        } catch { }
         return 'gemini-1.5-pro';
       };
       model = await resolveModel();
-    } catch {}
+    } catch { }
     API_URL = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent`;
 
     let fullResponse = "";
@@ -424,16 +424,16 @@ function CreateTrip() {
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
 
         {/* Decorative Background Blobs */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
 
-        <div className="max-w-5xl mx-auto relative z-10 transition-all duration-300">
+        <div className="max-w-5xl mx-auto relative z-10 transition-all duration-500">
           {/* Header Progress */}
           <StepIndicator currentStep={currentStep} totalSteps={5} />
 
           {/* Form Content */}
-          <div className="glass-panel rounded-3xl p-6 md:p-12 min-h-[500px] transition-all duration-500 hover:shadow-2xl">
+          <div className="glass-panel rounded-[2.5rem] p-5 sm:p-8 md:p-14 min-h-[450px] transition-all duration-500 hover:shadow-2xl border border-white/40 shadow-xl">
             {currentStep === 1 && (
               <DestinationStep
                 formData={formData}
