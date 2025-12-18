@@ -60,17 +60,17 @@ function Destinations() {
                 <div className='absolute bottom-1/4 left-10 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000'></div>
             </div>
 
-            <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10'>
+            <div className='relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-10'>
                 {/* Section Header */}
-                <div className='text-center mb-16 space-y-4'>
-                    <div className='inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full'>
-                        <span className='text-2xl'>🌍</span>
-                        <span className='font-bold text-blue-700'>Popular Destinations</span>
+                <div className='text-center mb-12 sm:mb-16 space-y-4 px-4'>
+                    <div className='inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full transform hover:scale-110 transition-transform'>
+                        <span className='text-xl sm:text-2xl'>🌍</span>
+                        <span className='font-bold text-blue-700 text-xs sm:text-sm uppercase tracking-wider'>Popular Destinations</span>
                     </div>
-                    <h2 className='text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600'>
+                    <h2 className='text-3xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 animate-gradient-x bg-size-200'>
                         Explore the World
                     </h2>
-                    <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+                    <p className='text-base sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium'>
                         Discover amazing destinations loved by thousands of travelers. Where will you go next?
                     </p>
                 </div>
@@ -126,8 +126,8 @@ function Destinations() {
                 </div>
 
                 {/* View All CTA */}
-                <div className='mt-16 text-center'>
-                    <button className='bg-gradient-to-r from-blue-600 to-purple-600 text-white px-12 py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300'>
+                <div className='mt-12 sm:mt-16 text-center px-4'>
+                    <button className='w-full sm:w-auto bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:bg-pos-100 bg-size-200 text-white px-8 sm:px-12 py-4 sm:py-5 rounded-2xl font-black text-lg sm:text-xl shadow-xl hover:shadow-2xl transform hover:scale-105 active:scale-95 transition-all duration-300'>
                         <span className='mr-2'>🌎</span>
                         Explore All Destinations
                         <span className='ml-2'>→</span>
