@@ -122,6 +122,13 @@ function Testimonials() {
                     src={testimonial.avatar}
                     alt={testimonial.name}
                     className='w-14 h-14 rounded-full border-4 border-gray-100 shadow-md transform group-hover:scale-110 transition-transform duration-300'
+                    onError={(e) => {
+                      if (e.target.src.includes('pravatar')) {
+                        e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(testimonial.name)}&background=random&size=150`;
+                      } else if (e.target.src.includes('ui-avatars')) {
+                        e.target.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${testimonial.name}`;
+                      }
+                    }}
                   />
                   <div>
                     <h4 className='font-black text-gray-900 text-lg'>{testimonial.name}</h4>

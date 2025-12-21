@@ -22,11 +22,6 @@ function Hero() {
         <div className='flex flex-col lg:flex-row gap-16 lg:gap-20 items-center justify-between'>
           {/* Left: Text content */}
           <div className='text-center lg:text-left space-y-10 z-10 lg:w-1/2'>
-            {/* Badge with floating animation */}
-            <div className='inline-flex items-center gap-2.5 rounded-full bg-white/80 backdrop-blur-sm border border-purple-100 px-6 py-3 text-sm font-bold text-purple-700 shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-default animate-float'>
-              <span className="text-xl animate-bounce">✨</span>
-              <span>AI-Powered Travel Planning</span>
-            </div>
 
             {/* Main Heading with enhanced gradient */}
             <h1 className='font-black leading-tight text-5xl sm:text-6xl lg:text-7xl tracking-tight animate-fade-in'>
@@ -64,6 +59,13 @@ function Hero() {
                     src={`https://i.pravatar.cc/100?img=${i + 20}`}
                     alt='Happy traveler'
                     className='w-14 h-14 rounded-full border-4 border-white ring-2 ring-purple-200 shadow-lg hover:scale-110 hover:z-10 hover:ring-purple-400 transition-all duration-300'
+                    onError={(e) => {
+                      if (e.target.src.includes('pravatar')) {
+                        e.target.src = `https://ui-avatars.com/api/?name=User${i}&background=random&size=100`;
+                      } else if (e.target.src.includes('ui-avatars')) {
+                        e.target.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${i}`;
+                      }
+                    }}
                   />
                 ))}
               </div>
