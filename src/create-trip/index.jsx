@@ -161,57 +161,99 @@ function CreateTrip() {
     let fullResponse = "";
     let lastError = null;
 
-    for (const modelCandidate of candidates) {
-      try {
-        const API_URL = `https://generativelanguage.googleapis.com/v1/models/${modelCandidate}:generateContent`;
-        console.log(`Attempting generation with ${modelCandidate}...`);
+    // Helper function for exponential backoff delay
+    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-        const response = await fetch(`${API_URL}?key=${API_KEY}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            contents: [{
-              parts: [{
-                text: FINAL_PROMPT
-              }]
-            }]
-          })
-        });
+    for (let i = 0; i < candidates.length; i++) {
+      const modelCandidate = candidates[i];
+      let retryCount = 0;
+      const maxRetries = 3;
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          const status = response.status;
-          console.warn(`Model ${modelCandidate} failed with status ${status}`);
+      while (retryCount <= maxRetries) {
+        try {
+          const API_URL = `https://generativelanguage.googleapis.com/v1/models/${modelCandidate}:generateContent`;
 
-          if (status === 503 || status === 429) {
-            lastError = new Error(`API Error: ${status} - Model overloaded or rate limited`);
-            continue; // Try next model
+          if (retryCount === 0) {
+            console.log(`Attempting generation with ${modelCandidate}...`);
+          } else {
+            console.log(`Retry ${retryCount}/${maxRetries} for ${modelCandidate}...`);
           }
-          throw new Error(`API Error: ${status} - ${JSON.stringify(errorData)}`);
-        }
 
-        const data = await response.json();
+          const response = await fetch(`${API_URL}?key=${API_KEY}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              contents: [{
+                parts: [{
+                  text: FINAL_PROMPT
+                }]
+              }]
+            })
+          });
 
-        if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-          fullResponse = data.candidates[0].content.parts.map(part => part.text).join('');
-          console.log('Successfully generated with', modelCandidate);
-          break; // Success!
-        } else {
-          throw new Error('Unexpected response format');
+          if (!response.ok) {
+            const errorData = await response.json();
+            const status = response.status;
+            console.warn(`Model ${modelCandidate} failed with status ${status}`);
+
+            if (status === 429) {
+              // Rate limit hit - implement exponential backoff
+              if (retryCount < maxRetries) {
+                const waitTime = Math.pow(2, retryCount) * 1000; // 1s, 2s, 4s
+                console.log(`Rate limit hit. Waiting ${waitTime / 1000}s before retry...`);
+                toast(`Rate limit reached. Retrying in ${waitTime / 1000} seconds...`);
+                await delay(waitTime);
+                retryCount++;
+                continue; // Retry same model
+              } else {
+                lastError = new Error(`API Error: ${status} - Rate limit exceeded after ${maxRetries} retries`);
+                break; // Move to next model
+              }
+            } else if (status === 503) {
+              // Service overloaded - try next model immediately
+              lastError = new Error(`API Error: ${status} - Model overloaded`);
+              break; // Move to next model
+            }
+
+            throw new Error(`API Error: ${status} - ${JSON.stringify(errorData)}`);
+          }
+
+          const data = await response.json();
+
+          if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+            fullResponse = data.candidates[0].content.parts.map(part => part.text).join('');
+            console.log('Successfully generated with', modelCandidate);
+            break; // Success! Exit retry loop
+          } else {
+            throw new Error('Unexpected response format');
+          }
+        } catch (error) {
+          lastError = error;
+          console.error(`Generation attempt with ${modelCandidate} failed:`, error);
+          break; // Exit retry loop, move to next model
         }
-      } catch (error) {
-        lastError = error;
-        console.error(`Generation attempt with ${modelCandidate} failed:`, error);
-        // If it's the last candidate, we stop and throw
-        if (modelCandidate === candidates[candidates.length - 1]) break;
+      }
+
+      // If we got a response, exit the model loop
+      if (fullResponse) break;
+
+      // If this was the last model, we're done trying
+      if (i === candidates.length - 1) break;
+
+      // Add a small delay between different models to avoid rapid-fire requests
+      if (!fullResponse && i < candidates.length - 1) {
+        console.log('Waiting 2s before trying next model...');
+        await delay(2000);
       }
     }
 
     if (!fullResponse) {
       const msg = String(lastError?.message || '');
-      if (msg.includes('503') || msg.includes('overloaded')) {
+      if (msg.includes('429') || msg.includes('rate limit')) {
+        toast('⏱️ Rate limit exceeded. Please wait a few minutes and try again, or consider upgrading your API plan.');
+      } else if (msg.includes('503') || msg.includes('overloaded')) {
         toast('AI models are currently overloaded. Please try again in a moment.');
       } else if (msg.includes('API_KEY_INVALID') || msg.includes('API key not valid')) {
         toast('Invalid API key. Update VITE_GOOGLE_GEMINI_AI_API_KEY and restart.');
