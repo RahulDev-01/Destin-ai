@@ -26,7 +26,6 @@ function App() {
       <TravelInsights />
       <Testimonials />
       <FAQ />
-      <Newsletter />
       <TrustBadges />
       <Footer />
     </>

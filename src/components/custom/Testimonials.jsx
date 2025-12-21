@@ -140,32 +140,6 @@ function Testimonials() {
             </div>
           ))}
         </div>
-
-        {/* Trust Section */}
-        <div className='mt-16 sm:mt-24 px-4'>
-          <div className='bg-gradient-to-br from-green-600 via-teal-600 to-blue-600 rounded-[2.5rem] p-8 sm:p-14 text-center shadow-2xl group relative overflow-hidden'>
-            <div className='absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-10 transition-opacity duration-700'></div>
-            <div className='relative z-10 space-y-6 sm:space-y-8'>
-              <h3 className='text-2xl sm:text-5xl font-black text-white leading-tight'>
-                🌟 Trusted by 50,000+ Travelers Worldwide
-              </h3>
-              <p className='text-base sm:text-xl text-white/90 max-w-2xl mx-auto font-medium'>
-                Join our community of happy travelers and start planning your dream trip today
-              </p>
-              <div className='flex flex-wrap justify-center gap-4 sm:gap-8 pt-4'>
-                <div className='bg-white/20 backdrop-blur-md px-6 py-3 rounded-2xl text-white font-bold text-sm sm:text-lg border border-white/20 shadow-xl transform hover:scale-110 transition-all'>
-                  ⭐ 4.9/5 Rating
-                </div>
-                <div className='bg-white/20 backdrop-blur-md px-6 py-3 rounded-2xl text-white font-bold text-sm sm:text-lg border border-white/20 shadow-xl transform hover:scale-110 transition-all'>
-                  🌍 195+ Countries
-                </div>
-                <div className='bg-white/20 backdrop-blur-md px-6 py-3 rounded-2xl text-white font-bold text-sm sm:text-lg border border-white/20 shadow-xl transform hover:scale-110 transition-all'>
-                  ⚡ 30s Avg Time
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )

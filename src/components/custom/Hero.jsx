@@ -41,7 +41,7 @@ function Hero() {
             {/* CTA Buttons with enhanced effects */}
             <div className='flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pt-6'>
               <Link to={'/create-trip'}>
-                <Button className='group h-16 px-12 text-xl text-white bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-size-200 bg-pos-0 hover:bg-pos-100 font-bold rounded-2xl shadow-xl shadow-purple-500/25 hover:shadow-2xl hover:shadow-purple-500/40 transform hover:scale-105 transition-all duration-300 border-none'>
+                <Button className='group h-16 px-12 text-xl text-black bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-size-200 bg-pos-0 hover:bg-pos-100 font-bold rounded-2xl shadow-xl shadow-purple-500/25 hover:shadow-2xl hover:shadow-purple-500/40 transform hover:scale-105 transition-all duration-300 border-none'>
                   <span className='mr-2'>🚀</span>
                   <span className='drop-shadow-md font-extrabold'>Start Planning Free</span>
                   <span className='ml-2 group-hover:translate-x-1 transition-transform'>→</span>

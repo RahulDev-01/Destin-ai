@@ -116,19 +116,6 @@ function FAQ() {
             </div>
           ))}
         </div>
-
-        {/* Support CTA */}
-        <div className='mt-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-10 text-center shadow-2xl transform hover:scale-105 transition-all duration-500'>
-          <h3 className='text-3xl font-black text-white mb-4'>
-            Still have questions? 💬
-          </h3>
-          <p className='text-xl text-white/90 mb-6'>
-            Our support team is here to help you 24/7
-          </p>
-          <button className='bg-white text-indigo-600 px-10 py-4 rounded-2xl font-black text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300'>
-            Contact Support →
-          </button>
-        </div>
       </div>
     </section>
   )
