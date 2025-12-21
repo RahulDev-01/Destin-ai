@@ -100,22 +100,6 @@ function HowItWorks() {
             ))}
           </div>
         </div>
-
-        {/* CTA Section */}
-        <div className='mt-16 sm:mt-24 px-4'>
-          <div className='inline-flex flex-col items-center gap-6 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-[2.5rem] p-8 sm:p-14 shadow-2xl transform hover:scale-[1.02] transition-all duration-500 group relative overflow-hidden'>
-            <div className='absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-10 transition-opacity'></div>
-            <h3 className='text-2xl sm:text-5xl font-black text-white text-center leading-tight'>
-              Ready to Start Your Journey? 🌟
-            </h3>
-            <p className='text-base sm:text-xl text-white/90 max-w-2xl text-center font-medium'>
-              Join thousands of happy travelers who trust our AI to plan their perfect trips
-            </p>
-            <button className='bg-white text-indigo-600 px-8 sm:px-12 py-3 sm:py-5 rounded-2xl font-black text-lg sm:text-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 active:scale-95 transition-all duration-300'>
-              Create Your Trip Now →
-            </button>
-          </div>
-        </div>
       </div>
     </section>
   )
