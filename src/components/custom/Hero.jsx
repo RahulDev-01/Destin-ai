@@ -41,10 +41,10 @@ function Hero() {
             {/* CTA Buttons with enhanced effects */}
             <div className='flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pt-6'>
               <Link to={'/create-trip'}>
-                <Button className='group h-16 px-12 text-xl bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-size-200 bg-pos-0 hover:bg-pos-100 font-bold rounded-2xl shadow-xl shadow-purple-500/25 hover:shadow-2xl hover:shadow-purple-500/40 transform hover:scale-105 transition-all duration-300 border-none'>
+                <Button className='group h-16 px-12 text-xl text-white bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-size-200 bg-pos-0 hover:bg-pos-100 font-bold rounded-2xl shadow-xl shadow-purple-500/25 hover:shadow-2xl hover:shadow-purple-500/40 transform hover:scale-105 transition-all duration-300 border-none'>
                   <span className='mr-2'>🚀</span>
-                  <span className='text-white drop-shadow-sm font-extrabold'>Start Planning Free</span>
-                  <span className='ml-2 group-hover:translate-x-1 transition-transform text-white'>→</span>
+                  <span className='drop-shadow-md font-extrabold'>Start Planning Free</span>
+                  <span className='ml-2 group-hover:translate-x-1 transition-transform'>→</span>
                 </Button>
               </Link>
               <Link to={'/create-trip'}>
@@ -79,8 +79,8 @@ function Hero() {
           </div>
 
           {/* Right: 3D Globe */}
-          <div className='relative w-full z-10 flex items-center justify-center lg:w-1/2'>
-            <div className='relative w-[400px] h-[400px] lg:w-[550px] lg:h-[550px]'>
+          <div className='relative w-full z-10 flex items-center justify-center lg:w-1/2 min-h-[400px] lg:min-h-[550px]'>
+            <div className='relative w-[400px] h-[400px] lg:w-[550px] lg:h-[550px] flex items-center justify-center'>
               {/* Ambient glow */}
               <div className='absolute inset-0 bg-gradient-to-tr from-purple-400 to-pink-400 rounded-full opacity-10 animate-blob mix-blend-multiply filter blur-3xl'></div>
 
