@@ -166,15 +166,19 @@ function CreateTrip() {
       const maxRetries = 3;
 
       while (retryCount <= maxRetries) {
+        const API_URL = `https://generativelanguage.googleapis.com/v1/models/${modelCandidate}:generateContent`;
+
+        if (retryCount === 0) {
+          console.log(`Attempting generation with ${modelCandidate}...`);
+        } else {
+          console.log(`Retry ${retryCount}/${maxRetries} for ${modelCandidate}...`);
+        }
+
+        // Add timeout to prevent hanging requests
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout
+
         try {
-          const API_URL = `https://generativelanguage.googleapis.com/v1/models/${modelCandidate}:generateContent`;
-
-          if (retryCount === 0) {
-            console.log(`Attempting generation with ${modelCandidate}...`);
-          } else {
-            console.log(`Retry ${retryCount}/${maxRetries} for ${modelCandidate}...`);
-          }
-
           const response = await fetch(`${API_URL}?key=${API_KEY}`, {
             method: 'POST',
             headers: {
@@ -186,18 +190,21 @@ function CreateTrip() {
                   text: FINAL_PROMPT
                 }]
               }]
-            })
+            }),
+            signal: controller.signal
           });
+
+          clearTimeout(timeoutId);
 
           if (!response.ok) {
             const errorData = await response.json();
             const status = response.status;
-            console.warn(`Model ${modelCandidate} failed with status ${status}`);
+            console.error(`Model ${modelCandidate} failed with status ${status}:`, errorData);
 
             if (status === 429) {
-              // Rate limit hit - implement exponential backoff with longer delays
+              // Rate limit hit - implement exponential backoff
               if (retryCount < maxRetries) {
-                const waitTime = Math.pow(3, retryCount) * 5000; // 5s, 15s, 45s
+                const waitTime = Math.pow(2, retryCount + 1) * 1000; // 2s, 4s, 8s
                 console.log(`Rate limit hit. Waiting ${waitTime / 1000}s before retry...`);
                 toast(`⏱️ Rate limit reached. Waiting ${waitTime / 1000} seconds before retry...`);
                 await delay(waitTime);
@@ -226,6 +233,15 @@ function CreateTrip() {
             throw new Error('Unexpected response format');
           }
         } catch (error) {
+          clearTimeout(timeoutId);
+
+          // Handle timeout errors
+          if (error.name === 'AbortError') {
+            console.error(`Request timeout after 60 seconds for ${modelCandidate}`);
+            lastError = new Error('Request timeout - API took too long to respond');
+            break; // Move to next model
+          }
+
           lastError = error;
           console.error(`Generation attempt with ${modelCandidate} failed:`, error);
           break; // Exit retry loop, move to next model
@@ -238,10 +254,10 @@ function CreateTrip() {
       // If this was the last model, we're done trying
       if (i === candidates.length - 1) break;
 
-      // Add a longer delay between different models to avoid rapid-fire requests
+      // Add a delay between different models to avoid rapid-fire requests
       if (!fullResponse && i < candidates.length - 1) {
-        console.log('Waiting 5s before trying next model...');
-        await delay(5000);
+        console.log('Waiting 3s before trying next model...');
+        await delay(3000);
       }
     }
 
