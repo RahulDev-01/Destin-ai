@@ -102,29 +102,6 @@ function Features() {
             </div>
           ))}
         </div>
-
-        {/* Stats Section */}
-        <div className='mt-16 sm:mt-24 bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden group'>
-          <div className='absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-20 transition-opacity duration-700'></div>
-          <div className='grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white relative z-10'>
-            <div className='space-y-1 sm:space-y-2'>
-              <div className='text-3xl sm:text-5xl font-black'>50K+</div>
-              <div className='text-xs sm:text-lg font-semibold opacity-90 uppercase tracking-wider'>Trips Planned</div>
-            </div>
-            <div className='space-y-1 sm:space-y-2'>
-              <div className='text-3xl sm:text-5xl font-black'>195+</div>
-              <div className='text-xs sm:text-lg font-semibold opacity-90 uppercase tracking-wider'>Countries</div>
-            </div>
-            <div className='space-y-1 sm:space-y-2'>
-              <div className='text-3xl sm:text-5xl font-black'>4.9★</div>
-              <div className='text-xs sm:text-lg font-semibold opacity-90 uppercase tracking-wider'>User Rating</div>
-            </div>
-            <div className='space-y-1 sm:space-y-2'>
-              <div className='text-3xl sm:text-5xl font-black'>30s</div>
-              <div className='text-xs sm:text-lg font-semibold opacity-90 uppercase tracking-wider'>Avg. Time</div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )
