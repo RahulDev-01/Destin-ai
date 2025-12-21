@@ -106,14 +106,10 @@ function CreateTrip() {
     }
 
     const getCandidates = async () => {
-      // Always use a hardcoded stable list to avoid API fetch issues
+      // Use only the most stable models to minimize API calls and rate limit issues
       const prioritized = [
         'gemini-1.5-flash',
-        'gemini-1.5-flash-latest',
-        'gemini-1.5-flash-001',
-        'gemini-1.5-pro',
-        'gemini-1.5-pro-latest',
-        'gemini-1.5-pro-002'
+        'gemini-1.5-pro'
       ];
 
       try {
@@ -199,11 +195,11 @@ function CreateTrip() {
             console.warn(`Model ${modelCandidate} failed with status ${status}`);
 
             if (status === 429) {
-              // Rate limit hit - implement exponential backoff
+              // Rate limit hit - implement exponential backoff with longer delays
               if (retryCount < maxRetries) {
-                const waitTime = Math.pow(2, retryCount) * 1000; // 1s, 2s, 4s
+                const waitTime = Math.pow(3, retryCount) * 5000; // 5s, 15s, 45s
                 console.log(`Rate limit hit. Waiting ${waitTime / 1000}s before retry...`);
-                toast(`Rate limit reached. Retrying in ${waitTime / 1000} seconds...`);
+                toast(`⏱️ Rate limit reached. Waiting ${waitTime / 1000} seconds before retry...`);
                 await delay(waitTime);
                 retryCount++;
                 continue; // Retry same model
@@ -242,10 +238,10 @@ function CreateTrip() {
       // If this was the last model, we're done trying
       if (i === candidates.length - 1) break;
 
-      // Add a small delay between different models to avoid rapid-fire requests
+      // Add a longer delay between different models to avoid rapid-fire requests
       if (!fullResponse && i < candidates.length - 1) {
-        console.log('Waiting 2s before trying next model...');
-        await delay(2000);
+        console.log('Waiting 5s before trying next model...');
+        await delay(5000);
       }
     }
 
