@@ -57,7 +57,7 @@ function Header() {
   }
 
   return (
-    <header className='px-4 md:px-8 lg:px-10 shadow-lg sticky top-0 z-[100] glass-strong border-b border-white/10'>
+    <header className='px-4 md:px-8 lg:px-10 shadow-lg fixed top-0 left-0 right-0 z-[100] glass-strong border-b border-white/10 backdrop-blur-md bg-white/95'>
       <div className='flex h-16 items-center justify-between'>
         {/* Left: Logo */}
         <div className='flex items-center gap-3'>
@@ -84,14 +84,14 @@ function Header() {
           {/* Auth section */}
           {user ? (
             <div className='hidden md:flex items-center gap-4'>
-              <img 
-                src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-male-user-profile-vector-illustration-isolated-background-man-profile-sign-business-concept_157943-38764.jpg" 
-                alt="User avatar" 
-                className='rounded-full w-10 h-10 border-2 border-white shadow-sm' 
+              <img
+                src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-male-user-profile-vector-illustration-isolated-background-man-profile-sign-business-concept_157943-38764.jpg"
+                alt="User avatar"
+                className='rounded-full w-10 h-10 border-2 border-white shadow-sm'
               />
-              <Button 
-                variant="outline" 
-                className="rounded-full border-gray-200 hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors" 
+              <Button
+                variant="outline"
+                className="rounded-full border-gray-200 hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors"
                 onClick={() => {
                   googleLogout();
                   localStorage.removeItem('user');
