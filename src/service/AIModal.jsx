@@ -1,87 +1,102 @@
-import { GoogleGenAI } from '@google/genai';
+// AI Service for Travel Planner - Using the same reliable pattern as SwiftResume AI
+const apiKey = import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY;
 
-async function main() {
-  const ai = new GoogleGenAI({
-    apiKey: (import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY || '').trim()
-  });
-
-  const tools = [
-    {
-      googleSearch: {} // You can add specific tool configurations here if needed
-    },
-  ];
-
-  const config = {
-    thinkingConfig: {
-      thinkingBudget: -1, // Optional, remove if not needed
-    },
-    tools,
-    // Removed 'responseMimeType' as it caused issues
-    systemInstruction: [
-      {
-        text: `Generate Travel Plan for Location: Las Vegas, for 3 Days for Couple with a Cheap budget, Give me a Hotels options list with HotelName, Hotel address, Price, hotel image url, geo coordinates, rating, descriptions and suggest itinerary with placeName, Place Details, Place Image Url, Geo Coordinates, ticket Pricing, Time t travel each of the location for 3 days with each day plan with best time to visit in JSON format.`,
-      }
-    ],
-  };
-
-  const model = 'gemini-2.5-pro';
-
-  const contents = [
-    {
-      role: 'user',
-      parts: [
-        {
-          text: `Generate Travel Plan for Location: Las Vegas, for 3 Days for Couple with a Cheap budget, Give me a Hotels options list with HotelName, Hotel address, Price, hotel image url, geo coordinates, rating, descriptions and suggest itinerary with placeName, Place Details, Place Image Url, Geo Coordinates, ticket Pricing, Time t travel each of the location for 3 days with each day plan with best time to visit in JSON format.`,
-        },
-      ],
-    },
-    {
-      role: 'model',
-      parts: [
-        {
-          text: `**Investigating Vegas Lodging**
-
-I've started investigating budget-friendly hotels in Las Vegas for a couple, focusing on off-Strip options to save money. I'm leveraging Google to find suitable accommodations. Subsequently, I plan to delve deeper into each hotel, researching amenities and reviews.
-
-**Gathering Vegas Details**
-
-I'm now deep-diving into the initial hotel leads, pulling data like addresses, prices, and imagery from Google. Simultaneously, I'm researching free and cheap couple-friendly activities and cost-effective dining options to incorporate into the itinerary. Next, I'll structure a cost-conscious 3-day plan, taking location and time of day into account.
-
-**Exploring Hotel Options**
-
-I've initially identified a solid range of budget-friendly hotels in Las Vegas, suitable for couples. These include selections on and off the Strip, as well as Downtown. I have since compiled more data.
-
-**Gathering Specific Hotel Data**
-
-I've made headway on the hotel search. I've narrowed down a list of budget-friendly options, but I still need to find precise addresses, image URLs, and geo-coordinates. The current results give a good starting point, but I must make targeted searches to find this information. I also need to focus on those hotels that are both affordable and suited for a couple. After that, I will work on the itinerary and the final JSON format.`,
-        },
-      ],
-    },
-    {
-      role: 'user',
-      parts: [
-        {
-          text: `INSERT_INPUT_HERE`, // Replace with dynamic input if needed
-        },
-      ],
-    },
-  ];
-
+// Helper to safely extract text from various possible response shapes
+function extractText(response) {
   try {
-    // Sending the request to the API without the responseMimeType
-    const response = await ai.models.generateContentStream({
-      model,
-      config,
-      contents,
-    });
+    // If response is a JSON object and contains a direct text property
+    if (response && typeof response === 'object') {
+      // For a standard response with text or output_text
+      if (response.text) {
+        return response.text;
+      }
+      if (response.output_text) {
+        return response.output_text;
+      }
 
-    let fileIndex = 0;
-    for await (const chunk of response) {
-      console.log("Streamed Chunk: ", chunk.text);  // Log the streamed content
+      // Look for candidates -> content -> parts -> text
+      const candidates = response?.candidates || response?.response?.candidates;
+      if (Array.isArray(candidates) && candidates.length > 0) {
+        const parts = candidates[0]?.content?.parts || [];
+        const textPart = parts.find(p => typeof p.text === 'string');
+        if (textPart) return textPart.text;
+      }
     }
-  } catch (error) {
-    console.error("Error generating trip plan:", error);
+  } catch (e) {
+    console.error('Error extracting text from response:', e);
   }
+  return '';
 }
 
-main();
+// Function to try newer Gemini models
+async function tryNewerGeminiModels(prompt) {
+  const newerModels = [
+    'gemini-2.0-flash-exp',
+    'gemini-exp-1206',
+    'gemini-2.0-flash-thinking-exp-1219',
+    'gemini-1.5-flash-8b',
+    'gemini-1.5-flash-latest',
+    'gemini-1.5-flash',
+    'gemini-1.5-pro-latest',
+    'gemini-1.5-pro'
+  ];
+
+  for (const modelName of newerModels) {
+    try {
+      console.log(`Trying model: ${modelName}`);
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: prompt
+            }]
+          }]
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const text = extractText(data);
+        if (text) {
+          console.log(`✅ Successfully used model: ${modelName}`);
+          return text;
+        }
+      } else {
+        const errorData = await response.json();
+        console.warn(`Model ${modelName} failed with status: ${response.status}`, errorData);
+      }
+    } catch (err) {
+      console.warn(`Model ${modelName} failed:`, err.message);
+      continue;
+    }
+  }
+
+  return null;
+}
+
+// Export a simple function to send a text prompt and get a text response
+export async function sendMessage(prompt) {
+  console.log('🤖 AI Request:', prompt.substring(0, 100) + '...');
+
+  if (!apiKey) {
+    throw new Error('Missing API key. Please set VITE_GOOGLE_GEMINI_AI_API_KEY in your environment.');
+  }
+
+  try {
+    console.log('Attempting to generate content with Gemini models...');
+    const result = await tryNewerGeminiModels(prompt);
+    if (result) {
+      console.log('✅ AI response generated successfully');
+      return result;
+    }
+
+    throw new Error('All models failed to generate content');
+  } catch (err) {
+    console.error('AI generation failed:', err.message);
+    throw err;
+  }
+}

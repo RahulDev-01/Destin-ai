@@ -87,196 +87,20 @@ function CreateTrip() {
       .replace("{traveler}", formData?.Peoples)
       .replace("{budget}", formData?.budget);
 
-    // console.log("Final Prompt:", FINAL_PROMPT);
-
-    // Using v1beta API endpoint which supports newer models like gemini-1.5-flash
-    const API_KEY = ((((typeof globalThis !== 'undefined' && globalThis.__GEMINI_KEY__) || import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY) || '')).trim();
-    let model = "gemini-1.5-pro";
-    let API_URL = "";
-
     try {
-      const masked = API_KEY ? `...${API_KEY.slice(-6)}` : '(missing)';
-      console.log('Gemini key suffix', masked, 'origin', typeof window !== 'undefined' ? window.location.origin : 'ssr');
-    } catch { }
+      // Import the sendMessage function dynamically
+      const { sendMessage } = await import('@/service/AIModal');
 
-    if (!API_KEY) {
-      toast('Missing API key. Set VITE_GOOGLE_GEMINI_AI_API_KEY and restart the app.');
-      setLoading(false);
-      return;
-    }
+      // Use the new AI service
+      const fullResponse = await sendMessage(FINAL_PROMPT);
 
-    const getCandidates = async () => {
-      // Use only the most stable models to minimize API calls and rate limit issues
-      const prioritized = [
-        'gemini-1.5-flash',
-        'gemini-1.5-pro'
-      ];
-
-      try {
-        const r = await fetch(`https://generativelanguage.googleapis.com/v1/models?key=${API_KEY}`);
-        if (!r.ok) {
-          console.warn('Failed to fetch models list, using fallback');
-          return prioritized;
-        }
-        const d = await r.json();
-        const models = Array.isArray(d.models) ? d.models : [];
-
-        const hasGen = (n) => {
-          const m = models.find(mm => mm.name === n || mm.name.endsWith(`/${n}`));
-          return m && Array.isArray(m.supportedGenerationMethods) && m.supportedGenerationMethods.includes('generateContent');
-        };
-
-        const active = prioritized.filter(c => hasGen(c) || hasGen(`models/${c}`));
-        if (active.length) {
-          console.log('Available models:', active);
-          return active;
-        }
-
-        // If none of our prioritized models are available, find any stable model
-        const any = models.find(m =>
-          Array.isArray(m.supportedGenerationMethods) &&
-          m.supportedGenerationMethods.includes('generateContent') &&
-          !m.name.includes('vision') &&
-          !m.name.includes('experimental') &&
-          !m.name.includes('2.5')
-        );
-        if (any) {
-          const modelName = any.name.replace(/^models\//, '');
-          console.log('Using alternative model:', modelName);
-          return [modelName];
-        }
-      } catch (err) {
-        console.warn('Error fetching models, using fallback:', err);
+      if (!fullResponse) {
+        toast("Failed to generate trip. Please try again.");
+        setLoading(false);
+        return;
       }
 
-      console.log('Using fallback models:', prioritized);
-      return prioritized;
-    };
-
-    const candidates = await getCandidates();
-    let fullResponse = "";
-    let lastError = null;
-
-    // Helper function for exponential backoff delay
-    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-    for (let i = 0; i < candidates.length; i++) {
-      const modelCandidate = candidates[i];
-      let retryCount = 0;
-      const maxRetries = 3;
-
-      while (retryCount <= maxRetries) {
-        const API_URL = `https://generativelanguage.googleapis.com/v1/models/${modelCandidate}:generateContent`;
-
-        if (retryCount === 0) {
-          console.log(`Attempting generation with ${modelCandidate}...`);
-        } else {
-          console.log(`Retry ${retryCount}/${maxRetries} for ${modelCandidate}...`);
-        }
-
-        // Add timeout to prevent hanging requests
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout
-
-        try {
-          const response = await fetch(`${API_URL}?key=${API_KEY}`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              contents: [{
-                parts: [{
-                  text: FINAL_PROMPT
-                }]
-              }]
-            }),
-            signal: controller.signal
-          });
-
-          clearTimeout(timeoutId);
-
-          if (!response.ok) {
-            const errorData = await response.json();
-            const status = response.status;
-            console.error(`Model ${modelCandidate} failed with status ${status}:`, errorData);
-
-            if (status === 429) {
-              // Rate limit hit - implement exponential backoff
-              if (retryCount < maxRetries) {
-                const waitTime = Math.pow(2, retryCount + 1) * 1000; // 2s, 4s, 8s
-                console.log(`Rate limit hit. Waiting ${waitTime / 1000}s before retry...`);
-                toast(`⏱️ Rate limit reached. Waiting ${waitTime / 1000} seconds before retry...`);
-                await delay(waitTime);
-                retryCount++;
-                continue; // Retry same model
-              } else {
-                lastError = new Error(`API Error: ${status} - Rate limit exceeded after ${maxRetries} retries`);
-                break; // Move to next model
-              }
-            } else if (status === 503) {
-              // Service overloaded - try next model immediately
-              lastError = new Error(`API Error: ${status} - Model overloaded`);
-              break; // Move to next model
-            }
-
-            throw new Error(`API Error: ${status} - ${JSON.stringify(errorData)}`);
-          }
-
-          const data = await response.json();
-
-          if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-            fullResponse = data.candidates[0].content.parts.map(part => part.text).join('');
-            console.log('Successfully generated with', modelCandidate);
-            break; // Success! Exit retry loop
-          } else {
-            throw new Error('Unexpected response format');
-          }
-        } catch (error) {
-          clearTimeout(timeoutId);
-
-          // Handle timeout errors
-          if (error.name === 'AbortError') {
-            console.error(`Request timeout after 60 seconds for ${modelCandidate}`);
-            lastError = new Error('Request timeout - API took too long to respond');
-            break; // Move to next model
-          }
-
-          lastError = error;
-          console.error(`Generation attempt with ${modelCandidate} failed:`, error);
-          break; // Exit retry loop, move to next model
-        }
-      }
-
-      // If we got a response, exit the model loop
-      if (fullResponse) break;
-
-      // If this was the last model, we're done trying
-      if (i === candidates.length - 1) break;
-
-      // Add a delay between different models to avoid rapid-fire requests
-      if (!fullResponse && i < candidates.length - 1) {
-        console.log('Waiting 3s before trying next model...');
-        await delay(3000);
-      }
-    }
-
-    if (!fullResponse) {
-      const msg = String(lastError?.message || '');
-      if (msg.includes('429') || msg.includes('rate limit')) {
-        toast('⏱️ Rate limit exceeded. Please wait a few minutes and try again, or consider upgrading your API plan.');
-      } else if (msg.includes('503') || msg.includes('overloaded')) {
-        toast('AI models are currently overloaded. Please try again in a moment.');
-      } else if (msg.includes('API_KEY_INVALID') || msg.includes('API key not valid')) {
-        toast('Invalid API key. Update VITE_GOOGLE_GEMINI_AI_API_KEY and restart.');
-      } else {
-        toast('Failed to generate trip. Please try again.');
-      }
-      setLoading(false);
-      return;
-    }
-
-    try {
+      // Parse and normalize the response
       const parsedTrip = parseAiJson(fullResponse);
       if (!parsedTrip) {
         toast("Failed to extract trip data from AI response.");
@@ -284,14 +108,25 @@ function CreateTrip() {
         setLoading(false);
         return;
       }
+
       const normalized = normalizeTripData(parsedTrip);
       await SaveAiTrip(normalized);
     } catch (error) {
-      console.error("Error processing trip data:", error);
-      toast("Error processing trip data.");
-    }
+      console.error("Error generating trip:", error);
 
-    setLoading(false);
+      const msg = String(error?.message || '');
+      if (msg.includes('Missing API key')) {
+        toast('Missing API key. Set VITE_GOOGLE_GEMINI_AI_API_KEY and restart the app.');
+      } else if (msg.includes('rate limit')) {
+        toast('⏱️ Rate limit exceeded. Please wait a few minutes and try again.');
+      } else if (msg.includes('overloaded')) {
+        toast('AI models are currently overloaded. Please try again in a moment.');
+      } else {
+        toast('Failed to generate trip. Please try again.');
+      }
+
+      setLoading(false);
+    }
   };
 
   const parseAiJson = (text) => {
