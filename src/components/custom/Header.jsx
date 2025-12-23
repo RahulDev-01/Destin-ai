@@ -85,7 +85,7 @@ function Header() {
           {user ? (
             <div className='hidden md:flex items-center gap-4'>
               <img
-                src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-male-user-profile-vector-illustration-isolated-background-man-profile-sign-business-concept_157943-38764.jpg"
+                src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
                 alt="User avatar"
                 className='rounded-full w-10 h-10 border-2 border-white shadow-sm'
               />
@@ -120,7 +120,7 @@ function Header() {
             {user && (
               <div className='flex items-center justify-between mt-2'>
                 <div className='flex items-center gap-2'>
-                  <img src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-male-user-profile-vector-illustration-isolated-background-man-profile-sign-business-concept_157943-38764.jpg" className='rounded-full w-8 h-8' />
+                  <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" className='rounded-full w-8 h-8' />
                   <span className='text-sm text-gray-700'>Logged in</span>
                 </div>
                 <Button variant="outline" size="sm" onClick={() => { googleLogout(); localStorage.removeItem('user'); setUser(null); setMobileOpen(false); window.dispatchEvent(new Event('authChanged')); }}>Logout</Button>
