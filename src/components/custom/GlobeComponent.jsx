@@ -35,10 +35,10 @@ function GlobeComponent() {
     }, [])
 
     return (
-        <div className='w-full h-full flex items-center justify-center relative'>
+        <div className='w-full h-full flex items-center justify-center relative cursor-grab active:cursor-grabbing'>
             {/* Bright cyan glow */}
             <div className='absolute inset-0 flex items-center justify-center'>
-                <div className='w-[500px] h-[500px] rounded-full bg-cyan-400/20 blur-3xl animate-pulse'></div>
+                <div className='w-[600px] h-[600px] rounded-full bg-cyan-400/20 blur-3xl animate-pulse'></div>
             </div>
 
             <Globe
@@ -61,8 +61,8 @@ function GlobeComponent() {
 
                 // Settings
                 backgroundColor="rgba(0,0,0,0)"
-                width={globeEl.current?.parentElement?.clientWidth || 600}
-                height={globeEl.current?.parentElement?.clientHeight || 600}
+                width={globeEl.current?.parentElement?.clientWidth || 700}
+                height={globeEl.current?.parentElement?.clientHeight || 700}
                 animateIn={true}
             />
         </div>
