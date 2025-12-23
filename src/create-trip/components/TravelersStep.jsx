@@ -61,7 +61,7 @@ function TravelersStep({ formData, handleInputChange, onNext, onBack }) {
                 <Button
                     disabled={!formData?.Peoples}
                     onClick={onNext}
-                    className="h-14 sm:h-16 px-8 sm:px-12 text-lg sm:text-xl rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-black shadow-xl shadow-purple-500/20 transform hover:scale-105 transition-all duration-300"
+                    className="h-14 sm:h-16 px-8 sm:px-12 text-lg sm:text-xl rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-black shadow-xl shadow-blue-500/20 transition-all duration-300"
                 >
                     Next Step →
                 </Button>
