@@ -6,7 +6,7 @@ import HowItWorks from './components/custom/HowItWorks'
 import Testimonials from './components/custom/Testimonials'
 import FAQ from './components/custom/FAQ'
 import Footer from './components/custom/Footer'
-import PopularDestinations from './components/custom/PopularDestinations'
+
 import PricingSection from './components/custom/PricingSection'
 import TravelInsights from './components/custom/TravelInsights'
 import Newsletter from './components/custom/Newsletter'
@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <Hero />
-      <PopularDestinations />
+
       <Features />
       <HowItWorks />
       <PricingSection />
