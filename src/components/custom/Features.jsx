@@ -47,7 +47,7 @@ function Features() {
   ]
 
   return (
-    <section className='relative w-full py-24 md:py-32 bg-gradient-to-b from-white via-purple-50/30 to-white overflow-hidden'>
+    <section className='relative w-full py-24 md:py-32 bg-white overflow-hidden'>
       {/* Background decoration */}
       <div className='absolute top-0 left-0 w-full h-full'>
         <div className='absolute top-20 right-10 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20'></div>
@@ -57,11 +57,8 @@ function Features() {
       <div className='relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-10'>
         {/* Section Header */}
         <div className='text-center mb-12 sm:mb-20 space-y-4 px-4'>
-          <div className='inline-flex items-center gap-2 bg-gradient-to-r from-purple-100 to-pink-100 px-4 py-2 rounded-full transform hover:scale-110 transition-transform'>
-            <span className='text-xl sm:text-2xl'>✨</span>
-            <span className='font-bold text-purple-700 text-xs sm:text-sm uppercase tracking-wider'>Why Choose Us</span>
-          </div>
-          <h2 className='text-3xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 animate-gradient-x bg-size-200'>
+
+          <h2 className='text-3xl sm:text-5xl md:text-6xl font-black text-purple-600'>
             Powerful Features
           </h2>
           <p className='text-base sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium'>
@@ -74,20 +71,17 @@ function Features() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className='group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 overflow-hidden'
+              className='group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100'
             >
-              {/* Background gradient on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
 
-              {/* Content */}
               <div className='relative z-10'>
                 {/* Icon */}
-                <div className={`inline-flex items-center justify-center w-20 h-20 ${feature.bgColor} rounded-2xl mb-6 text-5xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-md`}>
-                  {feature.icon}
+                <div className={`inline-flex items-center justify-center w-20 h-20 ${feature.bgColor} rounded-2xl mb-6 text-5xl font-black text-purple-600 shadow-md`}>
+                  {index + 1}
                 </div>
 
                 {/* Title */}
-                <h3 className='text-2xl font-black text-gray-900 mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300'>
+                <h3 className='text-2xl font-black text-gray-900 mb-3'>
                   {feature.title}
                 </h3>
 
@@ -95,15 +89,12 @@ function Features() {
                 <p className='text-gray-600 leading-relaxed font-medium'>
                   {feature.description}
                 </p>
-
-                {/* Decorative corner */}
-                <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 rounded-bl-full transition-opacity duration-500`}></div>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </section >
   )
 }
 
