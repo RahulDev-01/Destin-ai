@@ -25,13 +25,22 @@ function MyTrips() {
       return;
     }
     setUserTrips([]);
-    const q = query(collection(db, 'AI-Trips'), where('userEmail', '==', user?.email))
+    const q = query(collection(db, 'AI-Trips'), where('userEmail', '==', user?.email));
     const querySnapshot = await getDocs(q);
     const trips = [];
     querySnapshot.forEach((doc) => {
       const data = doc.data();
       trips.push(data);
     });
+
+    // Sort trips by timestamp in descending order (newest first)
+    // Handle trips that might not have a timestamp field
+    trips.sort((a, b) => {
+      const timeA = a.timestamp?.toMillis?.() || a.timestamp || 0;
+      const timeB = b.timestamp?.toMillis?.() || b.timestamp || 0;
+      return timeB - timeA;
+    });
+
     setUserTrips(trips);
   }
 
@@ -40,14 +49,11 @@ function MyTrips() {
   }
 
   return (
-    <div className='min-h-screen bg-gradient-to-b from-slate-50 to-white'>
+    <div className='min-h-screen bg-slate-50'>
       <div className='px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-10 sm:py-16'>
         {/* Header Section */}
         <div className='mb-10 sm:mb-16 text-center sm:text-left px-2'>
-          <div className='inline-flex items-center gap-2 rounded-full bg-blue-50 border border-blue-200 px-4 py-2 text-xs sm:text-sm font-black text-blue-700 mb-4 sm:mb-5 transform hover:scale-105 transition-transform'>
-            <span>🗺️</span>
-            <span className='uppercase tracking-widest'>Your Travel Collection</span>
-          </div>
+
           <h2 className='font-black text-3xl sm:text-5xl md:text-6xl mb-4 text-gray-900 tracking-tight'>
             My <span className='stunning-text'>Trips</span> ✈️
           </h2>
@@ -69,7 +75,7 @@ function MyTrips() {
                 key={index}
                 className='h-[240px] w-full rounded-2xl overflow-hidden shadow-md'
               >
-                <div className='h-full w-full bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse'></div>
+                <div className='h-full w-full bg-gray-100 animate-pulse'></div>
               </div>
             ))
           )}
@@ -83,8 +89,8 @@ function MyTrips() {
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' />
               </svg>
             </div>
-            <h3 className='text-2xl font-bold text-gray-900 mb-2'>No trips yet 🎒</h3>
-            <p className='text-gray-600 mb-6'>Start planning your first adventure with AI 🌟</p>
+            <h3 className='text-2xl font-bold text-gray-900 mb-2'>No trips yet</h3>
+            <p className='text-gray-600 mb-6'>Start planning your first adventure with AI</p>
             <a
               href='/create-trip'
               className='inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all duration-200 shadow-md hover:shadow-lg'
@@ -92,7 +98,7 @@ function MyTrips() {
               <svg className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M12 4v16m8-8H4' />
               </svg>
-              Create Your First Trip 🚀
+              Create Your First Trip
             </a>
           </div>
         )}
