@@ -55,7 +55,7 @@ function FAQ() {
   ]
 
   return (
-    <section className='relative w-full py-24 md:py-32 bg-gradient-to-b from-white via-indigo-50/20 to-white overflow-hidden'>
+    <section className='relative w-full py-24 md:py-32 bg-white overflow-hidden'>
       {/* Background decoration */}
       <div className='absolute inset-0'>
         <div className='absolute top-1/4 left-10 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob'></div>
@@ -65,11 +65,11 @@ function FAQ() {
       <div className='relative mx-auto max-w-4xl px-6 sm:px-8 lg:px-10'>
         {/* Section Header */}
         <div className='text-center mb-16 space-y-4'>
-          <div className='inline-flex items-center gap-2 bg-gradient-to-r from-indigo-100 to-purple-100 px-4 py-2 rounded-full'>
+          <div className='inline-flex items-center gap-2 bg-purple-100 px-4 py-2 rounded-full'>
             <span className='text-2xl'>❓</span>
             <span className='font-bold text-indigo-700'>Got Questions?</span>
           </div>
-          <h2 className='text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600'>
+          <h2 className='text-5xl md:text-6xl font-black text-purple-600'>
             Frequently Asked
           </h2>
           <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
@@ -90,10 +90,10 @@ function FAQ() {
                 className='w-full flex items-center justify-between p-6 text-left transition-all duration-300'
               >
                 <div className='flex items-center gap-4 flex-1'>
-                  <div className={`flex-shrink-0 w-12 h-12 bg-gradient-to-br ${faq.color} rounded-xl flex items-center justify-center text-2xl shadow-md transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                  <div className={`flex-shrink-0 w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center text-2xl text-white shadow-md`}>
                     {faq.emoji}
                   </div>
-                  <h3 className='text-xl font-black text-gray-900 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 transition-all duration-300'>
+                  <h3 className='text-xl font-black text-gray-900'>
                     {faq.question}
                   </h3>
                 </div>
