@@ -4,16 +4,16 @@ import { Button } from '@/components/ui/button'
 
 function DurationStep({ formData, handleInputChange, onNext, onBack }) {
     const presets = [
-        { label: 'Weekend Trip', days: 3, emoji: '🎉' },
-        { label: 'One Week', days: 7, emoji: '🏖️' },
-        { label: 'Two Weeks', days: 14, emoji: '🏔️' },
+        { label: 'Weekend Trip', days: 3 },
+        { label: 'One Week', days: 7 },
+        { label: 'Two Weeks', days: 14 },
     ]
 
     return (
         <div className='flex flex-col gap-10 animate-fade-in'>
             <div className='text-center space-y-3 sm:space-y-4 px-2'>
                 <h2 className='text-2xl sm:text-4xl font-black text-gray-900 leading-tight'>
-                    How long is your <span className='text-purple-600'>trip?</span> 📅
+                    How long is your <span className='text-purple-600'>trip?</span>
                 </h2>
                 <p className='text-gray-500 text-sm sm:text-xl font-medium'>
                     Tell us how many days you want to explore.
@@ -34,7 +34,7 @@ function DurationStep({ formData, handleInputChange, onNext, onBack }) {
                     </Button>
 
                     <div className='relative w-full max-w-[180px] sm:max-w-[240px]'>
-                        <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl blur opacity-30"></div>
+                        <div className="absolute -inset-0.5 bg-blue-600 rounded-3xl blur opacity-30"></div>
                         <Input
                             type="number"
                             placeholder="0"
@@ -65,14 +65,14 @@ function DurationStep({ formData, handleInputChange, onNext, onBack }) {
                         <div
                             key={index}
                             onClick={() => handleInputChange('noOfDays', preset.days)}
-                            className={`cursor-pointer p-4 sm:p-6 rounded-2xl border-2 text-center transition-all duration-500 transform hover:scale-105 hover:shadow-lg
+                            className={`cursor-pointer p-4 sm:p-6 rounded-2xl border-2 text-center transition-all duration-500 hover:shadow-lg
                 ${parseInt(formData?.noOfDays) === preset.days
                                     ? 'border-purple-600 bg-purple-50 shadow-md ring-1 ring-purple-600'
                                     : 'border-gray-100 bg-white hover:border-purple-200'
                                 }
               `}
                         >
-                            <div className='text-2xl sm:text-3xl mb-1 sm:mb-2'>{preset.emoji}</div>
+                            <div className='text-2xl sm:text-3xl mb-1 sm:mb-2 font-bold text-purple-600'>{preset.days}</div>
                             <div className='font-black text-[10px] sm:text-base text-gray-800 leading-tight'>{preset.label}</div>
                         </div>
                     ))}
@@ -94,7 +94,7 @@ function DurationStep({ formData, handleInputChange, onNext, onBack }) {
                 <Button
                     disabled={!formData?.noOfDays || formData?.noOfDays > 20 || formData?.noOfDays < 1}
                     onClick={onNext}
-                    className="h-14 sm:h-16 px-8 sm:px-12 text-lg sm:text-xl rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-black shadow-xl shadow-purple-500/20 transform hover:scale-105 transition-all duration-300"
+                    className="h-14 sm:h-16 px-8 sm:px-12 text-lg sm:text-xl rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-black shadow-xl shadow-blue-500/20 transition-all duration-300"
                 >
                     Next Step →
                 </Button>
