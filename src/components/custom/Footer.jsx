@@ -12,7 +12,7 @@ function Footer() {
   }
 
   return (
-    <footer className='relative w-full bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 text-white overflow-hidden'>
+    <footer className='relative w-full bg-gray-900 text-white overflow-hidden'>
       {/* Animated background elements */}
       <div className='absolute inset-0 overflow-hidden opacity-20'>
         <div className='absolute top-0 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob'></div>
@@ -44,7 +44,7 @@ function Footer() {
               />
               <button
                 type='submit'
-                className='px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl font-black text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300'
+                className='px-8 py-4 bg-purple-600 hover:bg-purple-700 rounded-xl font-black text-lg shadow-xl transition-all duration-300'
               >
                 Subscribe 🚀
               </button>
@@ -185,7 +185,10 @@ function Footer() {
         <div className='pt-8 border-t border-white/20'>
           <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
             <p className='text-white/60 font-medium'>
-              © 2024 AI Travel Planner. Made with ❤️ for travelers worldwide
+              © 2024 AI Travel Planner. Made with ❤️ for travelers worldwide By
+              <a href='https://savvana-rahul.tech' target='_blank' rel='noopener noreferrer' className='text-red-400 hover:text-red-600 font-medium transition-colors duration-300'>
+                Savvana Rahul ⚡
+              </a>
             </p>
             <div className='flex gap-6'>
               <a href='#' className='text-white/60 hover:text-white font-medium transition-colors duration-300'>
