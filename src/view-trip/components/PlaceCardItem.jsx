@@ -44,7 +44,7 @@ function PlaceCardItem({ place }) {
           </p>
           <div className='mt-auto flex items-center justify-between pt-3 border-t border-gray-50'>
             <div className='flex items-center gap-4'>
-              <h2 className='text-sm font-black text-green-600 bg-green-50 px-3 py-1 rounded-full'>💸 {place.ticketPricing}</h2>
+              <h2 className='text-sm font-black text-green-600 bg-green-50 px-3 py-1 rounded-full'>{place.ticketPricing}</h2>
             </div>
             <Button
               className='h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-gray-900 text-white hover:bg-blue-600 transform hover:rotate-12 transition-all shadow-lg'
