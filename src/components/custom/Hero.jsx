@@ -7,15 +7,14 @@ const GlobeComponent = lazy(() => import('./GlobeComponent'))
 
 function Hero() {
   return (
-    <section className='relative w-full min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 overflow-hidden flex flex-col justify-center'>
+    <section className='relative w-full min-h-screen bg-white overflow-hidden flex flex-col justify-center'>
       {/* Animated Background Elements */}
       <div className='absolute inset-0 overflow-hidden pointer-events-none'>
         <div className='absolute top-20 left-10 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob'></div>
         <div className='absolute top-40 right-10 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000'></div>
         <div className='absolute -bottom-8 left-20 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000'></div>
 
-        {/* Additional subtle gradient mesh */}
-        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-tr from-purple-100/10 via-transparent to-pink-100/10'></div>
+
       </div>
 
       <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10 py-12 md:py-20'>
@@ -25,25 +24,24 @@ function Hero() {
 
             {/* Main Heading with enhanced gradient */}
             <h1 className='font-black leading-tight text-5xl sm:text-6xl lg:text-7xl tracking-tight animate-fade-in'>
-              Plan Your <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 animate-gradient-x'>Dream Trip</span> in Seconds
+              Plan Your <span className='text-purple-600'>Dream Trip</span> in Seconds
             </h1>
 
             {/* Description */}
             <p className='text-xl sm:text-2xl text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium'>
-              Let AI create personalized itineraries tailored to your style, budget, and interests. No more endless research! 🎯
+              Let AI create personalized itineraries tailored to your style, budget, and interests. No more endless research!
             </p>
 
             {/* CTA Buttons with enhanced effects */}
             <div className='flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pt-6'>
               <Link to={'/create-trip'}>
-                <Button className='group h-16 px-12 text-xl text-black bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-size-200 bg-pos-0 hover:bg-pos-100 font-bold rounded-2xl shadow-xl shadow-purple-500/25 hover:shadow-2xl hover:shadow-purple-500/40 transform hover:scale-105 transition-all duration-300 border-none'>
-                  <span className='mr-2'>🚀</span>
+                <Button className='group h-16 px-12 text-xl bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-2xl shadow-xl transition-all duration-300'>
                   <span className='drop-shadow-md font-extrabold'>Start Planning Free</span>
                   <span className='ml-2 group-hover:translate-x-1 transition-transform'>→</span>
                 </Button>
               </Link>
               <Link to={'/create-trip'}>
-                <Button variant='outline' className='h-16 px-12 text-xl border-2 border-purple-200 hover:border-purple-600 hover:bg-purple-50 text-purple-700 font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-xl'>
+                <Button variant='outline' className='h-16 px-12 text-xl border-2 border-purple-200 hover:border-purple-600 hover:bg-purple-50 text-purple-700 font-bold rounded-2xl transition-all duration-300 shadow-md'>
                   <span className="mr-2">▶️</span>
                   See How It Works
                 </Button>
@@ -71,7 +69,7 @@ function Hero() {
               </div>
               <div className='text-left'>
                 <div className='flex items-center gap-2.5 mb-1'>
-                  <span className='font-black text-3xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent'>4.9</span>
+                  <span className='font-black text-3xl text-purple-600'>4.9</span>
                   <div className="flex text-yellow-400 text-xl drop-shadow-md">★★★★★</div>
                 </div>
                 <p className='text-gray-500 text-sm font-semibold'>from <span className='text-purple-600 font-bold'>50,000+</span> travelers</p>
@@ -82,14 +80,14 @@ function Hero() {
 
           {/* Right: 3D Globe */}
           <div className='relative w-full z-10 flex items-center justify-center lg:w-1/2 min-h-[400px] lg:min-h-[550px]'>
-            <div className='relative w-[400px] h-[400px] lg:w-[550px] lg:h-[550px] flex items-center justify-center'>
+            <div className='relative w-[500px] h-[500px] lg:w-[650px] lg:h-[650px] flex items-center justify-center'>
               {/* Ambient glow */}
-              <div className='absolute inset-0 bg-gradient-to-tr from-purple-400 to-pink-400 rounded-full opacity-10 animate-blob mix-blend-multiply filter blur-3xl'></div>
+              <div className='absolute inset-0 bg-purple-100 rounded-full opacity-10 animate-blob mix-blend-multiply filter blur-3xl'></div>
 
               <Suspense fallback={
                 <div className='w-full h-full flex items-center justify-center'>
                   <div className='flex flex-col items-center gap-4'>
-                    <div className='text-7xl animate-spin'>🌍</div>
+                    <div className='text-7xl animate-spin text-purple-600'>●</div>
                     <div className='text-purple-600 font-bold text-lg animate-pulse'>Loading Globe...</div>
                   </div>
                 </div>
