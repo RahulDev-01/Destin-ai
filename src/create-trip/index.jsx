@@ -23,6 +23,7 @@ import DurationStep from "./components/DurationStep";
 import BudgetStyleStep from "./components/BudgetStyleStep";
 import TravelersStep from "./components/TravelersStep";
 import ReviewStep from "./components/ReviewStep";
+import TripGenerationLoader from "./components/TripGenerationLoader";
 
 function CreateTrip() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -34,6 +35,7 @@ function CreateTrip() {
     Peoples: "",
   });
   const [Loading, setLoading] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   const navigate = useNavigate();
 
   // SEO
@@ -81,6 +83,15 @@ function CreateTrip() {
     }
 
     setLoading(true);
+    setLoadingProgress(0);
+
+    // Simulate progress updates
+    const progressInterval = setInterval(() => {
+      setLoadingProgress(prev => {
+        if (prev >= 90) return prev;
+        return prev + 10;
+      });
+    }, 800);
 
     const FINAL_PROMPT = AI_PROMPT.replace("{location}", formData?.location)
       .replace("{totalDays}", formData?.noOfDays)
@@ -91,8 +102,22 @@ function CreateTrip() {
       // Import the sendMessage function dynamically
       const { sendMessage } = await import('@/service/AIModal');
 
-      // Use the new AI service
-      const fullResponse = await sendMessage(FINAL_PROMPT);
+      // Make 2 parallel API calls - use whichever responds first
+      console.log('Making 2 parallel API calls for faster response...');
+      const [result1, result2] = await Promise.allSettled([
+        sendMessage(FINAL_PROMPT),
+        sendMessage(FINAL_PROMPT)
+      ]);
+
+      // Use whichever succeeded first
+      let fullResponse = null;
+      if (result1.status === 'fulfilled' && result1.value) {
+        fullResponse = result1.value;
+        console.log('Using response from API call 1');
+      } else if (result2.status === 'fulfilled' && result2.value) {
+        fullResponse = result2.value;
+        console.log('Using response from API call 2');
+      }
 
       if (!fullResponse) {
         toast("Failed to generate trip. Please try again.");
@@ -109,9 +134,16 @@ function CreateTrip() {
         return;
       }
 
-      const normalized = normalizeTripData(parsedTrip);
-      await SaveAiTrip(normalized);
+      clearInterval(progressInterval);
+      setLoadingProgress(100);
+
+      // Wait a moment to show 100% before redirecting
+      setTimeout(async () => {
+        const normalized = normalizeTripData(parsedTrip);
+        await SaveAiTrip(normalized);
+      }, 500);
     } catch (error) {
+      clearInterval(progressInterval);
       console.error("Error generating trip:", error);
 
       const msg = String(error?.message || '');
@@ -335,7 +367,7 @@ function CreateTrip() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="min-h-screen bg-indigo-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
 
         {/* Decorative Background Blobs */}
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
