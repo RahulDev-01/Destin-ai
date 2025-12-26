@@ -65,7 +65,7 @@ function Testimonials() {
   ]
 
   return (
-    <section className='relative w-full py-24 md:py-32 bg-gradient-to-b from-white via-green-50/20 to-white overflow-hidden'>
+    <section className='relative w-full py-24 md:py-32 bg-white overflow-hidden'>
       {/* Background decoration */}
       <div className='absolute inset-0'>
         <div className='absolute top-20 left-10 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob'></div>
@@ -75,11 +75,11 @@ function Testimonials() {
       <div className='relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-10'>
         {/* Section Header */}
         <div className='text-center mb-12 sm:mb-20 space-y-4 px-4'>
-          <div className='inline-flex items-center gap-2 bg-gradient-to-r from-green-100 to-blue-100 px-4 py-2 rounded-full transform hover:scale-110 transition-transform'>
+          <div className='inline-flex items-center gap-2 bg-purple-100 px-4 py-2 rounded-full'>
             <span className='text-xl sm:text-2xl'>💬</span>
             <span className='font-bold text-green-700 text-xs sm:text-sm uppercase tracking-wider'>Testimonials</span>
           </div>
-          <h2 className='text-3xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-blue-600 to-green-600 animate-gradient-x bg-size-200'>
+          <h2 className='text-3xl sm:text-5xl md:text-6xl font-black text-purple-600'>
             Loved by Travelers
           </h2>
           <p className='text-base sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium'>
@@ -94,8 +94,7 @@ function Testimonials() {
               key={index}
               className='group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100'
             >
-              {/* Background gradient on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${testimonial.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl`}></div>
+
 
               {/* Content */}
               <div className='relative z-10'>
@@ -112,7 +111,7 @@ function Testimonials() {
                 </p>
 
                 {/* Trip Badge */}
-                <div className={`inline-flex items-center gap-2 bg-gradient-to-r ${testimonial.color} px-4 py-2 rounded-full mb-6`}>
+                <div className={`inline-flex items-center gap-2 bg-purple-100 px-4 py-2 rounded-full mb-6`}>
                   <span className='text-white font-bold text-sm'>{testimonial.trip}</span>
                 </div>
 
