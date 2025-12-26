@@ -7,7 +7,7 @@ function BudgetStyleStep({ formData, handleInputChange, onNext, onBack }) {
         <div className='flex flex-col gap-10 animate-fade-in'>
             <div className='text-center space-y-3 sm:space-y-4 px-2'>
                 <h2 className='text-2xl sm:text-4xl font-black text-gray-900 leading-tight'>
-                    What's your <span className='text-purple-600'>budget?</span> 💰
+                    What's your <span className='text-purple-600'>budget?</span>
                 </h2>
                 <p className='text-gray-500 text-sm sm:text-xl font-medium'>
                     The budget is exclusively allocated for activities and dining purposes.
@@ -61,7 +61,7 @@ function BudgetStyleStep({ formData, handleInputChange, onNext, onBack }) {
                 <Button
                     disabled={!formData?.budget}
                     onClick={onNext}
-                    className="h-14 sm:h-16 px-8 sm:px-12 text-lg sm:text-xl rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-black shadow-xl shadow-purple-500/20 transform hover:scale-105 transition-all duration-300"
+                    className="h-14 sm:h-16 px-8 sm:px-12 text-lg sm:text-xl rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-black shadow-xl shadow-blue-500/20 transition-all duration-300"
                 >
                     Next Step →
                 </Button>
