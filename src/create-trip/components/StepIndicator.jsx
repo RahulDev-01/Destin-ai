@@ -9,7 +9,7 @@ function StepIndicator({ currentStep, totalSteps }) {
 
                 {/* Active Progress Bar */}
                 <div
-                    className='absolute left-0 top-1/2 transform -translate-y-1/2 h-1.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full -z-10 transition-all duration-700 ease-out'
+                    className='absolute left-0 top-1/2 transform -translate-y-1/2 h-1.5 bg-blue-500 rounded-full -z-10 transition-all duration-700 ease-out'
                     style={{ width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%` }}
                 ></div>
 
@@ -25,7 +25,7 @@ function StepIndicator({ currentStep, totalSteps }) {
                   ${isActive
                                         ? 'bg-white border-purple-600 text-purple-600 shadow-xl shadow-purple-200 scale-110'
                                         : isCompleted
-                                            ? 'bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 border-transparent text-white shadow-md'
+                                            ? 'bg-blue-500 border-transparent text-white shadow-md'
                                             : 'bg-white border-gray-200 text-gray-300'
                                     }
                 `}
