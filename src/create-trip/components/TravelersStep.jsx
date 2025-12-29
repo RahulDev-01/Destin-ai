@@ -7,7 +7,7 @@ function TravelersStep({ formData, handleInputChange, onNext, onBack }) {
         <div className='flex flex-col gap-10 animate-fade-in'>
             <div className='text-center space-y-3 sm:space-y-4 px-2'>
                 <h2 className='text-2xl sm:text-4xl font-black text-gray-900 leading-tight'>
-                    Who are you <span className='text-purple-600'>traveling</span> with? 👥
+                    Who are you <span className='text-purple-600'>traveling</span> with?
                 </h2>
                 <p className='text-gray-500 text-sm sm:text-xl font-medium'>
                     Select your traveler type to help us plan better.
