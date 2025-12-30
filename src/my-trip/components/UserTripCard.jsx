@@ -69,7 +69,7 @@ function UserTripCard({ trip, onDelete }) {
             className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110'
             onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = buildSeededPhotoURL(trip?.userSelection?.location, { width: 600, height: 400 }); }}
           />
-          <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500'></div>
+          <div className='absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500'></div>
         </div>
         <div className='p-5 sm:p-6 flex flex-col gap-3 flex-1'>
           <h3 className='font-black text-xl sm:text-2xl text-gray-900 group-hover:text-blue-600 transition-colors truncate'>
@@ -77,13 +77,13 @@ function UserTripCard({ trip, onDelete }) {
           </h3>
           <div className='flex flex-wrap gap-2'>
             <span className='inline-flex items-center gap-1.5 px-3 py-1 bg-gray-50 border border-gray-100 rounded-full text-xs font-black text-gray-600'>
-              <span>📅</span> {trip?.userSelection?.noOfDays} Days
+              <span className='font-semibold text-xs'>Days:</span> {trip?.userSelection?.noOfDays} Days
             </span>
             <span className='inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-xs font-black text-blue-600'>
-              <span>💰</span> {trip?.userSelection?.budget}
+              <span className='font-semibold text-xs'>Budget:</span> {trip?.userSelection?.budget}
             </span>
             <span className='inline-flex items-center gap-1.5 px-3 py-1 bg-purple-50 border border-purple-100 rounded-full text-xs font-black text-purple-600'>
-              <span>👥</span> {trip?.userSelection?.Peoples}
+              <span className='font-semibold text-xs'>Travelers:</span> {trip?.userSelection?.Peoples}
             </span>
           </div>
         </div>

@@ -27,7 +27,7 @@ function Hotels({ trip }) {
   return (
     <div className='mt-12 sm:mt-16'>
       <div className='flex items-center gap-3 mb-8 px-2'>
-        <div className='text-3xl sm:text-4xl'>🏨</div>
+        <div className='text-3xl sm:text-4xl font-black text-purple-600'>Hotels</div>
         <h2 className='font-black text-2xl sm:text-4xl text-gray-900 tracking-tight'>Hotel Recommendations</h2>
       </div>
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8'>
@@ -47,10 +47,10 @@ function Hotels({ trip }) {
                   <div className='flex-1 flex flex-col gap-2 px-2'>
                     <h2 className='font-black text-lg text-gray-900 leading-tight group-hover:text-blue-600 transition-colors'>{hotel?.hotelName}</h2>
                     <h2 className='text-xs text-gray-500 font-medium flex items-center gap-1 mb-2'>
-                      <span>📍</span> {hotel?.hotelAddress}
+                      <span className='font-semibold text-xs'>Location:</span> {hotel?.hotelAddress}
                     </h2>
                     <div className='mt-auto pt-2 flex items-center justify-between border-t border-gray-50'>
-                      <h2 className='text-sm font-black text-green-600 bg-green-50 px-3 py-1 rounded-full'>💸 {hotel?.price}</h2>
+                      <h2 className='text-sm font-black text-green-600 bg-green-50 px-3 py-1 rounded-full'>{hotel?.price}</h2>
                       <h2 className='text-sm font-black text-orange-600 bg-orange-50 px-3 py-1 rounded-full flex items-center gap-1'>
                         <span>⭐</span> {hotel?.rating}
                       </h2>
