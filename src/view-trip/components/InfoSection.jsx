@@ -27,31 +27,28 @@ export default function InfoSection({ trip }) {
           className='h-[200px] sm:h-[350px] md:h-[400px] w-full object-cover transition-transform duration-700 group-hover:scale-105'
           onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = buildSeededPhotoURL(trip?.userSelection?.location, { width: 1200, height: 400 }); }}
         />
-        <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60'></div>
+        <div className='absolute inset-0 bg-black/50 opacity-60'></div>
       </div>
 
       <div className='flex flex-col md:flex-row md:items-end justify-between gap-6 px-2'>
         <div className='space-y-4'>
-          <div className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 text-purple-700 text-xs font-black uppercase tracking-widest'>
-            <span>📍</span>
-            <span>Destination</span>
-          </div>
+
           <h2 className='font-black text-3xl sm:text-5xl md:text-6xl text-gray-900 tracking-tight leading-none'>
             {trip?.userSelection?.location}
           </h2>
           <div className='flex flex-wrap gap-3 mt-4'>
             <div className='flex items-center gap-2 p-2 px-4 bg-gray-100/80 backdrop-blur-sm rounded-2xl text-gray-600 text-xs sm:text-sm font-black border border-gray-200 hover:bg-white hover:shadow-md transition-all'>
-              <span>📅</span> {trip?.userSelection?.noOfDays} Days
+              <span className='font-semibold'>Days:</span> {trip?.userSelection?.noOfDays} Days
             </div>
             <div className='flex items-center gap-2 p-2 px-4 bg-gray-100/80 backdrop-blur-sm rounded-2xl text-gray-600 text-xs sm:text-sm font-black border border-gray-200 hover:bg-white hover:shadow-md transition-all'>
-              <span>💰</span> {trip?.userSelection?.budget} Budget
+              <span className='font-semibold'>Budget:</span> {trip?.userSelection?.budget} Budget
             </div>
             <div className='flex items-center gap-2 p-2 px-4 bg-gray-100/80 backdrop-blur-sm rounded-2xl text-gray-600 text-xs sm:text-sm font-black border border-gray-200 hover:bg-white hover:shadow-md transition-all'>
-              <span>👥</span> {trip?.userSelection?.Peoples} Travelers
+              <span className='font-semibold'>Travelers:</span> {trip?.userSelection?.Peoples} Travelers
             </div>
           </div>
         </div>
-        <Button className='h-14 w-14 sm:h-16 sm:w-16 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl shadow-blue-500/20 transform hover:scale-110 active:scale-95 transition-all'>
+        <Button className='h-14 w-14 sm:h-16 sm:w-16 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20 active:scale-95 transition-all'>
           <FaShareAlt className='text-xl sm:text-2xl' />
         </Button>
       </div>
