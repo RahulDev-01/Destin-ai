@@ -6,8 +6,8 @@ function Features() {
       icon: '🤖',
       title: 'AI-Powered Intelligence',
       description: 'Advanced algorithms analyze millions of data points to create your perfect itinerary',
-      color: 'from-purple-500 to-pink-500',
-      bgColor: 'bg-purple-50'
+      color: 'from-blue-600 to-cyan-500',
+      bgColor: 'bg-blue-50'
     },
     {
       icon: '⚡',
@@ -34,7 +34,7 @@ function Features() {
       icon: '🌍',
       title: 'Global Coverage',
       description: 'Access to destinations worldwide with local insights and hidden gems',
-      color: 'from-indigo-500 to-purple-500',
+      color: 'from-indigo-500 to-blue-600',
       bgColor: 'bg-indigo-50'
     },
     {
@@ -50,7 +50,7 @@ function Features() {
     <section className='relative w-full py-24 md:py-32 bg-white overflow-hidden'>
       {/* Background decoration */}
       <div className='absolute top-0 left-0 w-full h-full'>
-        <div className='absolute top-20 right-10 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20'></div>
+        <div className='absolute top-20 right-10 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20'></div>
         <div className='absolute bottom-20 left-10 w-64 h-64 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20'></div>
       </div>
 
@@ -58,7 +58,7 @@ function Features() {
         {/* Section Header */}
         <div className='text-center mb-12 sm:mb-20 space-y-4 px-4'>
 
-          <h2 className='text-3xl sm:text-5xl md:text-6xl font-black text-purple-600'>
+          <h2 className='text-3xl sm:text-5xl md:text-6xl font-black text-blue-700'>
             Powerful Features
           </h2>
           <p className='text-base sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium'>
@@ -76,7 +76,7 @@ function Features() {
 
               <div className='relative z-10'>
                 {/* Icon */}
-                <div className={`inline-flex items-center justify-center w-20 h-20 ${feature.bgColor} rounded-2xl mb-6 text-5xl font-black text-purple-600 shadow-md`}>
+                <div className={`inline-flex items-center justify-center w-20 h-20 ${feature.bgColor} rounded-2xl mb-6 text-5xl font-black text-blue-700 shadow-md`}>
                   {index + 1}
                 </div>
 
