@@ -30,7 +30,7 @@ function Testimonials() {
       rating: 5,
       text: 'Best travel planning tool ever! It matched my budget perfectly and suggested activities I absolutely loved. 10/10 recommend!',
       trip: 'Bali Getaway',
-      color: 'from-purple-500 to-pink-500'
+      color: 'from-blue-600 to-cyan-500'
     },
     {
       name: 'James Wilson',
@@ -60,7 +60,7 @@ function Testimonials() {
       rating: 5,
       text: 'Revolutionary! The AI considered everything - budget, interests, even weather. My Australia trip exceeded all expectations!',
       trip: 'Australia Explorer',
-      color: 'from-indigo-500 to-purple-500'
+      color: 'from-indigo-500 to-blue-600'
     }
   ]
 
@@ -75,11 +75,11 @@ function Testimonials() {
       <div className='relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-10'>
         {/* Section Header */}
         <div className='text-center mb-12 sm:mb-20 space-y-4 px-4'>
-          <div className='inline-flex items-center gap-2 bg-purple-100 px-4 py-2 rounded-full'>
+          <div className='inline-flex items-center gap-2 bg-blue-100 px-4 py-2 rounded-full'>
             <span className='text-xl sm:text-2xl'>💬</span>
             <span className='font-bold text-green-700 text-xs sm:text-sm uppercase tracking-wider'>Testimonials</span>
           </div>
-          <h2 className='text-3xl sm:text-5xl md:text-6xl font-black text-purple-600'>
+          <h2 className='text-3xl sm:text-5xl md:text-6xl font-black text-blue-700'>
             Loved by Travelers
           </h2>
           <p className='text-base sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium'>
@@ -111,7 +111,7 @@ function Testimonials() {
                 </p>
 
                 {/* Trip Badge */}
-                <div className={`inline-flex items-center gap-2 bg-purple-100 px-4 py-2 rounded-full mb-6`}>
+                <div className={`inline-flex items-center gap-2 bg-blue-100 px-4 py-2 rounded-full mb-6`}>
                   <span className='text-white font-bold text-sm'>{testimonial.trip}</span>
                 </div>
 
