@@ -10,7 +10,7 @@ function Hero() {
     <section className='relative w-full min-h-screen bg-white overflow-hidden flex flex-col justify-center'>
       {/* Animated Background Elements */}
       <div className='absolute inset-0 overflow-hidden pointer-events-none'>
-        <div className='absolute top-20 left-10 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob'></div>
+        <div className='absolute top-20 left-10 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob'></div>
         <div className='absolute top-40 right-10 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000'></div>
         <div className='absolute -bottom-8 left-20 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000'></div>
 
@@ -24,7 +24,7 @@ function Hero() {
 
             {/* Main Heading with enhanced gradient */}
             <h1 className='font-black leading-tight text-5xl sm:text-6xl lg:text-7xl tracking-tight animate-fade-in'>
-              Plan Your <span className='text-purple-600'>Dream Trip</span> in Seconds
+              Plan Your <span className='text-blue-700'>Dream Trip</span> in Seconds
             </h1>
 
             {/* Description */}
@@ -35,13 +35,13 @@ function Hero() {
             {/* CTA Buttons with enhanced effects */}
             <div className='flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pt-6'>
               <Link to={'/create-trip'}>
-                <Button className='group h-16 px-12 text-xl bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-2xl shadow-xl transition-all duration-300'>
+                <Button className='group h-16 px-12 text-xl bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl shadow-xl transition-all duration-300'>
                   <span className='drop-shadow-md font-extrabold'>Start Planning Free</span>
                   <span className='ml-2 group-hover:translate-x-1 transition-transform'>→</span>
                 </Button>
               </Link>
               <Link to={'/create-trip'}>
-                <Button variant='outline' className='h-16 px-12 text-xl border-2 border-purple-200 hover:border-purple-600 hover:bg-purple-50 text-purple-700 font-bold rounded-2xl transition-all duration-300 shadow-md'>
+                <Button variant='outline' className='h-16 px-12 text-xl border-2 border-blue-200 hover:border-blue-600 hover:bg-blue-50 text-blue-700 font-bold rounded-2xl transition-all duration-300 shadow-md'>
                   <span className="mr-2">▶️</span>
                   See How It Works
                 </Button>
@@ -56,7 +56,7 @@ function Hero() {
                     key={i}
                     src={`https://i.pravatar.cc/100?img=${i + 20}`}
                     alt='Happy traveler'
-                    className='w-14 h-14 rounded-full border-4 border-white ring-2 ring-purple-200 shadow-lg hover:scale-110 hover:z-10 hover:ring-purple-400 transition-all duration-300'
+                    className='w-14 h-14 rounded-full border-4 border-white ring-2 ring-blue-200 shadow-lg hover:scale-110 hover:z-10 hover:ring-blue-400 transition-all duration-300'
                     onError={(e) => {
                       if (e.target.src.includes('pravatar')) {
                         e.target.src = `https://ui-avatars.com/api/?name=User${i}&background=random&size=100`;
@@ -69,10 +69,10 @@ function Hero() {
               </div>
               <div className='text-left'>
                 <div className='flex items-center gap-2.5 mb-1'>
-                  <span className='font-black text-3xl text-purple-600'>4.9</span>
+                  <span className='font-black text-3xl text-blue-700'>4.9</span>
                   <div className="flex text-yellow-400 text-xl drop-shadow-md">★★★★★</div>
                 </div>
-                <p className='text-gray-500 text-sm font-semibold'>from <span className='text-purple-600 font-bold'>50,000+</span> travelers</p>
+                <p className='text-gray-500 text-sm font-semibold'>from <span className='text-blue-700 font-bold'>50,000+</span> travelers</p>
               </div>
             </div>
 
@@ -82,13 +82,13 @@ function Hero() {
           <div className='relative w-full z-10 flex items-center justify-center lg:w-1/2 min-h-[400px] lg:min-h-[550px]'>
             <div className='relative w-[500px] h-[500px] lg:w-[650px] lg:h-[650px] flex items-center justify-center'>
               {/* Ambient glow */}
-              <div className='absolute inset-0 bg-purple-100 rounded-full opacity-10 animate-blob mix-blend-multiply filter blur-3xl'></div>
+              <div className='absolute inset-0 bg-blue-100 rounded-full opacity-10 animate-blob mix-blend-multiply filter blur-3xl'></div>
 
               <Suspense fallback={
                 <div className='w-full h-full flex items-center justify-center'>
                   <div className='flex flex-col items-center gap-4'>
-                    <div className='text-7xl animate-spin text-purple-600'>●</div>
-                    <div className='text-purple-600 font-bold text-lg animate-pulse'>Loading Globe...</div>
+                    <div className='text-7xl animate-spin text-blue-700'>●</div>
+                    <div className='text-blue-700 font-bold text-lg animate-pulse'>Loading Globe...</div>
                   </div>
                 </div>
               }>
@@ -103,7 +103,7 @@ function Hero() {
       <div className='absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer opacity-70 hover:opacity-100 transition-opacity'>
         <div className='flex flex-col items-center gap-2'>
           <span className='text-gray-400 font-bold text-xs uppercase tracking-widest'>Scroll</span>
-          <svg className='w-6 h-6 text-purple-400' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+          <svg className='w-6 h-6 text-blue-400' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
             <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={3} d='M19 14l-7 7m0 0l-7-7m7 7V3' />
           </svg>
         </div>
