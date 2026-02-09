@@ -35,7 +35,7 @@ function PricingSection() {
             ],
             buttonText: 'Go Pro',
             popular: true,
-            gradient: 'from-purple-600 to-pink-600'
+            gradient: 'from-blue-700 to-cyan-600'
         },
         {
             name: 'Lifetime',
@@ -60,7 +60,7 @@ function PricingSection() {
         <section className='relative w-full py-24 md:py-32 bg-white overflow-hidden'>
             {/* Background Elements */}
             <div className='absolute inset-0 pointer-events-none'>
-                <div className='absolute top-20 right-0 w-[500px] h-[500px] bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob'></div>
+                <div className='absolute top-20 right-0 w-[500px] h-[500px] bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob'></div>
                 <div className='absolute bottom-0 left-0 w-[500px] h-[500px] bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000'></div>
             </div>
 
@@ -82,13 +82,13 @@ function PricingSection() {
                             key={index}
                             className={`relative bg-white rounded-[2.5rem] p-6 sm:p-8 border-2 transition-all duration-500 transform hover:-translate-y-2 group
                 ${plan.popular
-                                    ? 'border-purple-600 shadow-2xl lg:scale-105 z-10'
+                                    ? 'border-blue-700 shadow-2xl lg:scale-105 z-10'
                                     : 'border-gray-100 shadow-xl hover:shadow-2xl'
                                 }
               `}
                         >
                             {plan.popular && (
-                                <div className='absolute -top-5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg'>
+                                <div className='absolute -top-5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-700 to-cyan-600 text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg'>
                                     MOST POPULAR
                                 </div>
                             )}
@@ -105,7 +105,7 @@ function PricingSection() {
                             <div className='space-y-4 mb-8'>
                                 {plan.features.map((feature, idx) => (
                                     <div key={idx} className='flex items-center gap-3'>
-                                        <div className={`w-6 h-6 rounded-full flex items-center justify-center ${plan.popular ? 'bg-purple-100 text-purple-600' : 'bg-gray-100 text-gray-600'}`}>
+                                        <div className={`w-6 h-6 rounded-full flex items-center justify-center ${plan.popular ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-600'}`}>
                                             ✓
                                         </div>
                                         <span className='text-gray-700 font-medium'>{feature}</span>
@@ -117,7 +117,7 @@ function PricingSection() {
                                 <Button
                                     className={`w-full h-14 text-lg font-bold rounded-xl transition-all duration-300 transform hover:scale-105
                     ${plan.popular
-                                            ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 shadow-lg hover:shadow-purple-500/50'
+                                            ? 'bg-gradient-to-r from-blue-700 to-cyan-600 text-white hover:from-blue-800 hover:to-cyan-700 shadow-lg hover:shadow-blue-500/50'
                                             : 'bg-gray-900 text-white hover:bg-gray-800'
                                         }
                   `}
