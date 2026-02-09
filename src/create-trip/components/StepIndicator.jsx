@@ -23,7 +23,7 @@ function StepIndicator({ currentStep, totalSteps }) {
                             <div
                                 className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-black text-sm sm:text-lg border-2 sm:border-[3px] transition-all duration-500 transform
                   ${isActive
-                                        ? 'bg-white border-purple-600 text-purple-600 shadow-xl shadow-purple-200 scale-110'
+                                        ? 'bg-white border-blue-700 text-blue-700 shadow-xl shadow-blue-200 scale-110'
                                         : isCompleted
                                             ? 'bg-blue-500 border-transparent text-white shadow-md'
                                             : 'bg-white border-gray-200 text-gray-300'
@@ -36,7 +36,7 @@ function StepIndicator({ currentStep, totalSteps }) {
                                     </svg>
                                 ) : stepNumber}
                             </div>
-                            <span className={`text-[10px] sm:text-xs font-black uppercase tracking-tighter sm:tracking-wider transition-colors duration-500 ${isActive ? 'text-purple-600' : isCompleted ? 'text-gray-700' : 'text-gray-300'}`}>
+                            <span className={`text-[10px] sm:text-xs font-black uppercase tracking-tighter sm:tracking-wider transition-colors duration-500 ${isActive ? 'text-blue-700' : isCompleted ? 'text-gray-700' : 'text-gray-300'}`}>
                                 {stepNumber === 1 && (isActive ? 'Start' : 'Dest.')}
                                 {stepNumber === 2 && 'Days'}
                                 {stepNumber === 3 && 'Budget'}
