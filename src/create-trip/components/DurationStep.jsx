@@ -13,7 +13,7 @@ function DurationStep({ formData, handleInputChange, onNext, onBack }) {
         <div className='flex flex-col gap-10 animate-fade-in'>
             <div className='text-center space-y-3 sm:space-y-4 px-2'>
                 <h2 className='text-2xl sm:text-4xl font-black text-gray-900 leading-tight'>
-                    How long is your <span className='text-purple-600'>trip?</span>
+                    How long is your <span className='text-blue-700'>trip?</span>
                 </h2>
                 <p className='text-gray-500 text-sm sm:text-xl font-medium'>
                     Tell us how many days you want to explore.
@@ -24,7 +24,7 @@ function DurationStep({ formData, handleInputChange, onNext, onBack }) {
                 <div className='flex items-center gap-4 sm:gap-6 justify-center'>
                     <Button
                         variant="outline"
-                        className="h-14 w-14 sm:h-20 sm:w-20 rounded-full text-2xl sm:text-3xl border-2 hover:border-purple-500 hover:bg-purple-50 transition-all duration-300 flex-shrink-0"
+                        className="h-14 w-14 sm:h-20 sm:w-20 rounded-full text-2xl sm:text-3xl border-2 hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 flex-shrink-0"
                         onClick={() => {
                             const current = parseInt(formData?.noOfDays || 0)
                             if (current > 1) handleInputChange('noOfDays', current - 1)
@@ -50,7 +50,7 @@ function DurationStep({ formData, handleInputChange, onNext, onBack }) {
 
                     <Button
                         variant="outline"
-                        className="h-14 w-14 sm:h-20 sm:w-20 rounded-full text-2xl sm:text-3xl border-2 hover:border-purple-500 hover:bg-purple-50 transition-all duration-300 flex-shrink-0"
+                        className="h-14 w-14 sm:h-20 sm:w-20 rounded-full text-2xl sm:text-3xl border-2 hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 flex-shrink-0"
                         onClick={() => {
                             const current = parseInt(formData?.noOfDays || 0)
                             if (current < 20) handleInputChange('noOfDays', current + 1)
@@ -67,12 +67,12 @@ function DurationStep({ formData, handleInputChange, onNext, onBack }) {
                             onClick={() => handleInputChange('noOfDays', preset.days)}
                             className={`cursor-pointer p-4 sm:p-6 rounded-2xl border-2 text-center transition-all duration-500 hover:shadow-lg
                 ${parseInt(formData?.noOfDays) === preset.days
-                                    ? 'border-purple-600 bg-purple-50 shadow-md ring-1 ring-purple-600'
-                                    : 'border-gray-100 bg-white hover:border-purple-200'
+                                    ? 'border-blue-700 bg-blue-50 shadow-md ring-1 ring-blue-700'
+                                    : 'border-gray-100 bg-white hover:border-blue-200'
                                 }
               `}
                         >
-                            <div className='text-2xl sm:text-3xl mb-1 sm:mb-2 font-bold text-purple-600'>{preset.days}</div>
+                            <div className='text-2xl sm:text-3xl mb-1 sm:mb-2 font-bold text-blue-700'>{preset.days}</div>
                             <div className='font-black text-[10px] sm:text-base text-gray-800 leading-tight'>{preset.label}</div>
                         </div>
                     ))}
