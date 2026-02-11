@@ -5,7 +5,7 @@ function PlacesToVisit({ trip }) {
   return (
     <div className='mt-16 sm:mt-24'>
       <div className='flex items-center gap-3 mb-10 px-2'>
-        <div className='text-3xl sm:text-4xl font-black text-purple-600'>Places</div>
+        <div className='text-3xl sm:text-4xl font-black text-blue-700'>Places</div>
         <h2 className="font-black text-2xl sm:text-4xl text-gray-900 tracking-tight">Places to Visit</h2>
       </div>
       <div className='space-y-12'>

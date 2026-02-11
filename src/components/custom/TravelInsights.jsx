@@ -70,11 +70,11 @@ function TravelInsights() {
                                     <span>{article.readTime}</span>
                                 </div>
 
-                                <h3 className='text-2xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2'>
+                                <h3 className='text-2xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors line-clamp-2'>
                                     {article.title}
                                 </h3>
 
-                                <div className='pt-4 flex items-center gap-2 text-purple-600 font-bold opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300'>
+                                <div className='pt-4 flex items-center gap-2 text-blue-700 font-bold opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300'>
                                     Read More <span>→</span>
                                 </div>
                             </div>

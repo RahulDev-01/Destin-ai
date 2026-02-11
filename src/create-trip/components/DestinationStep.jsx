@@ -18,7 +18,7 @@ function DestinationStep({ formData, handleInputChange, onNext }) {
         <div className='flex flex-col gap-8 animate-fade-in'>
             <div className='text-center space-y-3 sm:space-y-4 px-2'>
                 <h2 className='text-2xl sm:text-4xl font-black text-gray-900 leading-tight'>
-                    Where is your next <span className='text-purple-600'>adventure?</span>
+                    Where is your next <span className='text-blue-700'>adventure?</span>
                 </h2>
                 <p className='text-gray-500 text-sm sm:text-xl font-medium'>
                     Enter the destination you've been dreaming about.
@@ -31,7 +31,7 @@ function DestinationStep({ formData, handleInputChange, onNext }) {
                     <div className="relative">
                         <Input
                             placeholder="Search destination..."
-                            className="h-14 sm:h-20 text-lg sm:text-2xl px-6 sm:px-8 rounded-2xl border-0 bg-white shadow-xl ring-1 ring-gray-900/5 placeholder:text-gray-400 focus-visible:ring-2 focus-visible:ring-purple-500 transition-all duration-300"
+                            className="h-14 sm:h-20 text-lg sm:text-2xl px-6 sm:px-8 rounded-2xl border-0 bg-white shadow-xl ring-1 ring-gray-900/5 placeholder:text-gray-400 focus-visible:ring-2 focus-visible:ring-blue-500 transition-all duration-300"
                             value={formData?.location || ''}
                             onChange={(e) => handleInputChange('location', e.target.value)}
                         />

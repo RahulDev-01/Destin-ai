@@ -27,7 +27,7 @@ function Hotels({ trip }) {
   return (
     <div className='mt-12 sm:mt-16'>
       <div className='flex items-center gap-3 mb-8 px-2'>
-        <div className='text-3xl sm:text-4xl font-black text-purple-600'>Hotels</div>
+        <div className='text-3xl sm:text-4xl font-black text-blue-700'>Hotels</div>
         <h2 className='font-black text-2xl sm:text-4xl text-gray-900 tracking-tight'>Hotel Recommendations</h2>
       </div>
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8'>

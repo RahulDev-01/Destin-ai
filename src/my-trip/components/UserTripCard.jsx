@@ -82,7 +82,7 @@ function UserTripCard({ trip, onDelete }) {
             <span className='inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-xs font-black text-blue-600'>
               <span className='font-semibold text-xs'>Budget:</span> {trip?.userSelection?.budget}
             </span>
-            <span className='inline-flex items-center gap-1.5 px-3 py-1 bg-purple-50 border border-purple-100 rounded-full text-xs font-black text-purple-600'>
+            <span className='inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-xs font-black text-blue-700'>
               <span className='font-semibold text-xs'>Travelers:</span> {trip?.userSelection?.Peoples}
             </span>
           </div>

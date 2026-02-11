@@ -7,7 +7,7 @@ function TravelersStep({ formData, handleInputChange, onNext, onBack }) {
         <div className='flex flex-col gap-10 animate-fade-in'>
             <div className='text-center space-y-3 sm:space-y-4 px-2'>
                 <h2 className='text-2xl sm:text-4xl font-black text-gray-900 leading-tight'>
-                    Who are you <span className='text-purple-600'>traveling</span> with?
+                    Who are you <span className='text-blue-700'>traveling</span> with?
                 </h2>
                 <p className='text-gray-500 text-sm sm:text-xl font-medium'>
                     Select your traveler type to help us plan better.
@@ -21,8 +21,8 @@ function TravelersStep({ formData, handleInputChange, onNext, onBack }) {
                         onClick={() => handleInputChange('Peoples', item.people)}
                         className={`cursor-pointer group relative p-5 sm:p-6 border-2 rounded-[2rem] transition-all duration-500 hover:-translate-y-2
               ${formData?.Peoples === item.people
-                                ? 'border-purple-600 bg-purple-50/50 shadow-2xl ring-2 ring-purple-600 ring-offset-4'
-                                : 'border-gray-100 bg-white hover:border-purple-300 hover:shadow-xl'
+                                ? 'border-blue-700 bg-blue-50/50 shadow-2xl ring-2 ring-blue-700 ring-offset-4'
+                                : 'border-gray-100 bg-white hover:border-blue-300 hover:shadow-xl'
                             }
             `}
                     >
@@ -40,7 +40,7 @@ function TravelersStep({ formData, handleInputChange, onNext, onBack }) {
                         </div>
 
                         {formData?.Peoples === item.people && (
-                            <div className='absolute top-3 right-3 sm:top-4 sm:right-4 text-purple-600 bg-white rounded-full p-1 sm:p-1.5 shadow-md animate-in zoom-in duration-500'>
+                            <div className='absolute top-3 right-3 sm:top-4 sm:right-4 text-blue-700 bg-white rounded-full p-1 sm:p-1.5 shadow-md animate-in zoom-in duration-500'>
                                 <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 13l4 4L19 7" />
                                 </svg>
