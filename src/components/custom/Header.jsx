@@ -73,9 +73,9 @@ function Header() {
 
         {/* Center: Nav links (desktop) */}
         <nav className='hidden md:flex items-center gap-2'>
-          <NavLink to="/" end className={({ isActive }) => `px-3 py-2 rounded-md text-sm font-medium ${isActive ? 'text-blue-700 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`}>Home</NavLink>
-          <NavLink to="/create-trip" className={({ isActive }) => `px-3 py-2 rounded-md text-sm font-medium ${isActive ? 'text-blue-700 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`}>Create Trip</NavLink>
-          <NavLink to="/my-trips" className={({ isActive }) => `px-3 py-2 rounded-md text-sm font-medium ${isActive ? 'text-blue-700 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`}>My Trips</NavLink>
+          <NavLink to="/" end className={({ isActive }) => `px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive ? 'text-blue-700 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`}>Home</NavLink>
+          <NavLink to="/create-trip" className={({ isActive }) => `px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive ? 'text-blue-700 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`}>Create Trip</NavLink>
+          <NavLink to="/my-trips" className={({ isActive }) => `px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive ? 'text-blue-700 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`}>My Trips</NavLink>
         </nav>
 
         {/* Right: Actions */}
@@ -91,7 +91,7 @@ function Header() {
               />
               <Button
                 variant="outline"
-                className="rounded-full border-gray-200 hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors"
+                className="rounded-full border-gray-200 hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors min-h-[44px]"
                 onClick={() => {
                   googleLogout();
                   localStorage.removeItem('user');
@@ -104,7 +104,7 @@ function Header() {
             </div>
           ) : (
             <Link to="/login">
-              <Button className="px-5 bg-blue-500 hover:bg-blue-600 text-white">Sign In</Button>
+              <Button className="px-4 sm:px-5 min-h-[44px] bg-blue-500 hover:bg-blue-600 text-white text-sm sm:text-base">Sign In</Button>
             </Link>
           )}
         </div>
@@ -112,18 +112,18 @@ function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className='md:hidden border-t bg-white'>
+        <div className='md:hidden border-t bg-white/95 backdrop-blur-md shadow-lg'>
           <div className='px-4 py-3 flex flex-col gap-2'>
-            <NavLink to="/" end className={({ isActive }) => `px-3 py-2 rounded-md text-sm font-medium ${isActive ? 'text-blue-700 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMobileOpen(false)}>Home</NavLink>
-            <NavLink to="/create-trip" className={({ isActive }) => `px-3 py-2 rounded-md text-sm font-medium ${isActive ? 'text-blue-700 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMobileOpen(false)}>Create Trip</NavLink>
-            <NavLink to="/my-trips" className={({ isActive }) => `px-3 py-2 rounded-md text-sm font-medium ${isActive ? 'text-blue-700 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMobileOpen(false)}>My Trips</NavLink>
+            <NavLink to="/" end className={({ isActive }) => `px-4 py-3 rounded-md text-base font-medium transition-colors min-h-[44px] flex items-center ${isActive ? 'text-blue-700 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMobileOpen(false)}>Home</NavLink>
+            <NavLink to="/create-trip" className={({ isActive }) => `px-4 py-3 rounded-md text-base font-medium transition-colors min-h-[44px] flex items-center ${isActive ? 'text-blue-700 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMobileOpen(false)}>Create Trip</NavLink>
+            <NavLink to="/my-trips" className={({ isActive }) => `px-4 py-3 rounded-md text-base font-medium transition-colors min-h-[44px] flex items-center ${isActive ? 'text-blue-700 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMobileOpen(false)}>My Trips</NavLink>
             {user && (
-              <div className='flex items-center justify-between mt-2'>
+              <div className='flex items-center justify-between mt-2 pt-2 border-t border-gray-100'>
                 <div className='flex items-center gap-2'>
-                  <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" className='rounded-full w-8 h-8' />
+                  <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" className='rounded-full w-8 h-8' alt="User" />
                   <span className='text-sm text-gray-700'>Logged in</span>
                 </div>
-                <Button variant="outline" size="sm" onClick={() => { googleLogout(); localStorage.removeItem('user'); setUser(null); setMobileOpen(false); window.dispatchEvent(new Event('authChanged')); }}>Logout</Button>
+                <Button variant="outline" size="sm" className="min-h-[44px]" onClick={() => { googleLogout(); localStorage.removeItem('user'); setUser(null); setMobileOpen(false); window.dispatchEvent(new Event('authChanged')); }}>Logout</Button>
               </div>
             )}
           </div>
