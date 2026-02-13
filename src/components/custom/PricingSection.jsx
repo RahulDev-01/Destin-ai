@@ -80,7 +80,7 @@ function PricingSection() {
                     {plans.map((plan, index) => (
                         <div
                             key={index}
-                            className={`relative bg-white rounded-[2.5rem] p-6 sm:p-8 border-2 transition-all duration-500 transform hover:-translate-y-2 group
+                            className={`relative bg-white rounded-[2.5rem] p-6 sm:p-8 border-2 transition-all duration-500 group
                 ${plan.popular
                                     ? 'border-blue-700 shadow-2xl lg:scale-105 z-10'
                                     : 'border-gray-100 shadow-xl hover:shadow-2xl'
