@@ -10,38 +10,38 @@ function Hero() {
     <section className='relative w-full min-h-screen bg-white overflow-hidden flex flex-col justify-center'>
       {/* Animated Background Elements */}
       <div className='absolute inset-0 overflow-hidden pointer-events-none'>
-        <div className='absolute top-20 left-10 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob'></div>
-        <div className='absolute top-40 right-10 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000'></div>
-        <div className='absolute -bottom-8 left-20 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000'></div>
+        <div className='absolute top-20 left-10 w-64 h-64 sm:w-96 sm:h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob'></div>
+        <div className='absolute top-40 right-10 w-64 h-64 sm:w-96 sm:h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000'></div>
+        <div className='absolute -bottom-8 left-20 w-64 h-64 sm:w-96 sm:h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000'></div>
 
 
       </div>
 
-      <div className='relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10 py-12 md:py-20'>
-        <div className='flex flex-col lg:flex-row gap-16 lg:gap-20 items-center justify-between'>
+      <div className='relative mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10 py-8 sm:py-12 md:py-20'>
+        <div className='flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-20 items-center justify-between'>
           {/* Left: Text content */}
-          <div className='text-center lg:text-left space-y-10 z-10 lg:w-1/2'>
+          <div className='text-center lg:text-left space-y-6 sm:space-y-8 lg:space-y-10 z-10 lg:w-1/2'>
 
             {/* Main Heading with enhanced gradient */}
-            <h1 className='font-black leading-tight text-5xl sm:text-6xl lg:text-7xl tracking-tight animate-fade-in'>
+            <h1 className='font-black leading-tight text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight animate-fade-in'>
               Plan Your <span className='text-blue-700'>Dream Trip</span> in Seconds
             </h1>
 
             {/* Description */}
-            <p className='text-xl sm:text-2xl text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium'>
+            <p className='text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium'>
               Let AI create personalized itineraries tailored to your style, budget, and interests. No more endless research!
             </p>
 
             {/* CTA Buttons with enhanced effects */}
-            <div className='flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pt-6'>
-              <Link to={'/create-trip'}>
-                <Button className='group h-16 px-12 text-xl bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl shadow-xl transition-all duration-300'>
+            <div className='flex flex-col xs:flex-row items-stretch xs:items-center gap-4 sm:gap-6 justify-center lg:justify-start pt-4 sm:pt-6'>
+              <Link to={'/create-trip'} className='w-full xs:w-auto'>
+                <Button className='group w-full xs:w-auto h-12 sm:h-14 md:h-16 px-6 sm:px-10 md:px-12 text-base sm:text-lg md:text-xl bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl sm:rounded-2xl shadow-xl transition-all duration-300'>
                   <span className='drop-shadow-md font-extrabold'>Start Planning Free</span>
                   <span className='ml-2 group-hover:translate-x-1 transition-transform'>→</span>
                 </Button>
               </Link>
-              <Link to={'/create-trip'}>
-                <Button variant='outline' className='h-16 px-12 text-xl border-2 border-blue-200 hover:border-blue-600 hover:bg-blue-50 text-blue-700 font-bold rounded-2xl transition-all duration-300 shadow-md'>
+              <Link to={'/create-trip'} className='w-full xs:w-auto'>
+                <Button variant='outline' className='w-full xs:w-auto h-12 sm:h-14 md:h-16 px-6 sm:px-10 md:px-12 text-base sm:text-lg md:text-xl border-2 border-blue-200 hover:border-blue-600 hover:bg-blue-50 text-blue-700 font-bold rounded-xl sm:rounded-2xl transition-all duration-300 shadow-md'>
                   <span className="mr-2">▶️</span>
                   See How It Works
                 </Button>
@@ -49,14 +49,14 @@ function Hero() {
             </div>
 
             {/* Social Proof with enhanced styling */}
-            <div className='flex items-center justify-center lg:justify-start gap-8 pt-8'>
-              <div className='flex -space-x-4'>
+            <div className='flex items-center justify-center lg:justify-start gap-4 sm:gap-6 md:gap-8 pt-6 sm:pt-8'>
+              <div className='flex -space-x-3 sm:-space-x-4'>
                 {[1, 2, 3, 4, 5].map((i) => (
                   <img
                     key={i}
                     src={`https://i.pravatar.cc/100?img=${i + 20}`}
                     alt='Happy traveler'
-                    className='w-14 h-14 rounded-full border-4 border-white ring-2 ring-blue-200 shadow-lg hover:scale-110 hover:z-10 hover:ring-blue-400 transition-all duration-300'
+                    className='w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full border-3 sm:border-4 border-white ring-2 ring-blue-200 shadow-lg hover:scale-110 hover:z-10 hover:ring-blue-400 transition-all duration-300'
                     onError={(e) => {
                       if (e.target.src.includes('pravatar')) {
                         e.target.src = `https://ui-avatars.com/api/?name=User${i}&background=random&size=100`;
@@ -68,19 +68,19 @@ function Hero() {
                 ))}
               </div>
               <div className='text-left'>
-                <div className='flex items-center gap-2.5 mb-1'>
-                  <span className='font-black text-3xl text-blue-700'>4.9</span>
-                  <div className="flex text-yellow-400 text-xl drop-shadow-md">★★★★★</div>
+                <div className='flex items-center gap-1.5 sm:gap-2.5 mb-1'>
+                  <span className='font-black text-xl sm:text-2xl md:text-3xl text-blue-700'>4.9</span>
+                  <div className="flex text-yellow-400 text-base sm:text-lg md:text-xl drop-shadow-md">★★★★★</div>
                 </div>
-                <p className='text-gray-500 text-sm font-semibold'>from <span className='text-blue-700 font-bold'>50,000+</span> travelers</p>
+                <p className='text-gray-500 text-xs sm:text-sm font-semibold'>from <span className='text-blue-700 font-bold'>50,000+</span> travelers</p>
               </div>
             </div>
 
           </div>
 
           {/* Right: 3D Globe */}
-          <div className='relative w-full z-10 flex items-center justify-center lg:w-1/2 min-h-[400px] lg:min-h-[550px]'>
-            <div className='relative w-[500px] h-[500px] lg:w-[650px] lg:h-[650px] flex items-center justify-center'>
+          <div className='relative w-full z-10 flex items-center justify-center lg:w-1/2 min-h-[280px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[550px]'>
+            <div className='relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[450px] md:h-[450px] lg:w-[550px] lg:h-[550px] xl:w-[650px] xl:h-[650px] flex items-center justify-center'>
               {/* Ambient glow */}
               <div className='absolute inset-0 bg-blue-100 rounded-full opacity-10 animate-blob mix-blend-multiply filter blur-3xl'></div>
 
