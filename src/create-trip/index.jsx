@@ -367,19 +367,19 @@ function CreateTrip() {
 
   return (
     <>
-      <div className="min-h-screen bg-indigo-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="min-h-screen bg-indigo-50 py-8 sm:py-12 px-3 sm:px-4 md:px-6 lg:px-8 relative overflow-hidden">
 
         {/* Decorative Background Blobs */}
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute -top-24 -left-24 w-64 h-64 sm:w-96 sm:h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute -top-24 -right-24 w-64 h-64 sm:w-96 sm:h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-64 h-64 sm:w-96 sm:h-96 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
 
         <div className="max-w-5xl mx-auto relative z-10 transition-all duration-500">
           {/* Header Progress */}
           <StepIndicator currentStep={currentStep} totalSteps={5} />
 
           {/* Form Content */}
-          <div className="glass-panel rounded-[2.5rem] p-5 sm:p-8 md:p-14 min-h-[450px] transition-all duration-500 hover:shadow-2xl border border-white/40 shadow-xl">
+          <div className="glass-panel rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] p-4 sm:p-6 md:p-10 lg:p-14 min-h-[400px] sm:min-h-[450px] transition-all duration-500 hover:shadow-2xl border border-white/40 shadow-xl">
             {currentStep === 1 && (
               <DestinationStep
                 formData={formData}
