@@ -52,7 +52,7 @@ function DestinationStep({ formData, handleInputChange, onNext }) {
                             <div
                                 key={index}
                                 onClick={() => handleSuggestionClick(place.name)}
-                                className='group relative h-32 sm:h-40 rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1'
+                                className='group relative h-32 sm:h-40 rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-300'
                             >
                                 <img
                                     src={place.image}
