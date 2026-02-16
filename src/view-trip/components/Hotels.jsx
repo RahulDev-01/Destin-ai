@@ -35,7 +35,7 @@ function Hotels({ trip }) {
           return (
             <div key={hotel?.hotelName + index}>
               <Link to={'https://www.google.com/maps/search/?api=1&query=' + hotel?.hotelName + ',' + hotel?.hotelAddress} target='_blank' >
-                <div className='group bg-white rounded-[2rem] p-4 border border-gray-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 h-full flex flex-col'>
+                <div className='group bg-white rounded-[2rem] p-4 border border-gray-100 hover:shadow-2xl transition-all duration-500 h-full flex flex-col'>
                   <div className='overflow-hidden rounded-2xl aspect-[4/3] mb-4'>
                     <img
                       src={photos[hotel?.hotelName || index] || buildSeededPhotoURL(hotel?.hotelName || ('hotel-' + (index + 1)), { width: 400, height: 300 })}
