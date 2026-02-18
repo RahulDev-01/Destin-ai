@@ -50,7 +50,7 @@ function TravelInsights() {
                     {articles.map((article, index) => (
                         <div
                             key={index}
-                            className='group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer'
+                            className='group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer'
                         >
                             <div className='relative h-64 overflow-hidden'>
                                 <img
