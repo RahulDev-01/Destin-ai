@@ -60,7 +60,7 @@ function UserTripCard({ trip, onDelete }) {
   };
 
   return (
-    <div className='group bg-white border border-gray-100 rounded-[2rem] overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative flex flex-col h-full'>
+    <div className='group bg-white border border-gray-100 rounded-[2rem] overflow-hidden hover:shadow-2xl transition-all duration-500 relative flex flex-col h-full'>
       <Link to={`/view-trip/${trip?.id}`} className='flex flex-col h-full'>
         <div className='relative h-[180px] sm:h-[200px] overflow-hidden'>
           <img
