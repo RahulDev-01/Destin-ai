@@ -14,12 +14,12 @@ function BudgetStyleStep({ formData, handleInputChange, onNext, onBack }) {
                 </p>
             </div>
 
-            <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8'>
+            <div className='grid grid-cols-3 gap-3 sm:gap-6 md:gap-8'>
                 {SelectBudgetOptions.map((item, index) => (
                     <div
                         key={index}
                         onClick={() => handleInputChange('budget', item.title)}
-                        className={`cursor-pointer group relative p-6 sm:p-8 border-2 rounded-[2rem] transition-all duration-500 hover:-translate-y-2
+                        className={`cursor-pointer group relative p-6 sm:p-8 border-2 rounded-[2rem] transition-all duration-500
               ${formData?.budget === item.title
                                 ? 'border-blue-700 bg-blue-50/50 shadow-2xl ring-2 ring-blue-700 ring-offset-4'
                                 : 'border-gray-100 bg-white hover:border-blue-300 hover:shadow-xl'
