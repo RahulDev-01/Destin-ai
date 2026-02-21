@@ -14,12 +14,12 @@ function TravelersStep({ formData, handleInputChange, onNext, onBack }) {
                 </p>
             </div>
 
-            <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6'>
+            <div className='grid grid-cols-4 gap-3 sm:gap-4 md:gap-6'>
                 {SelectTravelList.map((item, index) => (
                     <div
                         key={index}
                         onClick={() => handleInputChange('Peoples', item.people)}
-                        className={`cursor-pointer group relative p-5 sm:p-6 border-2 rounded-[2rem] transition-all duration-500 hover:-translate-y-2
+                        className={`cursor-pointer group relative p-5 sm:p-6 border-2 rounded-[2rem] transition-all duration-500
               ${formData?.Peoples === item.people
                                 ? 'border-blue-700 bg-blue-50/50 shadow-2xl ring-2 ring-blue-700 ring-offset-4'
                                 : 'border-gray-100 bg-white hover:border-blue-300 hover:shadow-xl'
