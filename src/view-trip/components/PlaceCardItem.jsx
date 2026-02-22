@@ -24,7 +24,7 @@ function PlaceCardItem({ place }) {
   }, [place?.placeName]);
   return (
     <Link to={'https://www.google.com/maps/search/?api=1&query=' + place.placeName} target="_blank">
-      <div className='group bg-white border border-gray-100 rounded-[2rem] p-4 sm:p-5 flex flex-col sm:flex-row gap-4 sm:gap-6 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 cursor-pointer h-full relative overflow-hidden'>
+      <div className='group bg-white border border-gray-100 rounded-[2rem] p-4 sm:p-5 flex flex-col sm:flex-row gap-4 sm:gap-6 hover:shadow-2xl transition-all duration-500 cursor-pointer h-full relative overflow-hidden'>
         <div className='absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-16 -mt-16 opacity-0 group-hover:opacity-100 transition-all duration-700'></div>
 
         <div className='w-full sm:w-[130px] h-[180px] sm:h-[130px] rounded-[1.5rem] overflow-hidden flex-shrink-0 relative'>
