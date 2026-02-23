@@ -27,7 +27,7 @@ function Newsletter() {
                     </div>
 
                     <div className='relative z-10 max-w-3xl mx-auto space-y-6 sm:space-y-8'>
-                        <div className='inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 transform hover:scale-110 transition-transform'>
+                        <div className='inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300'>
                             <span className='text-xl sm:text-2xl'>📩</span>
                             <span className='font-bold text-white text-xs sm:text-sm uppercase tracking-wider'>Travel Weekly</span>
                         </div>
@@ -48,7 +48,7 @@ function Newsletter() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-                            <Button type="submit" className="h-14 sm:h-16 px-8 text-base sm:text-lg font-black rounded-2xl bg-white text-gray-900 hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl">
+                            <Button type="submit" className="h-14 sm:h-16 px-8 text-base sm:text-lg font-black rounded-2xl bg-white text-gray-900 hover:bg-gray-200 transition-all duration-300 shadow-xl">
                                 Subscribe
                             </Button>
                         </form>
