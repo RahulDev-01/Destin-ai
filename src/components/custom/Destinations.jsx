@@ -63,7 +63,7 @@ function Destinations() {
             <div className='relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-10'>
                 {/* Section Header */}
                 <div className='text-center mb-12 sm:mb-16 space-y-4 px-4'>
-                    <div className='inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full transform hover:scale-110 transition-transform'>
+                    <div className='inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full hover:from-blue-200 hover:to-purple-200 transition-all duration-300'>
                         <span className='text-xl sm:text-2xl'>🌍</span>
                         <span className='font-bold text-blue-700 text-xs sm:text-sm uppercase tracking-wider'>Popular Destinations</span>
                     </div>
@@ -117,7 +117,7 @@ function Destinations() {
                                 </p>
 
                                 {/* CTA */}
-                                <button className={`w-full bg-gradient-to-r ${destination.color} text-white font-bold py-3 rounded-xl transform group-hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg`}>
+                                <button className={`w-full bg-gradient-to-r ${destination.color} text-white font-bold py-3 rounded-xl hover:brightness-110 transition-all duration-300 shadow-md hover:shadow-lg`}>
                                     Plan Your Trip →
                                 </button>
                             </div>
@@ -127,7 +127,7 @@ function Destinations() {
 
                 {/* View All CTA */}
                 <div className='mt-12 sm:mt-16 text-center px-4'>
-                    <button className='w-full sm:w-auto bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:bg-pos-100 bg-size-200 text-white px-8 sm:px-12 py-4 sm:py-5 rounded-2xl font-black text-lg sm:text-xl shadow-xl hover:shadow-2xl transform hover:scale-105 active:scale-95 transition-all duration-300'>
+                    <button className='w-full sm:w-auto bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white px-8 sm:px-12 py-4 sm:py-5 rounded-2xl font-black text-lg sm:text-xl shadow-xl hover:shadow-2xl transition-all duration-300'>
                         <span className='mr-2'>🌎</span>
                         Explore All Destinations
                         <span className='ml-2'>→</span>
