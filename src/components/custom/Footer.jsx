@@ -63,16 +63,16 @@ function Footer() {
               🌍 AI-powered travel planning that makes your dream trips a reality. Plan smarter, travel better.
             </p>
             <div className='flex justify-center sm:justify-start gap-4'>
-              <a href='#' className='w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center hover:bg-white/20 transition-all duration-300 transform hover:scale-110 text-2xl'>
+              <a href='#' className='w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center hover:bg-white/30 transition-all duration-300 text-2xl'>
                 📘
               </a>
-              <a href='#' className='w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center hover:bg-white/20 transition-all duration-300 transform hover:scale-110 text-2xl'>
+              <a href='#' className='w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center hover:bg-white/30 transition-all duration-300 text-2xl'>
                 🐦
               </a>
-              <a href='#' className='w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center hover:bg-white/20 transition-all duration-300 transform hover:scale-110 text-2xl'>
+              <a href='#' className='w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center hover:bg-white/30 transition-all duration-300 text-2xl'>
                 📷
               </a>
-              <a href='#' className='w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center hover:bg-white/20 transition-all duration-300 transform hover:scale-110 text-2xl'>
+              <a href='#' className='w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center hover:bg-white/30 transition-all duration-300 text-2xl'>
                 💼
               </a>
             </div>
