@@ -93,7 +93,7 @@ function UserTripCard({ trip, onDelete }) {
       <button
         onClick={handleDeleteClick}
         disabled={isDeleting}
-        className='absolute top-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-red-500 hover:text-white text-red-500 w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg transform hover:rotate-12 active:scale-90 disabled:opacity-50 cursor-pointer z-10'
+        className='absolute top-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-red-500 hover:text-white text-red-500 w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:rotate-12 disabled:opacity-50 cursor-pointer z-10'
         title='Delete trip'
       >
         {isDeleting ? (
