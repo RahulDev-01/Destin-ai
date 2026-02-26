@@ -65,7 +65,7 @@ function PopularDestinations() {
             <div className='relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-10'>
                 {/* Section Header */}
                 <div className='text-center mb-12 sm:mb-16 space-y-4 px-4'>
-                    <div className='inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-cyan-100 px-4 py-2 rounded-full transform hover:scale-110 transition-transform'>
+                    <div className='inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-cyan-100 px-4 py-2 rounded-full hover:from-blue-200 hover:to-cyan-200 transition-all duration-300'>
                         <span className='text-xl sm:text-2xl'>🌍</span>
                         <span className='font-bold text-blue-700 text-xs sm:text-sm uppercase tracking-wider'>Explore the World</span>
                     </div>
@@ -125,7 +125,7 @@ function PopularDestinations() {
 
                                 {/* CTA Button */}
                                 <Link to='/create-trip' className='block'>
-                                    <Button className={`w-full bg-gradient-to-r ${destination.gradient} hover:opacity-90 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform group-hover:scale-105`}>
+                                    <Button className={`w-full bg-gradient-to-r ${destination.gradient} hover:brightness-110 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300`}>
                                         <span className='mr-2'>✈️</span>
                                         Plan Trip to {destination.name.split(',')[0]}
                                     </Button>
@@ -138,7 +138,7 @@ function PopularDestinations() {
                 {/* View All CTA */}
                 <div className='mt-12 sm:mt-16 text-center px-4'>
                     <Link to='/create-trip'>
-                        <button className='w-full sm:w-auto h-14 sm:h-16 px-8 sm:px-10 text-lg sm:text-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:bg-pos-100 bg-size-200 text-white font-black rounded-2xl shadow-2xl hover:shadow-blue-500/50 transform hover:scale-105 active:scale-95 transition-all duration-300'>
+                        <button className='w-full sm:w-auto h-14 sm:h-16 px-8 sm:px-10 text-lg sm:text-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:from-blue-700 hover:via-indigo-700 hover:to-cyan-700 text-white font-black rounded-2xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-300'>
                             <span className='mr-2'>🗺️</span>
                             Explore More Destinations
                             <span className='ml-2'>→</span>
