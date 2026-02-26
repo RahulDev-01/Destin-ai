@@ -115,7 +115,7 @@ function PricingSection() {
 
                             <Link to='/create-trip'>
                                 <Button
-                                    className={`w-full h-14 text-lg font-bold rounded-xl transition-all duration-300 transform hover:scale-105
+                                    className={`w-full h-14 text-lg font-bold rounded-xl transition-all duration-300
                     ${plan.popular
                                             ? 'bg-gradient-to-r from-blue-700 to-cyan-600 text-white hover:from-blue-800 hover:to-cyan-700 shadow-lg hover:shadow-blue-500/50'
                                             : 'bg-gray-900 text-white hover:bg-gray-800'
