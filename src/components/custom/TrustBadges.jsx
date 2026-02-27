@@ -2,11 +2,11 @@ import React from 'react'
 
 function TrustBadges() {
     const partners = [
-        { name: 'Airbnb', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' },
-        { name: 'Booking.com', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Booking.com_logo.svg/2560px-Booking.com_logo.svg.png' },
-        { name: 'Expedia', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Expedia_logo_2023.svg/2560px-Expedia_logo_2023.svg.png' },
-        { name: 'TripAdvisor', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/TripAdvisor_Logo.svg/2560px-TripAdvisor_Logo.svg.png' },
-        { name: 'Skyscanner', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Skyscanner_Logo_2019.svg/2560px-Skyscanner_Logo_2019.svg.png' },
+        { name: 'Airbnb', color: '#FF5A5F' },
+        { name: 'Booking.com', color: '#003580' },
+        { name: 'Expedia', color: '#00355F' },
+        { name: 'TripAdvisor', color: '#34E0A1' },
+        { name: 'Skyscanner', color: '#0770E3' },
     ]
 
     return (
@@ -16,14 +16,15 @@ function TrustBadges() {
                     Trusted By Industry Leaders
                 </p>
 
-                <div className='flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500'>
+                <div className='flex flex-wrap justify-center items-center gap-8 md:gap-16'>
                     {partners.map((partner, index) => (
-                        <img
+                        <span
                             key={index}
-                            src={partner.logo}
-                            alt={partner.name}
-                            className='h-8 md:h-10 w-auto object-contain hover:scale-110 transition-transform duration-300'
-                        />
+                            className='text-xl md:text-2xl font-black tracking-tight opacity-40 hover:opacity-80 transition-opacity duration-300'
+                            style={{ color: partner.color }}
+                        >
+                            {partner.name}
+                        </span>
                     ))}
                 </div>
             </div>
