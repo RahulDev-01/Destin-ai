@@ -14,27 +14,27 @@ function TravelersStep({ formData, handleInputChange, onNext, onBack }) {
                 </p>
             </div>
 
-            <div className='grid grid-cols-4 gap-3 sm:gap-4 md:gap-6'>
+            <div className='grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 md:gap-6'>
                 {SelectTravelList.map((item, index) => (
                     <div
                         key={index}
                         onClick={() => handleInputChange('Peoples', item.people)}
-                        className={`cursor-pointer group relative p-5 sm:p-6 border-2 rounded-[2rem] transition-all duration-500
+                        className={`cursor-pointer group relative p-3 sm:p-5 md:p-6 border-2 rounded-2xl sm:rounded-[2rem] transition-all duration-500
               ${formData?.Peoples === item.people
                                 ? 'border-blue-700 bg-blue-50/50 shadow-2xl ring-2 ring-blue-700 ring-offset-4'
                                 : 'border-gray-100 bg-white hover:border-blue-300 hover:shadow-xl'
                             }
             `}
                     >
-                        <div className={`text-4xl sm:text-5xl mb-4 sm:mb-6 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-lg mx-auto transition-transform duration-700 group-hover:rotate-12
+                        <div className={`text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4 md:mb-6 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center shadow-lg mx-auto transition-transform duration-700 group-hover:rotate-12
                             ${formData?.Peoples === item.people ? 'bg-white' : 'bg-gray-50 group-hover:bg-white'}
                         `}>
                             {item.icon}
                         </div>
 
                         <div className='text-center space-y-2'>
-                            <h3 className='font-black text-base sm:text-xl text-gray-900 tracking-tight'>{item.title}</h3>
-                            <p className='text-[10px] sm:text-sm text-gray-500 leading-relaxed font-medium'>
+                            <h3 className='font-black text-sm sm:text-base md:text-xl text-gray-900 tracking-tight'>{item.title}</h3>
+                            <p className='text-[9px] sm:text-[10px] md:text-sm text-gray-500 leading-relaxed font-medium'>
                                 {item.desc}
                             </p>
                         </div>
