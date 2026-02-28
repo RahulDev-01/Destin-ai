@@ -19,22 +19,22 @@ function BudgetStyleStep({ formData, handleInputChange, onNext, onBack }) {
                     <div
                         key={index}
                         onClick={() => handleInputChange('budget', item.title)}
-                        className={`cursor-pointer group relative p-6 sm:p-8 border-2 rounded-[2rem] transition-all duration-500
+                        className={`cursor-pointer group relative p-4 sm:p-6 md:p-8 border-2 rounded-2xl sm:rounded-[2rem] transition-all duration-500
               ${formData?.budget === item.title
                                 ? 'border-blue-700 bg-blue-50/50 shadow-2xl ring-2 ring-blue-700 ring-offset-4'
                                 : 'border-gray-100 bg-white hover:border-blue-300 hover:shadow-xl'
                             }
             `}
                     >
-                        <div className={`text-4xl sm:text-6xl mb-4 sm:mb-6 w-16 h-16 sm:w-24 sm:h-24 rounded-full flex items-center justify-center shadow-lg mx-auto transition-transform duration-700 group-hover:rotate-12
+                        <div className={`text-3xl sm:text-4xl md:text-6xl mb-3 sm:mb-4 md:mb-6 w-14 h-14 sm:w-16 sm:h-16 md:w-24 md:h-24 rounded-full flex items-center justify-center shadow-lg mx-auto transition-transform duration-700 group-hover:rotate-12
                             ${formData?.budget === item.title ? 'bg-white' : 'bg-gray-50 group-hover:bg-white'}
                         `}>
                             {item.icon}
                         </div>
 
-                        <div className='text-center space-y-2 sm:space-y-3'>
-                            <h3 className='font-black text-xl sm:text-2xl text-gray-900 uppercase tracking-tight'>{item.title}</h3>
-                            <p className='text-xs sm:text-base text-gray-500 leading-relaxed font-medium'>
+                        <div className='text-center space-y-1 sm:space-y-2 md:space-y-3'>
+                            <h3 className='font-black text-base sm:text-xl md:text-2xl text-gray-900 uppercase tracking-tight'>{item.title}</h3>
+                            <p className='text-[10px] sm:text-xs md:text-base text-gray-500 leading-relaxed font-medium'>
                                 {item.desc}
                             </p>
                         </div>
