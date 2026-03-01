@@ -65,7 +65,7 @@ function ReviewStep({ formData, onGenerate, onBack, loading }) {
                     </div>
                     <div>
                         <div className='text-[10px] sm:text-sm text-gray-500 font-bold uppercase tracking-widest'>Travelers</div>
-                        <div className='text-lg sm:text-xl font-black text-gray-900 leading-tight'>{formData?.Peoples} People</div>
+                        <div className='text-lg sm:text-xl font-black text-gray-900 leading-tight'>{formData?.Peoples}</div>
                     </div>
                 </div>
 
