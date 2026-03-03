@@ -42,12 +42,13 @@ function PlaceCardItem({ place }) {
           <p className='text-xs sm:text-sm text-gray-500 font-medium leading-relaxed line-clamp-2 sm:line-clamp-3 mb-4 flex-1'>
             {place.placeDetails}
           </p>
-          <div className='mt-auto flex items-center justify-between pt-3 border-t border-gray-50'>
-            <div className='flex items-center gap-4'>
-              <h2 className='text-sm font-black text-green-600 bg-green-50 px-3 py-1 rounded-full'>{place.ticketPricing}</h2>
+          <div className='mt-auto flex items-end justify-between gap-3 pt-3 border-t border-gray-50'>
+            <div className='flex-1 min-w-0'>
+              <span className='text-[10px] font-bold text-gray-400 uppercase tracking-wider'>Ticket Price</span>
+              <p className='text-sm font-black text-blue-700 leading-snug mt-0.5'>{place.ticketPricing}</p>
             </div>
             <Button
-              className='h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-gray-900 text-white hover:bg-blue-600 transform hover:rotate-12 transition-all shadow-lg'
+              className='h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-gray-900 text-white hover:bg-blue-600 transition-all shadow-lg flex-shrink-0'
               onClick={(e) => { e.preventDefault(); reDirect(); }}
             >
               <FaMapMarked className='text-lg' />
