@@ -48,7 +48,7 @@ export default function InfoSection({ trip }) {
             </div>
           </div>
         </div>
-        <Button className='h-14 w-14 sm:h-16 sm:w-16 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20 active:scale-95 transition-all'>
+        <Button className='h-14 w-14 sm:h-16 sm:w-16 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20 transition-all'>
           <FaShareAlt className='text-xl sm:text-2xl' />
         </Button>
       </div>
