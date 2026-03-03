@@ -96,7 +96,7 @@ function PricingSection() {
                             <div className='text-center mb-8'>
                                 <h3 className='text-xl font-bold text-gray-600 mb-2'>{plan.name}</h3>
                                 <div className='flex items-baseline justify-center gap-1'>
-                                    <span className='text-5xl font-black text-gray-900'>{plan.price}</span>
+                                    <span className='text-5xl font-black text-green-600'>{plan.price}</span>
                                     <span className='text-gray-500 font-medium'>{plan.period}</span>
                                 </div>
                                 <p className='text-gray-500 mt-4'>{plan.description}</p>
