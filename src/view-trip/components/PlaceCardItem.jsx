@@ -4,7 +4,9 @@ import React, { useEffect, useState } from 'react'
 import { FaMapMarked } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { getRelevantImageUrl, buildSeededPhotoURL } from '@/service/Globalapi';
-function PlaceCardItem({ place }) {
+import { formatPrice } from '../../lib/currency';
+
+function PlaceCardItem({ place, currency }) {
   const reDirect = () => {
     window.open(`https://www.google.com/maps/search/?api=1&query=${place.placeName}`, '_blank');
   };
@@ -45,7 +47,7 @@ function PlaceCardItem({ place }) {
           <div className='mt-auto flex items-end justify-between gap-3 pt-3 border-t border-gray-50'>
             <div className='flex-1 min-w-0'>
               <span className='text-[10px] font-bold text-gray-400 uppercase tracking-wider'>Ticket Price</span>
-              <p className='text-sm font-black text-blue-700 leading-snug mt-0.5'>{place.ticketPricing}</p>
+              <p className='text-sm font-black text-green-600 leading-snug mt-0.5'>{formatPrice(place.ticketPricing, currency)}</p>
             </div>
             <Button
               className='h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-gray-900 text-white hover:bg-blue-600 transition-all shadow-lg flex-shrink-0'
