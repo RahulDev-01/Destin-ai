@@ -10,6 +10,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import Viewtrip from './view-trip/[tripId]/Viewtrip'
 import MyTrips from './my-trip'
 import Login from './auth/Login'
+import DestinationPage from './destination/index'
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />,
+      },
+      {
+        path: '/destination/:cityName',
+        element: <DestinationPage />,
       },
       {
         path: '*',
