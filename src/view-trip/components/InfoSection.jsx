@@ -1,9 +1,10 @@
 import { Button } from '@/components/ui/button'
 import { getRelevantImageUrl, buildSeededPhotoURL } from '@/service/Globalapi';
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaShareAlt } from "react-icons/fa";
+import { EXCHANGE_RATES } from '@/lib/currency';
 
-export default function InfoSection({ trip }) {
+export default function InfoSection({ trip, currency, setCurrency }) {
   const [coverUrl, setCoverUrl] = useState('');
 
   useEffect(() => {
@@ -48,9 +49,22 @@ export default function InfoSection({ trip }) {
             </div>
           </div>
         </div>
-        <Button className='h-14 w-14 sm:h-16 sm:w-16 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20 transition-all'>
-          <FaShareAlt className='text-xl sm:text-2xl' />
-        </Button>
+        <div className='flex gap-3'>
+          <div className='flex items-center'>
+            <select
+              value={currency || 'USD'}
+              onChange={(e) => setCurrency(e.target.value)}
+              className='h-14 sm:h-16 px-4 bg-gray-100/80 backdrop-blur-sm rounded-2xl text-gray-900 font-bold border border-gray-200 outline-none focus:ring-2 focus:ring-blue-500 hover:bg-white hover:shadow-md transition-all cursor-pointer'
+            >
+              {Object.keys(EXCHANGE_RATES).map((curr) => (
+                <option key={curr} value={curr}>{curr}</option>
+              ))}
+            </select>
+          </div>
+          <Button className='h-14 w-14 sm:h-16 sm:w-16 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20 transition-all'>
+            <FaShareAlt className='text-xl sm:text-2xl' />
+          </Button>
+        </div>
       </div>
     </div>
   )
