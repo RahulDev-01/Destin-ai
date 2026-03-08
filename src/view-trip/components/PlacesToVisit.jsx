@@ -1,7 +1,7 @@
 import React from "react";
 import PlaceCardItem from "./PlaceCardItem";
 
-function PlacesToVisit({ trip }) {
+function PlacesToVisit({ trip, currency }) {
   return (
     <div className='mt-16 sm:mt-24'>
       <div className='flex items-center gap-3 mb-10 px-2'>
@@ -19,7 +19,7 @@ function PlacesToVisit({ trip }) {
                 {item.plan.map((place, pIndex) => (
                   <div className="my-3 h-" key={`place-${place.placeName || pIndex}`}>
                     <h2 className="font-medium text-sm text-orange-600">{place.timeToTravel}</h2>
-                    <PlaceCardItem place={place} />
+                    <PlaceCardItem place={place} currency={currency} />
                   </div>
                 ))}
               </div>

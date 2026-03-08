@@ -13,6 +13,7 @@ import { useSEO } from '@/lib/seo';
 function Viewtrip() {
   const { tripId } = useParams();
   const [trip, setTrip] = useState({});
+  const [currency, setCurrency] = useState('USD');
 
   useEffect(() => {
     tripId && GetTripData();
@@ -48,9 +49,9 @@ function Viewtrip() {
   return (
     <>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-8 sm:py-10'>
-        <InfoSection trip={trip} />
-        <Hotels trip={trip} />
-        <PlacesToVisit trip={trip} />
+        <InfoSection trip={trip} currency={currency} setCurrency={setCurrency} />
+        <Hotels trip={trip} currency={currency} />
+        <PlacesToVisit trip={trip} currency={currency} />
         <Footer trip={trip} />
       </div> </>
   );

@@ -3,8 +3,9 @@ import { IoIosPin } from "react-icons/io";
 import { FaSackDollar } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { getRelevantImageUrl, buildSeededPhotoURL } from '@/service/Globalapi';
+import { formatPrice } from '../../lib/currency';
 
-function Hotels({ trip }) {
+function Hotels({ trip, currency }) {
   const [photos, setPhotos] = useState({});
 
   useEffect(() => {
@@ -66,7 +67,7 @@ function Hotels({ trip }) {
                     {/* Price */}
                     <div className='mt-auto pt-3 border-t border-gray-100'>
                       <span className='text-[10px] font-bold text-gray-400 uppercase tracking-wider'>Per Night</span>
-                      <p className='text-sm font-black text-blue-700 leading-snug mt-0.5'>{hotel?.price}</p>
+                      <p className='text-sm font-black text-green-600 leading-snug mt-0.5'>{formatPrice(hotel?.price, currency)}</p>
                     </div>
                   </div>
                 </div>
