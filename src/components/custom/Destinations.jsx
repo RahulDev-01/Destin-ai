@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { slugifyCity } from '@/constants/cities'
 
 function Destinations() {
     const destinations = [
@@ -77,52 +79,56 @@ function Destinations() {
 
                 {/* Destinations Grid */}
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
-                    {destinations.map((destination, index) => (
-                        <div
-                            key={index}
-                            className='group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer'
-                        >
-                            {/* Image */}
-                            <div className='relative h-64 overflow-hidden'>
-                                <img
-                                    src={destination.image}
-                                    alt={destination.name}
-                                    className='w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700'
-                                    onError={(e) => {
-                                        e.target.src = '/plane.jpg'
-                                    }}
-                                />
-                                {/* Gradient Overlay */}
-                                <div className={`absolute inset-0 bg-gradient-to-t ${destination.color} opacity-40 group-hover:opacity-60 transition-opacity duration-500`}></div>
+                    {destinations.map((destination, index) => {
+                        const citySlug = slugifyCity(destination.name);
+                        return (
+                            <Link to={`/destination/${citySlug}`} key={index}>
+                                <div
+                                    className='group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer h-full'
+                                >
+                                    {/* Image */}
+                                    <div className='relative h-64 overflow-hidden'>
+                                        <img
+                                            src={destination.image}
+                                            alt={destination.name}
+                                            className='w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700'
+                                            onError={(e) => {
+                                                e.target.src = '/plane.jpg'
+                                            }}
+                                        />
+                                        {/* Gradient Overlay */}
+                                        <div className={`absolute inset-0 bg-gradient-to-t ${destination.color} opacity-40 group-hover:opacity-60 transition-opacity duration-500`}></div>
 
-                                {/* Emoji Badge */}
-                                <div className='absolute top-4 right-4 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center text-4xl shadow-lg transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500'>
-                                    {destination.emoji}
+                                        {/* Emoji Badge */}
+                                        <div className='absolute top-4 right-4 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center text-4xl shadow-lg transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500'>
+                                            {destination.emoji}
+                                        </div>
+
+                                        {/* Trip Count */}
+                                        <div className='absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg'>
+                                            <span className='font-black text-gray-900'>{destination.trips}</span>
+                                            <span className='text-gray-600 ml-1'>trips planned</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className='p-6 flex flex-col h-full'>
+                                        <h3 className='text-2xl font-black text-gray-900 mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300'>
+                                            {destination.name}
+                                        </h3>
+                                        <p className='text-gray-600 font-medium mb-4 flex-grow'>
+                                            {destination.description}
+                                        </p>
+
+                                        {/* CTA */}
+                                        <button className={`w-full mt-auto bg-gradient-to-r ${destination.color} text-white font-bold py-3 rounded-xl hover:brightness-110 transition-all duration-300 shadow-md hover:shadow-lg`}>
+                                            Explore Options →
+                                        </button>
+                                    </div>
                                 </div>
-
-                                {/* Trip Count */}
-                                <div className='absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg'>
-                                    <span className='font-black text-gray-900'>{destination.trips}</span>
-                                    <span className='text-gray-600 ml-1'>trips planned</span>
-                                </div>
-                            </div>
-
-                            {/* Content */}
-                            <div className='p-6'>
-                                <h3 className='text-2xl font-black text-gray-900 mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300'>
-                                    {destination.name}
-                                </h3>
-                                <p className='text-gray-600 font-medium mb-4'>
-                                    {destination.description}
-                                </p>
-
-                                {/* CTA */}
-                                <button className={`w-full bg-gradient-to-r ${destination.color} text-white font-bold py-3 rounded-xl hover:brightness-110 transition-all duration-300 shadow-md hover:shadow-lg`}>
-                                    Plan Your Trip →
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+                            </Link>
+                        )
+                    })}
                 </div>
 
                 {/* View All CTA */}
