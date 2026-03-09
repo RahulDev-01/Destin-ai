@@ -9,7 +9,7 @@
 
 **Destin-Ai** is designed to help travelers plan their trips in a hassle-free and personalized manner 🧳. With its AI-powered destination recommendations and custom itinerary builder, users can input their preferences and instantly get a tailored travel plan. The app also enables users to manage their trips, save itineraries, and sign in securely via **Google OAuth** 🔐.
 
-### Key Features:
+### Key Features :
 
 * **AI-Powered Destination Suggestions** 🏝️: Get travel recommendations based on your preferences.
 * **Custom Itinerary Creation** 🗺️: Create detailed itineraries with suggested activities, local attractions, and more.
