@@ -47,7 +47,7 @@ Sign up and log in securely with **Google OAuth** integration. This allows you t
 
 The application is fully responsive, ensuring that it works seamlessly across desktop, tablet, and mobile devices. Whether you're planning your trip on your laptop at home 💻 or modifying your itinerary while on the go 🏞️, the app adapts to your device's screen size for an optimal experience.
 
-#### 6. **Toast Notifications for Real-Time Feedback** 📢
+#### 6 . **Toast Notifications for Real-Time Feedback** 📢
 
 Instant feedback is crucial when interacting with the app. The app integrates **Sonner** for toast notifications to alert users of important actions, such as successfully creating a trip or an error in submitting a form ⚠️. These small but useful alerts improve the user experience and ensure you’re always in the know 📬.
 
